@@ -1,0 +1,54 @@
+name: ecommerce_app
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.18.4 <3.0.0"
+
+dependencies:
+  bloc: ^8.1.0
+  cupertino_icons: ^1.0.2
+  dartz: ^0.10.1
+  dio: ^4.0.6
+  easy_localization: ^3.0.1
+  equatable: ^2.0.5
+  firebase_core: ^2.3.0
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.1
+  flutter_facebook_auth: ^5.0.6
+  flutter_html: ^2.2.1
+  flutter_localizations:
+    sdk: flutter
+  flutter_rating_bar: ^4.0.1
+  flutter_screenutil: ^5.6.0
+  flutter_svg: 0.23.0+1
+  fluttertoast: ^8.1.1
+  get_it: ^7.2.0
+  google_sign_in: ^5.4.2
+  infinite_scroll_pagination: ^3.2.0
+  loading_gifs: ^0.3.0
+  persistent_bottom_nav_bar: ^5.0.2
+  provider: ^6.0.4
+  shared_preferences: ^2.0.15
+  translate: ^1.0.0
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/icons/
+    - assets/images/
+    - assets/translations/
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
