@@ -42,6 +42,7 @@ class ProductDetailsScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListView(
+                    key: PageStorageKey('ProductDetails:$id'),
                     children: [
                       ImagesSliderWidget(
                         images: product.images,
@@ -61,7 +62,7 @@ class ProductDetailsScreen extends StatelessWidget {
                               style: {'*': Style(fontSize: FontSize.large)},
                             ),
                             SizedBox(height: 20.h),
-                            RelatedProductsSection(related: product.related),
+                            RelatedProductsSection(product: product),
                             SizedBox(height: 100.h),
                           ],
                         ),

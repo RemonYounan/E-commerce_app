@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product.dart';
+import 'package:ecommerce_app/features/products/domain/entities/product_details.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/product_grid_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,10 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class RelatedProductsSection extends StatelessWidget {
   const RelatedProductsSection({
     Key? key,
-    required this.related,
+    required this.product,
   }) : super(key: key);
 
-  final List<Product> related;
+  final ProductDetails product;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class RelatedProductsSection extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             Text(
-              '${related.length} items',
+              '${product.related.length} items',
               style: Theme.of(context).textTheme.labelSmall,
             ),
           ],
@@ -35,12 +36,13 @@ class RelatedProductsSection extends StatelessWidget {
         SizedBox(
           height: 280.h,
           child: ListView.builder(
+            key: PageStorageKey('ProductDetailsRelated:$product.id'),
             scrollDirection: Axis.horizontal,
-            itemCount: related.length,
+            itemCount: product.related.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.w),
-                child: ProductGridCard(product: related[index]),
+                child: ProductGridCard(product: product.related[index]),
               );
             },
           ),
