@@ -80,9 +80,9 @@ class GlobalProvider with ChangeNotifier {
   // FavProducts Manager
   final ToggleFavoriteUsecase _toggleFavoriteUsecase;
 
-  late dynamic _favProducts;
+  late Map<String, dynamic> _favProducts;
 
-  dynamic get favProducts => _favProducts;
+  Map<String, dynamic> get favProducts => _favProducts;
 
   void setFavProducts(favProducts) {
     _favProducts = favProducts;
@@ -90,6 +90,12 @@ class GlobalProvider with ChangeNotifier {
   }
 
   Future<void> toggleFavorite(int id, int uid) async {
+    if (_favProducts.containsKey('$id')) {
+      _favProducts.remove('$id');
+    } else {
+      _favProducts.addAll({'$id': true});
+    }
+    notifyListeners();
     final result = await _toggleFavoriteUsecase(id, uid);
     result.fold(
       (error) => null,
