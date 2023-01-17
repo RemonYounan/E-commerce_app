@@ -10,20 +10,19 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 class ProductsListView extends StatelessWidget {
   const ProductsListView({
     Key? key,
-    required PagingController<int, Product> pagingController,
-  })  : _pagingController = pagingController,
-        super(key: key);
+    required this.pagingController,
+  }) : super(key: key);
 
-  final PagingController<int, Product> _pagingController;
+  final PagingController<int, Product> pagingController;
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
       color: AppColors.primaryColor,
-      onRefresh: () => Future.sync(() => _pagingController.refresh()),
+      onRefresh: () => Future.sync(() => pagingController.refresh()),
       child: PagedListView(
         key: const PageStorageKey('ProductsListView'),
-        pagingController: _pagingController,
+        pagingController: pagingController,
         builderDelegate: PagedChildBuilderDelegate<Product>(
             itemBuilder: (context, item, _) => Padding(
                   padding:
