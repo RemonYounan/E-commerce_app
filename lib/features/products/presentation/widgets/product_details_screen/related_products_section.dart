@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product_details.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/product_grid_card.dart';
@@ -21,11 +22,11 @@ class RelatedProductsSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'you_can_like'.tr(),
+              AppStrings.youCanLike,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             Text(
-              '${product.related.length} items',
+              '${product.related.length} ${AppStrings.items}',
               style: Theme.of(context).textTheme.labelSmall,
             ),
           ],

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/core/common/app_themes.dart';
 import 'package:ecommerce_app/core/constants/app_constants.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/constants/enums.dart';
 import 'package:ecommerce_app/core/helpers/cache_helper.dart';
 import 'package:ecommerce_app/features/products/domain/usecases/toggle_favorite_usecase.dart';
@@ -54,11 +55,11 @@ class GlobalProvider with ChangeNotifier {
   void changeSortBy(String newSort) {
     _sortBy = newSort;
     if (newSort == AppConstants.newToOld) {
-      _title = 'newest';
+      _title = AppStrings.newest;
     } else if (newSort == AppConstants.priceLowToHigh) {
-      _title = 'price_low_to_high';
+      _title = AppStrings.priceLowToHigh;
     } else if (newSort == AppConstants.priceHighToLow) {
-      _title = 'price_high_to_low';
+      _title = AppStrings.priceHighToLow;
     }
     notifyListeners();
   }

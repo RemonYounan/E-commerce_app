@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/constants/enums.dart';
 import 'package:ecommerce_app/features/products/domain/entities/category.dart';
 import 'package:ecommerce_app/core/providers/global_provider.dart';
@@ -25,10 +26,8 @@ class FilterSection extends StatelessWidget {
       children: [
         const Icon(Icons.filter_list),
         SizedBox(width: 5.w),
-        Text('filters'.tr()),
+        Text(AppStrings.filters),
         SizedBox(width: 45.w),
-        const Icon(Icons.filter_list),
-        SizedBox(width: 5.w),
         Expanded(
           child: SortByMenuWidget(
             category: category,

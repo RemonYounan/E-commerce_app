@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -41,7 +42,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         return Left(ServerFailure(message: response.data['error']));
       }
     } catch (e) {
-      return const Left(ServerFailure(message: 'error occured'));
+      return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }
 
@@ -56,7 +57,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         return Left(ServerFailure(message: response.data['error']));
       }
     } catch (e) {
-      return const Left(ServerFailure(message: 'error occured'));
+      return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }
 
@@ -73,7 +74,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         return Left(ServerFailure(message: response.data['error']));
       }
     } catch (e) {
-      return const Left(ServerFailure(message: 'error occured'));
+      return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }
 
@@ -85,12 +86,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         'email': email,
       });
       if (response.data['error'] == null) {
-        return Right('email_sent'.tr());
+        return Right(AppStrings.emailSent);
       } else {
         return Left(ServerFailure(message: response.data['error']));
       }
     } catch (e) {
-      return const Left(ServerFailure(message: 'An error occured'));
+      return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }
 
@@ -116,7 +117,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     } else {
       print(result.status);
       print(result.message);
-      return const Left(ServerFailure(message: 'An error occured'));
+      return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }
 
@@ -137,7 +138,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         return Left(ServerFailure(message: response.data['error']));
       }
     } catch (error) {
-      return const Left(ServerFailure(message: 'An error occured'));
+      return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }
 
@@ -149,7 +150,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       await FacebookAuth.instance.logOut();
       return const Right(unit);
     } catch (error) {
-      return const Left(ServerFailure(message: 'An error ouccured'));
+      return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }
 }

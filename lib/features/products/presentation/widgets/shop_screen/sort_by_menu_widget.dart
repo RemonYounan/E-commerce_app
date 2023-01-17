@@ -25,15 +25,15 @@ class SortByMenuWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<SortByItem> items = [
       SortByItem(
-        name: 'newest'.tr(),
+        name: AppStrings.newest,
         value: AppConstants.newToOld,
       ),
       SortByItem(
-        name: 'price_low_to_high'.tr(),
+        name: AppStrings.priceLowToHigh,
         value: AppConstants.priceLowToHigh,
       ),
       SortByItem(
-        name: 'price_high_to_low'.tr(),
+        name: AppStrings.priceHighToLow,
         value: AppConstants.priceHighToLow,
       ),
     ];
@@ -50,7 +50,7 @@ class SortByMenuWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      AppStrings.sortBy.tr(),
+                      AppStrings.sortBy,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     SizedBox(height: 15.h),
@@ -78,8 +78,14 @@ class SortByMenuWidget extends StatelessWidget {
           },
         );
       },
-      child: Text(
-        Provider.of<GlobalProvider>(context).title.tr(),
+      child: Row(
+        children: [
+          const Icon(Icons.filter_list),
+          SizedBox(width: 5.w),
+          Text(
+            Provider.of<GlobalProvider>(context).title,
+          ),
+        ],
       ),
     );
   }

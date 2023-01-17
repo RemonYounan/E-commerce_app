@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/providers/global_provider.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/shop_screen/categories_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class ShopScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('categories'.tr()),
+        title: Text(AppStrings.categories),
         leading: IconButton(
           onPressed: () {
             Provider.of<GlobalProvider>(context, listen: false).changeIndex(0);

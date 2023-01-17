@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class NoMoreItemsWidget extends StatelessWidget {
@@ -10,7 +11,7 @@ class NoMoreItemsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Text(
-      'no_more_items'.tr(),
+      AppStrings.noMoreItems,
       style: Theme.of(context).textTheme.titleSmall,
     ));
   }

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/common/app_routes.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,7 +53,7 @@ class ImageAndNameSection extends StatelessWidget {
               TextButton(
                 onPressed: () => Navigator.pushNamed(context, AppRoutes.signUp),
                 child: Text(
-                  'sign_up'.tr(),
+                  AppStrings.signUp,
                   style: textTheme.headlineSmall,
                 ),
               ),

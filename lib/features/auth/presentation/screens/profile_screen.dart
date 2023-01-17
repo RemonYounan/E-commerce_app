@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/core/common/app_routes.dart';
 import 'package:ecommerce_app/core/common/app_themes.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 
 import 'package:ecommerce_app/core/providers/global_provider.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
@@ -17,12 +18,12 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = [
-      'my_orders'.tr(),
-      'shipping_addresses'.tr(),
-      'payment_methods'.tr(),
-      'promocodes'.tr(),
-      'my_reviews'.tr(),
-      'settings'.tr(),
+      AppStrings.myOrders,
+      AppStrings.shippingAddresses,
+      AppStrings.paymentMethods,
+      AppStrings.promocodes,
+      AppStrings.myReviews,
+      AppStrings.settings,
     ];
     return Scaffold(
       body: SafeArea(
@@ -30,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 15.h),
           children: [
             Text(
-              'my_profile'.tr(),
+              AppStrings.myProfile,
               style: Theme.of(context).textTheme.headlineLarge,
             ),
             SizedBox(
@@ -49,7 +50,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             Row(
               children: [
-                const Text('Dark mode'),
+                Text(AppStrings.darkMode),
                 Switch(
                   value: Provider.of<GlobalProvider>(context).isDark,
                   onChanged: (value) =>
@@ -63,7 +64,7 @@ class ProfileScreen extends StatelessWidget {
                         context, AppRoutes.signUp, (route) => false);
                     BlocProvider.of<AuthCubit>(context).logout();
                   },
-                  child: const Text('Log out'),
+                  child: Text(AppStrings.logout),
                 ),
               ],
             ),

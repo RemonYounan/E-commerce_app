@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,7 @@ class ChooseSizeOrColorWidget extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'select_${name.toLowerCase()}'.tr(),
+                    '${AppStrings.select} ${name.toLowerCase()}',
                     style: Theme.of(context).textTheme.headlineSmall,
                   )
                 ],
