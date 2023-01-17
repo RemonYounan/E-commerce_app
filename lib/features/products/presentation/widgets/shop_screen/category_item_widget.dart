@@ -1,12 +1,10 @@
-import 'package:ecommerce_app/core/common/app_colors.dart';
-import 'package:ecommerce_app/core/common/app_routes.dart';
-
-import 'package:ecommerce_app/features/products/domain/entities/category.dart';
-import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_gifs/loading_gifs.dart';
+
+import 'package:ecommerce_app/core/common/app_colors.dart';
+import 'package:ecommerce_app/core/common/app_routes.dart';
+import 'package:ecommerce_app/features/products/domain/entities/category.dart';
 
 class CategoryItemWidget extends StatelessWidget {
   const CategoryItemWidget({

@@ -54,7 +54,7 @@ class GlobalProvider with ChangeNotifier {
   void changeSortBy(String newSort) {
     _sortBy = newSort;
     if (newSort == AppConstants.newToOld) {
-      _title = 'newest'.tr();
+      _title = 'newest';
     } else if (newSort == AppConstants.priceLowToHigh) {
       _title = 'price_low_to_high';
     } else if (newSort == AppConstants.priceHighToLow) {

@@ -1,21 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_app/core/common/app_colors.dart';
-import 'package:ecommerce_app/core/common/app_routes.dart';
 import 'package:ecommerce_app/core/constants/app_constants.dart';
 import 'package:ecommerce_app/core/providers/global_provider.dart';
 import 'package:ecommerce_app/features/products/domain/entities/category.dart';
+import 'package:ecommerce_app/features/products/domain/entities/product.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
 class SortByMenuWidget extends StatelessWidget {
   const SortByMenuWidget({
     required this.category,
+    required this.pagingController,
     Key? key,
   }) : super(key: key);
 
   final Category category;
+  final PagingController<int, Product> pagingController;
 
   void sortProducts(String value) {}
   @override
@@ -64,9 +66,7 @@ class SortByMenuWidget extends StatelessWidget {
                           Provider.of<GlobalProvider>(context, listen: false)
                               .changeSortBy(value!);
                           Navigator.pop(context);
-                          Navigator.pushReplacementNamed(
-                              context, AppRoutes.catProducts,
-                              arguments: category);
+                          pagingController.refresh();
                         },
                       ),
                     ),
