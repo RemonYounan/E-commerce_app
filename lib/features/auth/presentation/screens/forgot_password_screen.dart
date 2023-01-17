@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/features/auth/presentation/widgets/forgot_password_screen/forgot_password_form.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -19,7 +20,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'forgot_password'.tr(),
+                  AppStrings.forgotPassword,
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
@@ -27,7 +28,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 height: 70.h,
               ),
               Text(
-                'forgot_password_help'.tr(),
+                AppStrings.forgotPasswordHelp,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               SizedBox(

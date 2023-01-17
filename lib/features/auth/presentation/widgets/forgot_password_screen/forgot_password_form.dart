@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/common/app_colors.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:ecommerce_app/core/utils/custom_text_field_widget.dart';
@@ -41,15 +42,15 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
       child: Column(
         children: [
           CustomTextFieldWidget(
-            label: 'Email',
+            label: AppStrings.email,
             controller: _emailController,
-            textInputAction: TextInputAction.done,
+            textInputAction: TextInputAction.next,
             textInputType: TextInputType.emailAddress,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'email_error1'.tr();
+                return AppStrings.emailError1;
               } else if (!value.contains('@')) {
-                return 'email_error2'.tr();
+                return AppStrings.emailError2;
               } else {
                 return null;
               }
@@ -75,7 +76,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                     color: AppColors.white,
                   );
                 } else {
-                  return Text('send'.tr().toUpperCase());
+                  return Text(AppStrings.send.toUpperCase());
                 }
               },
             ),

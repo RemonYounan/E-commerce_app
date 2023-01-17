@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/providers/global_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,26 +45,26 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(
                 icon:
                     Icon(currentIndex == 0 ? Icons.home : Icons.home_outlined),
-                label: 'Home'),
+                label: AppStrings.home),
             BottomNavigationBarItem(
                 icon: Icon(currentIndex == 1
                     ? Icons.shopping_cart_rounded
                     : Icons.shopping_cart_outlined),
-                label: 'Shop'),
+                label: AppStrings.shop),
             BottomNavigationBarItem(
                 icon: Icon(currentIndex == 2
                     ? Icons.shopping_bag_rounded
                     : Icons.shopping_bag_outlined),
-                label: 'Bag'),
+                label: AppStrings.bag),
             BottomNavigationBarItem(
                 icon: Icon(currentIndex == 3
                     ? Icons.favorite_rounded
                     : Icons.favorite_outline),
-                label: 'Favorits'),
+                label: AppStrings.favorits),
             BottomNavigationBarItem(
                 icon: Icon(
                     currentIndex == 4 ? Icons.person : Icons.person_outline),
-                label: 'Profile'),
+                label: AppStrings.profile),
           ],
         ),
       ),

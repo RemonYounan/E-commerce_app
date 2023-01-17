@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,22 +23,22 @@ class HomeScreen extends StatelessWidget {
           builder: (context, state) {
             if (state is ProductsLoadedState) {
               return ListView(
-                key:const PageStorageKey('HomeScreenController'),
+                key: const PageStorageKey('HomeScreenController'),
                 children: [
                   const BannerWidget(),
                   SizedBox(height: 32.h),
                   ProductsSection(
-                    title: 'features_products'.tr(),
+                    title: AppStrings.featuresProducts,
                     child: const FeaturesProductsList(),
                   ),
                   SizedBox(height: 32.h),
                   ProductsSection(
-                    title: 'popular_products'.tr(),
+                    title: AppStrings.popularProducts,
                     child: const PopularProductsList(),
                   ),
                   SizedBox(height: 32.h),
                   ProductsSection(
-                    title: 'newest_products'.tr(),
+                    title: AppStrings.newestProducts,
                     child: const NewestProductsList(),
                   ),
                   SizedBox(height: 250.h),

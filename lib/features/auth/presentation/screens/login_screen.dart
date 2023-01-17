@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/features/auth/presentation/widgets/login_screen/login_form.dart';
@@ -21,7 +22,7 @@ class LoginScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'login'.tr(),
+                  AppStrings.login,
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
@@ -33,7 +34,7 @@ class LoginScreen extends StatelessWidget {
                 height: 130.h,
               ),
               SignWithWidget(
-                title: 'or_login_with'.tr(),
+                title: AppStrings.orLoginWith,
               ),
             ],
           ),

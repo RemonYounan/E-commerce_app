@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/common/app_routes.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:ecommerce_app/features/auth/domain/entities/login.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
@@ -47,15 +48,15 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: [
           CustomTextFieldWidget(
-            label: 'Email',
+            label: AppStrings.email,
             controller: _emailController,
             textInputAction: TextInputAction.next,
             textInputType: TextInputType.emailAddress,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'email_error1'.tr();
+                return AppStrings.emailError1;
               } else if (!value.contains('@')) {
-                return 'email_error2'.tr();
+                return AppStrings.emailError2;
               } else {
                 return null;
               }
@@ -65,21 +66,20 @@ class _LoginFormState extends State<LoginForm> {
             height: 10.h,
           ),
           CustomTextFieldWidget(
-            label: 'Password',
-            controller: _passwordController,
-            textInputAction: TextInputAction.done,
-            textInputType: TextInputType.text,
-            obscureText: true,
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'password_error1'.tr();
-              } else if (value.length < 6) {
-                return 'password_error2'.tr();
-              } else {
-                return null;
-              }
-            },
-          ),
+              label: AppStrings.password,
+              controller: _passwordController,
+              obscureText: true,
+              textInputAction: TextInputAction.done,
+              textInputType: TextInputType.text,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return AppStrings.passwordError1;
+                } else if (value.length < 6) {
+                  return AppStrings.passwordError2;
+                } else {
+                  return null;
+                }
+              }),
           SizedBox(
             height: 15.h,
           ),
@@ -89,7 +89,7 @@ class _LoginFormState extends State<LoginForm> {
               style: TextButton.styleFrom(
                 textStyle: Theme.of(context).textTheme.titleSmall,
               ),
-              child: Text('forgot_your_password'.tr()),
+              child: Text(AppStrings.forgotYourPassword),
               onPressed: () {
                 Navigator.pushNamed(context, AppRoutes.forgotPassword);
               },
@@ -116,7 +116,7 @@ class _LoginFormState extends State<LoginForm> {
                     color: AppColors.white,
                   );
                 } else {
-                  return Text('login'.tr().toUpperCase());
+                  return Text(AppStrings.login.toUpperCase());
                 }
               },
             ),

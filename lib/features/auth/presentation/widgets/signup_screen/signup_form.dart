@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/common/app_routes.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/providers/global_provider.dart';
 import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:ecommerce_app/features/auth/domain/entities/register.dart';
@@ -55,13 +56,13 @@ class _SignupFormState extends State<SignupForm> {
       child: Column(
         children: [
           CustomTextFieldWidget(
-            label: 'name'.tr(),
+            label: AppStrings.name,
             controller: _nameController,
             textInputAction: TextInputAction.next,
             textInputType: TextInputType.name,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'name_error'.tr();
+                return AppStrings.nameError;
               } else {
                 return null;
               }
@@ -71,15 +72,15 @@ class _SignupFormState extends State<SignupForm> {
             height: 10.h,
           ),
           CustomTextFieldWidget(
-            label: 'email'.tr(),
+            label: AppStrings.email,
             controller: _emailController,
             textInputAction: TextInputAction.next,
             textInputType: TextInputType.emailAddress,
             validator: (value) {
               if (value!.isEmpty) {
-                return 'email_error1'.tr();
+                return AppStrings.emailError1;
               } else if (!value.contains('@')) {
-                return 'email_error2'.tr();
+                return AppStrings.emailError2;
               } else {
                 return null;
               }
@@ -89,16 +90,16 @@ class _SignupFormState extends State<SignupForm> {
             height: 10.h,
           ),
           CustomTextFieldWidget(
-              label: 'password'.tr(),
+              label: AppStrings.password,
               controller: _passwordController,
               obscureText: true,
               textInputAction: TextInputAction.done,
               textInputType: TextInputType.text,
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'password_error1'.tr();
+                  return AppStrings.passwordError1;
                 } else if (value.length < 6) {
-                  return 'password_error2'.tr();
+                  return AppStrings.passwordError2;
                 } else {
                   return null;
                 }
@@ -112,7 +113,7 @@ class _SignupFormState extends State<SignupForm> {
               style: TextButton.styleFrom(
                 textStyle: Theme.of(context).textTheme.titleSmall,
               ),
-              child: Text('already_have_account'.tr()),
+              child: Text(AppStrings.alreadyHaveAccount),
               onPressed: () {
                 Navigator.pushNamed(context, AppRoutes.login);
               },
@@ -141,7 +142,7 @@ class _SignupFormState extends State<SignupForm> {
                     color: AppColors.white,
                   );
                 } else {
-                  return Text('sign_up'.tr().toUpperCase());
+                  return Text(AppStrings.signUp.toUpperCase());
                 }
               },
             ),

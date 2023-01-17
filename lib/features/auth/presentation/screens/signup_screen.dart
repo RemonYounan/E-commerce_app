@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/features/auth/presentation/widgets/signup_screen/sign_with_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -21,7 +22,7 @@ class SignUpScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'sign_up'.tr(),
+                    AppStrings.signUp,
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
                 ),
@@ -33,7 +34,7 @@ class SignUpScreen extends StatelessWidget {
                   height: 90.h,
                 ),
                 SignWithWidget(
-                  title: 'or_sign_up_with'.tr(),
+                  title: AppStrings.orSignUpWith,
                 ),
               ],
             ),

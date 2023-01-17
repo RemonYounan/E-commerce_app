@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/core/constants/app_constants.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/providers/global_provider.dart';
 import 'package:ecommerce_app/features/products/domain/entities/category.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product.dart';
@@ -49,7 +50,7 @@ class SortByMenuWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'Sort by',
+                      AppStrings.sortBy.tr(),
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     SizedBox(height: 15.h),
