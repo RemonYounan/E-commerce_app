@@ -9,6 +9,7 @@ import 'package:ecommerce_app/features/products/presentation/screens/category_pr
 import 'package:ecommerce_app/features/products/presentation/screens/main_screen.dart';
 import 'package:ecommerce_app/features/products/presentation/screens/product_details_screen.dart';
 import 'package:ecommerce_app/features/splash_screen/presentation/screens/slpash_screen.dart';
+import 'package:page_transition/page_transition.dart';
 
 class AppRouter {
   static Route? onGenerateRoute(RouteSettings settings) {
@@ -19,38 +20,71 @@ class AppRouter {
         );
 
       case AppRoutes.signUp:
-        return MaterialPageRoute(
-          builder: (context) => const SignUpScreen(),
+        return PageTransition(
+          type: PageTransitionType.rightToLeftJoined,
+          alignment: Alignment.centerRight,
+          childCurrent: const SlpashScreen(),
+          child: const SignUpScreen(),
         );
 
       case AppRoutes.login:
-        return MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+        return PageTransition(
+          type: PageTransitionType.rightToLeftJoined,
+          alignment: Alignment.centerRight,
+          childCurrent: const SignUpScreen(),
+          child: const LoginScreen(),
         );
 
       case AppRoutes.forgotPassword:
-        return MaterialPageRoute(
-          builder: (context) => const ForgotPasswordScreen(),
+        return PageTransition(
+          type: PageTransitionType.rightToLeftJoined,
+          alignment: Alignment.centerRight,
+          childCurrent: const LoginScreen(),
+          child: const ForgotPasswordScreen(),
         );
 
       case AppRoutes.main:
-        return MaterialPageRoute(
-          builder: (context) => const MainScreen(),
+        return PageTransition(
+          type: PageTransitionType.fade,
+          alignment: Alignment.centerRight,
+          child: const MainScreen(),
         );
 
       case AppRoutes.productDetails:
         final args = settings.arguments as int;
-        return MaterialPageRoute(
-          builder: (context) => ProductDetailsScreen(id: args),
+        return PageTransition(
+          type: PageTransitionType.rightToLeft,
+          curve: Curves.ease,
+          child: ProductDetailsScreen(id: args),
         );
 
       case AppRoutes.catProducts:
         final args = settings.arguments as Category;
-        return MaterialPageRoute(
-          builder: (context) => CategoryProductsScreen(category: args),
+        return PageTransition(
+          type: PageTransitionType.rightToLeft,
+          curve: Curves.ease,
+          child: CategoryProductsScreen(category: args),
         );
       default:
         return null;
     }
+  }
+}
+
+class MyCustomRoute<T> extends MaterialPageRoute<T> {
+  MyCustomRoute(
+      {required WidgetBuilder builder, required RouteSettings settings})
+      : super(builder: builder, settings: settings);
+
+  @override
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+    const begin = Offset(0.0, 1.0);
+    const end = Offset.zero;
+    const curve = Curves.ease;
+
+    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+    return SlideTransition(position: animation.drive(tween), child: child);
   }
 }

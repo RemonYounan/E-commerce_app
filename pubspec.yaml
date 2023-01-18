@@ -29,6 +29,7 @@ dependencies:
   google_sign_in: ^5.4.2
   infinite_scroll_pagination: ^3.2.0
   loading_gifs: ^0.3.0
+  page_transition: ^2.0.9
   persistent_bottom_nav_bar: ^5.0.2
   provider: ^6.0.4
   shared_preferences: ^2.0.15
