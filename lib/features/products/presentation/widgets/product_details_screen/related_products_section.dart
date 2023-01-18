@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product_details.dart';
+import 'package:ecommerce_app/features/products/presentation/widgets/favorite_button.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/product_grid_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,7 +44,10 @@ class RelatedProductsSection extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.w),
-                child: ProductGridCard(product: product.related[index]),
+                child: ProductGridCard(
+                  product: product.related[index],
+                  icon: FavoriteButton(id: product.related[index].id),
+                ),
               );
             },
           ),

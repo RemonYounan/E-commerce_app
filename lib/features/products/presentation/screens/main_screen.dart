@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/providers/global_provider.dart';
+import 'package:ecommerce_app/features/products/presentation/screens/bag_screen.dart';
+import 'package:ecommerce_app/features/products/presentation/screens/favorite_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -23,8 +25,8 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> screens = const [
     HomeScreen(),
     ShopScreen(),
-    HomeScreen(),
-    HomeScreen(),
+    BagScreen(),
+    FavoriteScreen(),
     ProfileScreen(),
   ];
   @override

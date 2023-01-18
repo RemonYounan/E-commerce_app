@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:ecommerce_app/core/providers/global_provider.dart';
 import 'package:ecommerce_app/features/products/data/models/banner_model.dart';
 import 'package:ecommerce_app/features/products/data/models/category_model.dart';
 import 'package:ecommerce_app/features/products/data/models/product_model.dart';
@@ -10,6 +11,7 @@ import 'package:ecommerce_app/features/products/domain/usecases/get_category_pro
 import 'package:ecommerce_app/features/products/domain/usecases/get_product_details_usecase.dart';
 import 'package:ecommerce_app/features/products/domain/usecases/init_data_usecase.dart';
 import 'package:equatable/equatable.dart';
+import 'package:ecommerce_app/service_locator.dart' as di;
 
 part 'products_state.dart';
 
@@ -107,5 +109,10 @@ class ProductsCubit extends Cubit<ProductsState> {
       },
     );
     return products;
+  }
+
+  void getFavProducts() {
+    final favProducts = di.sl<GlobalProvider>().favProducts;
+    
   }
 }

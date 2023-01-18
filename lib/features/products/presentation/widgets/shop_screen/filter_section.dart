@@ -30,7 +30,6 @@ class FilterSection extends StatelessWidget {
         SizedBox(width: 45.w),
         Expanded(
           child: SortByMenuWidget(
-            category: category,
             pagingController: pagingController,
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product.dart';
+import 'package:ecommerce_app/features/products/presentation/widgets/favorite_button.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/loading_widget.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/product_grid_card.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,10 @@ class ProductsGridView extends StatelessWidget {
         pagingController: _pagingController,
         padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 15.h),
         builderDelegate: PagedChildBuilderDelegate<Product>(
-          itemBuilder: (context, item, _) => ProductGridCard(product: item),
+          itemBuilder: (context, item, _) => ProductGridCard(
+            product: item,
+            icon: FavoriteButton(id: item.id),
+          ),
           newPageProgressIndicatorBuilder: (_) => const LoadingWidget(),
           firstPageProgressIndicatorBuilder: (_) => const LoadingWidget(),
         ),

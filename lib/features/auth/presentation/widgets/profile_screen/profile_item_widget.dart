@@ -26,7 +26,7 @@ class ProfileItemWidget extends StatelessWidget {
                 : AppColors.grey),
       ),
       onTap: () {},
-      contentPadding: EdgeInsets.symmetric(horizontal: 2.w),
+      contentPadding: EdgeInsets.symmetric(horizontal: 15.w),
       title: Text(
         title,
         style: textTheme.titleLarge,

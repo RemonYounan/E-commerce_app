@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
+import 'package:ecommerce_app/features/products/presentation/widgets/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,12 +23,13 @@ class FeaturesProductsList extends StatelessWidget {
             child: ListView.builder(
               key: const PageStorageKey('FeaturesProductsList'),
               scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
               itemCount: featuresProducts.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: ProductGridCard(product: featuresProducts[index]),
+                  child: ProductGridCard(product: featuresProducts[index],
+                  icon: FavoriteButton(id: featuresProducts[index].id),
+                  ),
                 );
               },
             ),

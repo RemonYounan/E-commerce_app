@@ -1,24 +1,26 @@
-import 'package:ecommerce_app/core/common/app_colors.dart';
-import 'package:ecommerce_app/core/common/app_routes.dart';
-
-import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/favorite_button.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/rate_widget.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
-import 'package:ecommerce_app/features/products/domain/entities/product.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_gifs/loading_gifs.dart';
 
+import 'package:ecommerce_app/core/common/app_colors.dart';
+import 'package:ecommerce_app/core/common/app_routes.dart';
+import 'package:ecommerce_app/features/products/domain/entities/product.dart';
+import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
+import 'package:ecommerce_app/features/products/presentation/widgets/favorite_button.dart';
+import 'package:ecommerce_app/features/products/presentation/widgets/rate_widget.dart';
+
 class ProductListCard extends StatelessWidget {
   const ProductListCard({
     Key? key,
     required this.product,
+    required this.icon,
   }) : super(key: key);
 
   final Product product;
+  final Widget icon;
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +125,7 @@ class ProductListCard extends StatelessWidget {
             Positioned(
               bottom: 0,
               right: 0,
-              child: FavoriteButton(id: product.id),
+              child: icon,
             ),
             Positioned(
               top: 8.h,

@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product.dart';
+import 'package:ecommerce_app/features/products/presentation/widgets/favorite_button.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/loading_widget.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/no_more_items_widget.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/product_list_card.dart';
@@ -27,7 +28,10 @@ class ProductsListView extends StatelessWidget {
             itemBuilder: (context, item, _) => Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
-                  child: ProductListCard(product: item),
+                  child: ProductListCard(
+                    product: item,
+                    icon: FavoriteButton(id: item.id),
+                  ),
                 ),
             noMoreItemsIndicatorBuilder: (context) =>
                 SizedBox(height: 40.h, child: const NoMoreItemsWidget()),

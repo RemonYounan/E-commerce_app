@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
 
@@ -25,6 +27,9 @@ class ChooseSizeOrColorWidget extends StatelessWidget {
         onPressed: () {
           showModalBottomSheet(
             context: context,
+            constraints: BoxConstraints(
+                minWidth: double.infinity,
+                maxHeight: (max(items.length * 120, 150)).h),
             builder: (context) => Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
               child: Column(
@@ -32,6 +37,20 @@ class ChooseSizeOrColorWidget extends StatelessWidget {
                   Text(
                     '${AppStrings.select} ${name.toLowerCase()}',
                     style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  SizedBox(height: 20.h),
+                  if (items.isEmpty) Text('No $name available'),
+                  ...List.generate(
+                    items.length,
+                    (index) {
+                      return ListTile(
+                        onTap: () {},
+                        title: Text(
+                          items[index],
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                      );
+                    },
                   )
                 ],
               ),

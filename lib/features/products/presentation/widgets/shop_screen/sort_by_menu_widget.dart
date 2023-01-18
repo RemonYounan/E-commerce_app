@@ -12,12 +12,10 @@ import 'package:provider/provider.dart';
 
 class SortByMenuWidget extends StatelessWidget {
   const SortByMenuWidget({
-    required this.category,
     required this.pagingController,
     Key? key,
   }) : super(key: key);
 
-  final Category category;
   final PagingController<int, Product> pagingController;
 
   void sortProducts(String value) {}

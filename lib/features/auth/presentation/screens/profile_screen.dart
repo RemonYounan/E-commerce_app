@@ -27,46 +27,68 @@ class ProfileScreen extends StatelessWidget {
     ];
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 15.h),
-          children: [
-            Text(
-              AppStrings.myProfile,
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            const ImageAndNameSection(),
-            SizedBox(
-              height: 20.h,
-            ),
-            ...List.generate(
-              items.length,
-              (index) => ProfileItemWidget(
-                title: items[index],
-                subTitle: '',
-              ),
-            ),
-            Row(
-              children: [
-                Text(AppStrings.darkMode),
-                Switch(
-                  value: Provider.of<GlobalProvider>(context).isDark,
-                  onChanged: (value) =>
-                      Provider.of<GlobalProvider>(context, listen: false)
-                          .changeThemeMode(value),
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              pinned: true,
+              expandedHeight: 100.h,
+              flexibleSpace: FlexibleSpaceBar(
+                expandedTitleScale: 1.05,
+                titlePadding: EdgeInsets.only(left: 14.w),
+                title: Text(
+                  AppStrings.myProfile,
+                  style: Theme.of(context).textTheme.headlineLarge,
                 ),
-                const Spacer(),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, AppRoutes.signUp, (route) => false);
-                    BlocProvider.of<AuthCubit>(context).logout();
-                  },
-                  child: Text(AppStrings.logout),
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.search),
                 ),
               ],
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate.fixed(
+                [
+                  SizedBox(height: 20.h),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: const ImageAndNameSection(),
+                  ),
+                  SizedBox(height: 20.h),
+                  ...List.generate(
+                    items.length,
+                    (index) => ProfileItemWidget(
+                      title: items[index],
+                      subTitle: '',
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: Row(
+                      children: [
+                        Text(AppStrings.darkMode),
+                        Switch(
+                          value: Provider.of<GlobalProvider>(context).isDark,
+                          onChanged: (value) => Provider.of<GlobalProvider>(
+                                  context,
+                                  listen: false)
+                              .changeThemeMode(value),
+                        ),
+                        const Spacer(),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, AppRoutes.signUp, (route) => false);
+                            BlocProvider.of<AuthCubit>(context).logout();
+                          },
+                          child: Text(AppStrings.logout),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
