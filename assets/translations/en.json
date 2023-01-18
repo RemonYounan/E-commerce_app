@@ -55,6 +55,7 @@
     "bag" : "Bag",
     "favorits" : "Favorits",
     "profile" : "Profile",
-    "dark_mode" : "Dark mode"
-    
+    "dark_mode" : "Dark mode",
+    "my_bag" : "My bag",
+    "favorites" : "Favorites"
 }

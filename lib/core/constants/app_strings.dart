@@ -48,4 +48,6 @@ class AppStrings {
   static final newest = 'newest'.tr();
   static final priceLowToHigh = 'price_low_to_high'.tr();
   static final priceHighToLow = 'price_high_to_low'.tr();
+  static final myBag = 'my_bag'.tr();
+  static final favorites = 'favorites'.tr();
 }
