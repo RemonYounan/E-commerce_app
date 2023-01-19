@@ -1,9 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_app/core/constants/app_constants.dart';
-import 'package:ecommerce_app/core/constants/app_strings.dart';
-import 'package:ecommerce_app/core/providers/global_provider.dart';
-import 'package:ecommerce_app/features/products/domain/entities/category.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product.dart';
+import '../../../../../core/constants/app_constants.dart';
+import '../../../../../core/constants/app_strings.dart';
+import '../../../../../core/providers/global_provider.dart';
+import '../../../domain/entities/product.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

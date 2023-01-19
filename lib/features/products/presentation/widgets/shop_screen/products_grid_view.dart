@@ -1,8 +1,8 @@
-import 'package:ecommerce_app/core/common/app_colors.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/favorite_button.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/loading_widget.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/product_grid_card.dart';
+import '../../../../../core/common/app_colors.dart';
+import '../../../domain/entities/product.dart';
+import '../favorite_button.dart';
+import '../loading_widget.dart';
+import '../product_grid_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';

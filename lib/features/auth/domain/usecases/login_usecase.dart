@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_app/core/error/failures.dart';
-import 'package:ecommerce_app/features/auth/domain/entities/login.dart';
-import 'package:ecommerce_app/features/auth/domain/entities/user.dart';
-import 'package:ecommerce_app/features/auth/domain/repositories/auth_repository.dart';
+import '../../../../core/error/failures.dart';
+import '../entities/login.dart';
+import '../entities/user.dart';
+import '../repositories/auth_repository.dart';
 
 class LoginUsecase {
   final AuthRepository authRepository;

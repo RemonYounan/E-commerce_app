@@ -1,5 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_app/core/constants/app_strings.dart';
+import '../../../../core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class NoMoreItemsWidget extends StatelessWidget {

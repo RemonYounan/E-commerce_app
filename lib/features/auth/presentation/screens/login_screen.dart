@@ -1,9 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_app/core/constants/app_strings.dart';
+import '../../../../core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
-import 'package:ecommerce_app/features/auth/presentation/widgets/login_screen/login_form.dart';
-import 'package:ecommerce_app/features/auth/presentation/widgets/signup_screen/sign_with_widget.dart';
+import '../widgets/login_screen/login_form.dart';
+import '../widgets/signup_screen/sign_with_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreen extends StatelessWidget {

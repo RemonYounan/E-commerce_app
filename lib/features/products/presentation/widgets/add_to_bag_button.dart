@@ -1,55 +1,52 @@
+import '../../../../core/constants/app_strings.dart';
+import '../../../../core/utils/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
-import 'package:ecommerce_app/core/common/app_colors.dart';
-import 'package:ecommerce_app/core/providers/global_provider.dart';
-import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
+import '../../../../core/common/app_colors.dart';
+import '../../domain/entities/product.dart';
+
+import '../../../order/presentation/blocs/cart/cart_cubit.dart';
 
 class AddToBagButton extends StatelessWidget {
   const AddToBagButton({
-    required this.id,
+    required this.product,
     Key? key,
   }) : super(key: key);
 
-  final int id;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
-      builder: (context, state) {
-        if (state is AuthSuccessState) {
-          final userId = state.user.id;
-          return InkWell(
-            onTap: () {},
-            borderRadius: BorderRadius.circular(15),
-            child: Container(
-              height: 38.r,
-              width: 38.r,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? AppColors.primaryColorDark
-                      : AppColors.primaryColor,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      offset: const Offset(0, 4),
-                      blurRadius: 8,
-                      color: AppColors.shadowColor,
-                    ),
-                  ]),
-              child: Icon(
-                Icons.shopping_bag_rounded,
-                color: AppColors.whiteDark,
-                size: 20.r,
-              ),
-            ),
-          );
-        } else {
-          return const SizedBox.shrink();
-        }
+    return InkWell(
+      onTap: () {
+        BlocProvider.of<CartCubit>(context).addToCart(product: product);
+        fToast.init(context);
+        showToast(AppStrings.addedToCart, AppColors.backgroundColorDark);
       },
+      borderRadius: BorderRadius.circular(15),
+      child: Container(
+        height: 40.r,
+        width: 40.r,
+        decoration: BoxDecoration(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? AppColors.primaryColorDark
+                : AppColors.primaryColor,
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                offset: const Offset(0, 4),
+                blurRadius: 8,
+                color: AppColors.shadowColor,
+              ),
+            ]),
+        child: Icon(
+          Icons.shopping_bag_rounded,
+          color: AppColors.whiteDark,
+          size: 22.r,
+        ),
+      ),
     );
   }
 }

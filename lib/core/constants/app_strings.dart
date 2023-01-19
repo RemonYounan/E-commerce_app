@@ -50,4 +50,12 @@ class AppStrings {
   static final priceHighToLow = 'price_high_to_low'.tr();
   static final myBag = 'my_bag'.tr();
   static final favorites = 'favorites'.tr();
+  static final addedToCart = 'added_to_cart'.tr();
+  static final removedFromCart = 'removed_from_cart'.tr();
+  static final totalAmount = 'total_amount'.tr();
+  static final checkOut = 'check_out'.tr();
+  static final enterPromoCode = 'enter_promo_code'.tr();
+  static final deleteFromList = 'delete_from_list'.tr();
+  static final addToFavorites = 'add_to_favorites'.tr();
+  static final more = 'more'.tr();
 }

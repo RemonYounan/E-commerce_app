@@ -1,19 +1,18 @@
-import 'package:ecommerce_app/core/providers/global_provider.dart';
+import '../../../../core/providers/global_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
-import 'package:ecommerce_app/core/constants/enums.dart';
-import 'package:ecommerce_app/features/products/domain/entities/category.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product.dart';
-import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
+import '../../../../core/constants/enums.dart';
+import '../../domain/entities/category.dart';
+import '../../domain/entities/product.dart';
+import '../blocs/products_cubit/products_cubit.dart';
 
-import 'package:ecommerce_app/features/products/presentation/widgets/loading_widget.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/shop_screen/filter_section.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/shop_screen/products_grid_view.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/shop_screen/products_list_view.dart';
+import '../widgets/shop_screen/filter_section.dart';
+import '../widgets/shop_screen/products_grid_view.dart';
+import '../widgets/shop_screen/products_list_view.dart';
 
 class CategoryProductsScreen extends StatefulWidget {
   const CategoryProductsScreen({

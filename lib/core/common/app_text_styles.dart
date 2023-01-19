@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTextStyle {

@@ -1,7 +1,8 @@
-import 'package:ecommerce_app/core/common/app_routes.dart';
-import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../core/common/app_routes.dart';
+import '../../../auth/presentation/blocs/auth/auth_cubit.dart';
 
 class SlpashScreen extends StatelessWidget {
   const SlpashScreen({Key? key}) : super(key: key);

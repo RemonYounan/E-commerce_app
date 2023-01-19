@@ -1,5 +1,5 @@
-import 'package:ecommerce_app/features/products/domain/entities/product_details.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/rate_widget.dart';
+import '../../../domain/entities/product_details.dart';
+import '../rate_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

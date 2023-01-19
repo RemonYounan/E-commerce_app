@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_app/core/error/failures.dart';
-import 'package:ecommerce_app/features/auth/domain/entities/login.dart';
-import 'package:ecommerce_app/features/auth/domain/entities/register.dart';
-import 'package:ecommerce_app/features/auth/domain/entities/user.dart';
+import '../../../../core/error/failures.dart';
+import '../entities/login.dart';
+import '../entities/register.dart';
+import '../entities/user.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, User>> register(Register register);

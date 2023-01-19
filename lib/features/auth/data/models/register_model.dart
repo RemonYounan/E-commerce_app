@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/features/auth/domain/entities/register.dart';
+import '../../domain/entities/register.dart';
 
 class RegisterModel extends Register {
   const RegisterModel({

@@ -4,12 +4,11 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_gifs/loading_gifs.dart';
 
-import 'package:ecommerce_app/core/common/app_colors.dart';
-import 'package:ecommerce_app/core/common/app_routes.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product.dart';
-import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
+import '../../../../core/common/app_colors.dart';
+import '../../../../core/common/app_routes.dart';
+import '../../domain/entities/product.dart';
+import '../blocs/products_cubit/products_cubit.dart';
 
-import 'favorite_button.dart';
 import 'rate_widget.dart';
 
 class ProductGridCard extends StatelessWidget {
@@ -47,8 +46,10 @@ class ProductGridCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         BlocProvider.of<ProductsCubit>(context).getProduct(product.id);
-        Navigator.pushNamed(context, AppRoutes.productDetails,
-            arguments: product.id);
+        Navigator.pushNamed(context, AppRoutes.productDetails, arguments: {
+          'id': product.id,
+          'product': product,
+        });
       },
       child: SizedBox(
         height: 270.h,

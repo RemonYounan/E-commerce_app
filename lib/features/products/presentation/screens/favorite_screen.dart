@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import 'package:ecommerce_app/core/constants/app_strings.dart';
-import 'package:ecommerce_app/core/constants/enums.dart';
-import 'package:ecommerce_app/core/providers/global_provider.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product.dart';
-import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/add_to_bag_button.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/product_grid_card.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/product_list_card.dart';
+import '../../../../core/constants/app_strings.dart';
+import '../../../../core/constants/enums.dart';
+import '../../../../core/providers/global_provider.dart';
+import '../../domain/entities/product.dart';
+import '../blocs/products_cubit/products_cubit.dart';
+import '../widgets/add_to_bag_button.dart';
+import '../widgets/product_grid_card.dart';
+import '../widgets/product_list_card.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
@@ -76,66 +76,55 @@ class FavoriteScreen extends StatelessWidget {
             SliverList(
               key: const PageStorageKey('FavoritsList'),
               delegate: SliverChildListDelegate.fixed(
-                
                 [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: BlocBuilder<ProductsCubit, ProductsState>(
-                      builder: (context, state) {
-                        if (state is ProductsLoadedState) {
-                          final List<Product> featuresProducts =
-                              state.featuresProducts;
-                          return Provider.of<GlobalProvider>(context)
-                                      .listStyle ==
-                                  ListStyle.list
-                              ? ListView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  key: const PageStorageKey(
-                                      'FeaturesProductsList'),
-                                  itemCount: featuresProducts.length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 8.h),
-                                      child: ProductListCard(
-                                        product: featuresProducts[index],
-                                        icon: AddToBagButton(
-                                          id: featuresProducts[index].id,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                )
-                              : GridView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 15.w,
-                                    mainAxisExtent: 300.h,
-                                  ),
-                                  key: const PageStorageKey(
-                                      'FeaturesProductsList'),
-                                  itemCount: featuresProducts.length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 8.h),
-                                      child: ProductGridCard(
-                                        product: featuresProducts[index],
-                                        icon: AddToBagButton(
-                                            id: featuresProducts[index].id),
-                                      ),
-                                    );
-                                  },
-                                );
-                        } else {
-                          return Container();
-                        }
-                      },
-                    ),
+                  BlocBuilder<ProductsCubit, ProductsState>(
+                    builder: (context, state) {
+                      if (state is ProductsLoadedState) {
+                        final List<Product> featuresProducts =
+                            state.featuresProducts;
+                        return Provider.of<GlobalProvider>(context).listStyle ==
+                                ListStyle.list
+                            ? ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                key: const PageStorageKey(
+                                    'FeaturesProductsList'),
+                                itemCount: featuresProducts.length,
+                                itemBuilder: (context, index) {
+                                  return ProductListCard(
+                                    product: featuresProducts[index],
+                                    icon: AddToBagButton(
+                                      product: featuresProducts[index],
+                                    ),
+                                  );
+                                },
+                              )
+                            : GridView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 15.w, vertical: 10.h),
+                                shrinkWrap: true,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 15.w,
+                                  mainAxisExtent: 300.h,
+                                ),
+                                key: const PageStorageKey(
+                                    'FeaturesProductsList'),
+                                itemCount: featuresProducts.length,
+                                itemBuilder: (context, index) {
+                                  return ProductGridCard(
+                                    product: featuresProducts[index],
+                                    icon: AddToBagButton(
+                                        product: featuresProducts[index]),
+                                  );
+                                },
+                              );
+                      } else {
+                        return Container();
+                      }
+                    },
                   ),
                 ],
               ),

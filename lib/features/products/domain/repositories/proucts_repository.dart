@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_app/core/error/failures.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product_details.dart';
+import '../../../../core/error/failures.dart';
+import '../entities/product.dart';
+import '../entities/product_details.dart';
 
 abstract class ProductsRepository {
   Future<Either<Failure, Map<String,dynamic>>> initData();

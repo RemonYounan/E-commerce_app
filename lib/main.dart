@@ -1,21 +1,24 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import 'package:ecommerce_app/app_router.dart';
-import 'package:ecommerce_app/core/common/app_themes.dart';
-import 'package:ecommerce_app/core/helpers/cache_helper.dart';
-import 'package:ecommerce_app/core/providers/global_provider.dart';
-import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
+import 'app_router.dart';
+import 'core/common/app_themes.dart';
+import 'core/helpers/cache_helper.dart';
+import 'core/providers/global_provider.dart';
+import 'features/auth/presentation/blocs/auth/auth_cubit.dart';
 
-import 'package:ecommerce_app/service_locator.dart' as di;
+import 'service_locator.dart' as di;
 
+import 'core/helpers/bloc_observer.dart';
 import 'features/products/presentation/blocs/products_cubit/products_cubit.dart';
 
 void main() async {
   di.init();
+  Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await CacheHelper.init();
@@ -51,6 +54,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<ProductsCubit>(
             create: (context) => di.sl<ProductsCubit>()..initData(),
+          ),
+          BlocProvider<CartCubit>(
+            create: (context) => di.sl<CartCubit>(),
           ),
         ],
         child: MaterialApp(

@@ -1,16 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'package:ecommerce_app/core/constants/app_constants.dart';
-import 'package:ecommerce_app/core/error/failures.dart';
-import 'package:ecommerce_app/features/auth/data/models/login_model.dart';
-import 'package:ecommerce_app/features/auth/data/models/register_model.dart';
-import 'package:ecommerce_app/features/auth/data/models/user_model.dart';
-import 'package:ecommerce_app/features/auth/domain/entities/user.dart';
+import '../../../../core/constants/app_constants.dart';
+import '../../../../core/constants/app_strings.dart';
+import '../../../../core/error/failures.dart';
+import '../../domain/entities/user.dart';
+import '../models/login_model.dart';
+import '../models/register_model.dart';
+import '../models/user_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<Either<Failure, User>> register(RegisterModel data);

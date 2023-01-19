@@ -1,9 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_app/core/constants/app_strings.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product_details.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/favorite_button.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/product_grid_card.dart';
+import '../../../../../core/constants/app_strings.dart';
+import '../../../domain/entities/product_details.dart';
+import '../favorite_button.dart';
+import '../product_grid_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

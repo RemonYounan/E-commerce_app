@@ -1,8 +1,8 @@
-import 'package:ecommerce_app/core/constants/app_strings.dart';
-import 'package:ecommerce_app/features/auth/presentation/widgets/forgot_password_screen/forgot_password_form.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/constants/app_strings.dart';
+import '../widgets/forgot_password_screen/forgot_password_form.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);

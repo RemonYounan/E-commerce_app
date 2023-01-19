@@ -21,4 +21,5 @@ class AppColors {
   static const Color saleDark = Color(0xFFFF3E3E);
   static Color lightShadowColor = const Color(0xFF000000).withOpacity(0.05);
   static Color shadowColor = const Color(0xFF000000).withOpacity(0.08);
+  static Color shadowColorDark = const Color(0xFF121212);
 }

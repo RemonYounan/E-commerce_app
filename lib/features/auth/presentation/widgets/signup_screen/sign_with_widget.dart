@@ -1,9 +1,9 @@
-import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
+import '../../blocs/auth/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:ecommerce_app/core/common/app_assets.dart';
-import 'package:ecommerce_app/features/auth/presentation/widgets/signup_screen/sign_with_icon.dart';
+import '../../../../../core/common/app_assets.dart';
+import 'sign_with_icon.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignWithWidget extends StatelessWidget {

@@ -1,6 +1,5 @@
-import 'package:ecommerce_app/features/products/data/models/product_model.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product_details.dart';
+import 'product_model.dart';
+import '../../domain/entities/product_details.dart';
 
 class ProductDetailsModel extends ProductDetails {
   const ProductDetailsModel({

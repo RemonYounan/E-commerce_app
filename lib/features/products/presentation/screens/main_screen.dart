@@ -1,16 +1,15 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_app/core/constants/app_strings.dart';
-import 'package:ecommerce_app/core/providers/global_provider.dart';
-import 'package:ecommerce_app/features/products/presentation/screens/bag_screen.dart';
-import 'package:ecommerce_app/features/products/presentation/screens/favorite_screen.dart';
+import '../../../../core/constants/app_strings.dart';
+import '../../../../core/providers/global_provider.dart';
+import '../../../order/presentation/screens/bag_screen.dart';
+import 'favorite_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import 'package:ecommerce_app/features/auth/presentation/screens/profile_screen.dart';
+import '../../../auth/presentation/screens/profile_screen.dart';
 
-import 'package:ecommerce_app/features/products/presentation/screens/home_screen.dart';
-import 'package:ecommerce_app/features/products/presentation/screens/shop_screen.dart';
+import 'home_screen.dart';
+import 'shop_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);

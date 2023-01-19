@@ -1,27 +1,27 @@
 import 'package:dio/dio.dart';
-import 'package:ecommerce_app/features/auth/domain/usecases/logout_usecase.dart';
+import 'features/auth/domain/usecases/logout_usecase.dart';
+import 'features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:get_it/get_it.dart';
 
-import 'package:ecommerce_app/core/helpers/cache_helper.dart';
-import 'package:ecommerce_app/core/providers/global_provider.dart';
-import 'package:ecommerce_app/features/auth/data/data_source/auth_remote_data_source.dart';
-import 'package:ecommerce_app/features/auth/data/repositories/auth_repository_impl.dart';
-import 'package:ecommerce_app/features/auth/domain/repositories/auth_repository.dart';
-import 'package:ecommerce_app/features/auth/domain/usecases/check_auth_token_usecase.dart';
-import 'package:ecommerce_app/features/auth/domain/usecases/forgot_password_usecase.dart';
-import 'package:ecommerce_app/features/auth/domain/usecases/login_usecase.dart';
-import 'package:ecommerce_app/features/auth/domain/usecases/login_with_facebook_usecase.dart';
-import 'package:ecommerce_app/features/auth/domain/usecases/login_with_google_usecase.dart';
-import 'package:ecommerce_app/features/auth/domain/usecases/register_usecase.dart';
-import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
-import 'package:ecommerce_app/features/products/data/data_source/products_remote_data_source.dart';
-import 'package:ecommerce_app/features/products/data/repositories/products_repository_impl.dart';
-import 'package:ecommerce_app/features/products/domain/repositories/proucts_repository.dart';
-import 'package:ecommerce_app/features/products/domain/usecases/get_category_products_usecase.dart';
-import 'package:ecommerce_app/features/products/domain/usecases/get_product_details_usecase.dart';
-import 'package:ecommerce_app/features/products/domain/usecases/init_data_usecase.dart';
-import 'package:ecommerce_app/features/products/domain/usecases/toggle_favorite_usecase.dart';
-import 'package:ecommerce_app/core/providers/global_provider.dart';
+import 'core/helpers/cache_helper.dart';
+import 'core/providers/global_provider.dart';
+import 'features/auth/data/data_source/auth_remote_data_source.dart';
+import 'features/auth/data/repositories/auth_repository_impl.dart';
+import 'features/auth/domain/repositories/auth_repository.dart';
+import 'features/auth/domain/usecases/check_auth_token_usecase.dart';
+import 'features/auth/domain/usecases/forgot_password_usecase.dart';
+import 'features/auth/domain/usecases/login_usecase.dart';
+import 'features/auth/domain/usecases/login_with_facebook_usecase.dart';
+import 'features/auth/domain/usecases/login_with_google_usecase.dart';
+import 'features/auth/domain/usecases/register_usecase.dart';
+import 'features/auth/presentation/blocs/auth/auth_cubit.dart';
+import 'features/products/data/data_source/products_remote_data_source.dart';
+import 'features/products/data/repositories/products_repository_impl.dart';
+import 'features/products/domain/repositories/proucts_repository.dart';
+import 'features/products/domain/usecases/get_category_products_usecase.dart';
+import 'features/products/domain/usecases/get_product_details_usecase.dart';
+import 'features/products/domain/usecases/init_data_usecase.dart';
+import 'features/products/domain/usecases/toggle_favorite_usecase.dart';
 
 import 'features/products/presentation/blocs/products_cubit/products_cubit.dart';
 
@@ -74,4 +74,7 @@ void init() async {
   // Bloc
   sl.registerLazySingleton<ProductsCubit>(
       () => ProductsCubit(sl(), sl(), sl()));
+  //! feature : Order
+  // Bloc
+  sl.registerLazySingleton<CartCubit>(() => CartCubit());
 }

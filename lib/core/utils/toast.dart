@@ -1,6 +1,7 @@
-import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import '../common/app_colors.dart';
 
 final FToast fToast = FToast();
 showToast(String? text,Color? color) {

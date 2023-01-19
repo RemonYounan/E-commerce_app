@@ -57,5 +57,14 @@
     "profile" : "Profile",
     "dark_mode" : "Dark mode",
     "my_bag" : "My bag",
-    "favorites" : "Favorites"
+    "favorites" : "Favorites",
+    "added_to_cart" : "Item Added to cart.",
+    "removed_from_cart" : "Item removed from cart.",
+    "check_out" : "Check out",
+    "total_amount" : "Total amount:",
+    "enter_promo_code" : "Enter your promo code",
+    "delete_from_list" : "Delete from the list",
+    "add_to_favorites" : "Add to favorites",
+    "more" : "More"
+
 }

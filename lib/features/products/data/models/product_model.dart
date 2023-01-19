@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/features/products/domain/entities/product.dart';
+import '../../domain/entities/product.dart';
 
 class ProductModel extends Product {
   const ProductModel({

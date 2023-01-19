@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:ecommerce_app/core/error/failures.dart';
-import 'package:ecommerce_app/features/products/domain/repositories/proucts_repository.dart';
+import '../../../../core/error/failures.dart';
+import '../repositories/proucts_repository.dart';
 
 class InitDataUsecase {
   ProductsRepository productsRepository;

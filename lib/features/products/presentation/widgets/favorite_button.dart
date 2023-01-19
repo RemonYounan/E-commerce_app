@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import 'package:ecommerce_app/core/common/app_colors.dart';
-import 'package:ecommerce_app/core/providers/global_provider.dart';
-import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
+import '../../../../core/common/app_colors.dart';
+import '../../../../core/providers/global_provider.dart';
+import '../../../auth/presentation/blocs/auth/auth_cubit.dart';
 
 class FavoriteButton extends StatelessWidget {
   const FavoriteButton({
@@ -29,8 +29,8 @@ class FavoriteButton extends StatelessWidget {
                   .toggleFavorite(id, userId);
             },
             child: Container(
-              height: 38.r,
-              width: 38.r,
+              height: 40.r,
+              width: 40.r,
               decoration: BoxDecoration(
                   color: Theme.of(context).brightness == Brightness.dark
                       ? AppColors.dark
@@ -50,7 +50,7 @@ class FavoriteButton extends StatelessWidget {
                     : (Theme.of(context).brightness == Brightness.dark
                         ? AppColors.greyDark
                         : AppColors.grey),
-                size: 20.r,
+                size: 22.r,
               ),
             ),
           );

@@ -1,9 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
-
 import 'package:ecommerce_app/core/error/failures.dart';
 import 'package:ecommerce_app/features/products/data/data_source/products_remote_data_source.dart';
-import 'package:ecommerce_app/features/products/domain/entities/category.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product_details.dart';
 import 'package:ecommerce_app/features/products/domain/repositories/proucts_repository.dart';

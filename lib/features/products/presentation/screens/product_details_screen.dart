@@ -1,26 +1,34 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
-import 'package:ecommerce_app/core/utils/custom_button.dart';
-import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/loading_widget.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/product_details_screen/color_and_size_section.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/product_details_screen/images_slider_widget.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/product_details_screen/name_and_price_section.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/product_details_screen/related_products_section.dart';
+import '../../../../core/common/app_routes.dart';
+import '../../../../core/constants/app_strings.dart';
+import '../../../../core/providers/global_provider.dart';
+import '../../../../core/utils/custom_button.dart';
+import '../../../order/domain/entities/cart_product.dart';
+import '../../../order/presentation/blocs/cart/cart_cubit.dart';
+import '../../domain/entities/product.dart';
+import '../blocs/products_cubit/products_cubit.dart';
+import '../widgets/loading_widget.dart';
+import '../widgets/product_details_screen/color_and_size_section.dart';
+import '../widgets/product_details_screen/images_slider_widget.dart';
+import '../widgets/product_details_screen/name_and_price_section.dart';
+import '../widgets/product_details_screen/related_products_section.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({
     Key? key,
     required this.id,
+    this.product,
+    this.cartProduct,
   }) : super(key: key);
 
   final int id;
+  final Product? product;
+  final CartProduct? cartProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +51,7 @@ class ProductDetailsScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListView(
-                    key: PageStorageKey('ProductDetails:$id'),
+                    key: PageStorageKey('ProductDetails:$product.id'),
                     children: [
                       ImagesSliderWidget(
                         images: product.images,
@@ -74,7 +82,16 @@ class ProductDetailsScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(10.h),
                   child: CustomButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      BlocProvider.of<CartCubit>(context).addToCart(
+                        product: this.product,
+                        newCartProduct: cartProduct,
+                      );
+                      Provider.of<GlobalProvider>(context, listen: false)
+                          .changeIndex(2);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, AppRoutes.main, (route) => false);
+                    },
                     child: Text(AppStrings.addToCart.toUpperCase()),
                   ),
                 ),

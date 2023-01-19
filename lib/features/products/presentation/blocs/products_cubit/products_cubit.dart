@@ -1,17 +1,17 @@
 import 'package:bloc/bloc.dart';
-import 'package:ecommerce_app/core/providers/global_provider.dart';
-import 'package:ecommerce_app/features/products/data/models/banner_model.dart';
-import 'package:ecommerce_app/features/products/data/models/category_model.dart';
-import 'package:ecommerce_app/features/products/data/models/product_model.dart';
-import 'package:ecommerce_app/features/products/domain/entities/banner.dart';
-import 'package:ecommerce_app/features/products/domain/entities/category.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product.dart';
-import 'package:ecommerce_app/features/products/domain/entities/product_details.dart';
-import 'package:ecommerce_app/features/products/domain/usecases/get_category_products_usecase.dart';
-import 'package:ecommerce_app/features/products/domain/usecases/get_product_details_usecase.dart';
-import 'package:ecommerce_app/features/products/domain/usecases/init_data_usecase.dart';
+import '../../../../../core/providers/global_provider.dart';
+import '../../../data/models/banner_model.dart';
+import '../../../data/models/category_model.dart';
+import '../../../data/models/product_model.dart';
+import '../../../domain/entities/banner.dart';
+import '../../../domain/entities/category.dart';
+import '../../../domain/entities/product.dart';
+import '../../../domain/entities/product_details.dart';
+import '../../../domain/usecases/get_category_products_usecase.dart';
+import '../../../domain/usecases/get_product_details_usecase.dart';
+import '../../../domain/usecases/init_data_usecase.dart';
 import 'package:equatable/equatable.dart';
-import 'package:ecommerce_app/service_locator.dart' as di;
+import '../../../../../service_locator.dart' as di;
 
 part 'products_state.dart';
 

@@ -1,16 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_app/core/common/app_routes.dart';
-import 'package:ecommerce_app/core/common/app_themes.dart';
-import 'package:ecommerce_app/core/constants/app_strings.dart';
+import '../../../../core/common/app_routes.dart';
+import '../../../../core/constants/app_strings.dart';
 
-import 'package:ecommerce_app/core/providers/global_provider.dart';
-import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
-import 'package:ecommerce_app/features/auth/presentation/widgets/profile_screen/profile_item_widget.dart';
+import '../../../../core/providers/global_provider.dart';
+import '../blocs/auth/auth_cubit.dart';
+import '../widgets/profile_screen/profile_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:ecommerce_app/features/auth/presentation/widgets/profile_screen/image_and_name_section.dart';
+import '../widgets/profile_screen/image_and_name_section.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/features/products/domain/entities/banner.dart';
+import '../../domain/entities/banner.dart';
 
 class BannerModel extends Banner {
   const BannerModel({

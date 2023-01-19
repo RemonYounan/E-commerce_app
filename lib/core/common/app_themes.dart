@@ -1,5 +1,5 @@
-import 'package:ecommerce_app/core/common/app_colors.dart';
-import 'package:ecommerce_app/core/common/app_text_styles.dart';
+import 'app_colors.dart';
+import 'app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -185,6 +185,10 @@ class AppThemes {
         ),
         labelLarge: AppTextStyle.getAppTextStyle(
           size: 15.sp, // equal to 14px
+          color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
+        ),
+        labelMedium: AppTextStyle.getAppTextStyle(
+          size: 13.sp, // equal to 11px
           color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
         ),
         labelSmall: AppTextStyle.getAppTextStyle(

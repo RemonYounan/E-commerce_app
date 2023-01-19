@@ -1,10 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_app/core/common/app_themes.dart';
-import 'package:ecommerce_app/core/constants/app_constants.dart';
-import 'package:ecommerce_app/core/constants/app_strings.dart';
-import 'package:ecommerce_app/core/constants/enums.dart';
-import 'package:ecommerce_app/core/helpers/cache_helper.dart';
-import 'package:ecommerce_app/features/products/domain/usecases/toggle_favorite_usecase.dart';
+import '../common/app_themes.dart';
+import '../constants/app_constants.dart';
+import '../constants/app_strings.dart';
+import '../constants/enums.dart';
+import '../helpers/cache_helper.dart';
+import '../../features/products/domain/usecases/toggle_favorite_usecase.dart';
 import 'package:flutter/material.dart';
 
 class GlobalProvider with ChangeNotifier {

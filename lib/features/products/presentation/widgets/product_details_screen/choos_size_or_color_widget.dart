@@ -1,13 +1,10 @@
 import 'dart:math';
 
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_app/core/constants/app_strings.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:ecommerce_app/core/common/app_colors.dart';
+import '../../../../../core/common/app_colors.dart';
+import '../../../../../core/constants/app_strings.dart';
 
 class ChooseSizeOrColorWidget extends StatelessWidget {
   const ChooseSizeOrColorWidget({
