@@ -26,4 +26,28 @@ class CartProduct extends Equatable {
   @override
   List<Object?> get props =>
       [id, name, price, category, img, count, isNew, isOnSale, saleDisc];
+
+  factory CartProduct.fromJson(Map<String, dynamic> json) => CartProduct(
+        id: json['id'],
+        name: json['name'],
+        price: json['price'],
+        img: json['img'],
+        category: json['category'],
+        count: json['count'],
+        isOnSale: json['isOnSale'],
+        isNew: json['isNew'],
+        saleDisc: json['saleDisc'],
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'price': price,
+        'img': img,
+        'category': category,
+        'count': count,
+        'isOnSale': isOnSale,
+        'isNew': isNew,
+        'saleDisc': saleDisc,
+      };
 }

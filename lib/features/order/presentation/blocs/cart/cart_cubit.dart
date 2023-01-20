@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
+import 'package:ecommerce_app/core/helpers/cache_helper.dart';
 import '../../../domain/entities/cart.dart';
 import '../../../domain/entities/cart_product.dart';
 import '../../../../products/domain/entities/product.dart';
@@ -44,6 +47,7 @@ class CartCubit extends Cubit<CartState> {
       _cart.totalAmount += cartProduct.price;
     }
     emit(ProductAddedState(cart: _cart));
+    saveCartInSharedPrefernce();
   }
 
   void increaseProductQuantity(int id) {
@@ -56,6 +60,7 @@ class CartCubit extends Cubit<CartState> {
     }
 
     emit(ProductAddedState(cart: _cart));
+    saveCartInSharedPrefernce();
   }
 
   void decreaseProductQuantity(int id) {
@@ -69,6 +74,7 @@ class CartCubit extends Cubit<CartState> {
           }
 
           emit(ProductRemovedState(cart: _cart));
+          saveCartInSharedPrefernce();
         }
       }
     }
@@ -82,5 +88,18 @@ class CartCubit extends Cubit<CartState> {
     }
     _cart.products!.removeWhere((element) => element.id == id);
     emit(ProductRemovedState(cart: _cart));
+    saveCartInSharedPrefernce();
+  }
+
+  void saveCartInSharedPrefernce() {
+    final cartJsonString = json.encode(_cart.toJson());
+    CacheHelper.saveDataSharedPreference(key: 'CART', value: cartJsonString);
+  }
+
+  void getCartFromSharedPreference() {
+    emit(CartLoading(cart: _cart));
+    final cartJsonString = CacheHelper.getDataFromSharedPreference(key: 'CART');
+    _cart = Cart.fromJson(json.decode(cartJsonString));
+    emit(ProductAddedState(cart: _cart));
   }
 }

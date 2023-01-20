@@ -12,4 +12,16 @@ class Cart extends Equatable {
 
   @override
   List<Object?> get props => [products, totalAmount];
+
+  factory Cart.fromJson(Map<String, dynamic> json) => Cart(
+        products: List.from(
+          json['products'].map((e) => CartProduct.fromJson(e)),
+        ),
+        totalAmount: json['totalAmount'],
+      );
+
+  Map<String, dynamic> toJson() => {
+        'products': products!.map((e) => e.toJson()).toList(),
+        'totalAmount': totalAmount,
+      };
 }
