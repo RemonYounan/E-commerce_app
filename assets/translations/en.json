@@ -65,6 +65,7 @@
     "enter_promo_code" : "Enter your promo code",
     "delete_from_list" : "Delete from the list",
     "add_to_favorites" : "Add to favorites",
-    "more" : "More"
+    "more" : "More",
+    "bag_empty" : "Bag is empty, start adding products."
 
 }

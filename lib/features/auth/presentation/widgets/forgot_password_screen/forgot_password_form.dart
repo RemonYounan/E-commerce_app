@@ -64,9 +64,15 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
               listener: (context, state) {
                 fToast.init(context);
                 if (state is ForgotPasswordErrorState) {
-                  showToast(state.message, AppColors.errorColor);
+                  showToast(
+                      context: context,
+                      title: state.message,
+                      color: AppColors.errorColor);
                 } else if (state is ForgotPasswordSuccessState) {
-                  showToast(state.message, AppColors.green);
+                  showToast(
+                      context: context,
+                      title: state.message,
+                      color: AppColors.green);
                 }
               },
               builder: (context, state) {

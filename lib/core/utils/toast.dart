@@ -1,20 +1,27 @@
+import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../common/app_colors.dart';
-
 final FToast fToast = FToast();
-showToast(String? text,Color? color) {
+showToast(
+    {required BuildContext context,
+    Widget? child,
+    Color? color,
+    String? title}) {
   Widget toast = Container(
     padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(25.0),
-      color:color,
+      color: color,
     ),
-    child: Text(
-      text!,
-      style: const TextStyle(color: AppColors.white),
-    ),
+    child: child ??
+        Text(
+          title!,
+          style: Theme.of(context)
+              .textTheme
+              .titleSmall!
+              .copyWith(color: AppColors.white),
+        ),
   );
 
   fToast.showToast(

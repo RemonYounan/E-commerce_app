@@ -181,8 +181,10 @@ class ProductCartCard extends StatelessWidget {
                                         BlocProvider.of<CartCubit>(context)
                                             .removeFromCart(cartProduct.id);
                                         fToast.init(context);
-                                        showToast(AppStrings.removedFromCart,
-                                            AppColors.black);
+                                        showToast(
+                                          context: context,
+                                            title: AppStrings.removedFromCart,
+                                            color: AppColors.dark);
                                       },
                                     ),
                                   ],

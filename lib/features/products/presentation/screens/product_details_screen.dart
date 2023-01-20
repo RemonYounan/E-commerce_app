@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/core/common/app_colors.dart';
+import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -87,10 +89,39 @@ class ProductDetailsScreen extends StatelessWidget {
                         product: this.product,
                         newCartProduct: cartProduct,
                       );
-                      Provider.of<GlobalProvider>(context, listen: false)
-                          .changeIndex(2);
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, AppRoutes.main, (route) => false);
+                      fToast.init(context);
+                      showToast(
+                        context: context,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                AppStrings.addedToCart,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .copyWith(color: AppColors.white),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Provider.of<GlobalProvider>(context,
+                                          listen: false)
+                                      .changeIndex(2);
+                                  Navigator.pushNamed(context, AppRoutes.main);
+                                },
+                                child: Text(
+                                  'View cart',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .copyWith(
+                                        color: AppColors.primaryColorDark,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          color: AppColors.dark);
                     },
                     child: Text(AppStrings.addToCart.toUpperCase()),
                   ),

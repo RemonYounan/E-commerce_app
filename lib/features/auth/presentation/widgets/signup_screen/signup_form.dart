@@ -127,9 +127,12 @@ class _SignupFormState extends State<SignupForm> {
             onPressed: submit,
             child: BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
-                fToast.init(context);
                 if (state is SignUpErrorState) {
-                  showToast(state.message, AppColors.errorColor);
+                  fToast.init(context);
+                  showToast(
+                      context: context,
+                      title: state.message,
+                      color: AppColors.errorColor);
                 } else if (state is AuthSuccessState) {
                   Provider.of<GlobalProvider>(context, listen: false)
                       .changeIndex(0);

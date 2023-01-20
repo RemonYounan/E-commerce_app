@@ -58,4 +58,5 @@ class AppStrings {
   static final deleteFromList = 'delete_from_list'.tr();
   static final addToFavorites = 'add_to_favorites'.tr();
   static final more = 'more'.tr();
+  static final bagEmpty = 'bag_empty'.tr();
 }

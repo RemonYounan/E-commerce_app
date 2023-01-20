@@ -14,7 +14,7 @@ class SlpashScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is AuthSuccessState) {
             Navigator.pushReplacementNamed(context, AppRoutes.main);
-          } else {
+          } else if (state is AuthErrorState) {
             Future.delayed(const Duration(seconds: 2)).then(
               (_) {
                 Navigator.pushReplacementNamed(context, AppRoutes.signUp);

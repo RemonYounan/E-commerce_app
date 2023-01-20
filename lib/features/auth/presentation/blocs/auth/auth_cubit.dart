@@ -46,13 +46,13 @@ class AuthCubit extends Cubit<AuthState> {
       final result = await checkAuthTokenUsecase(auth);
       result.fold(
           (error) => emit(
-                LoginErrorState(error.message),
+                AuthErrorState(error.message),
               ), (user) {
         emit(AuthSuccessState(user: user));
         globalProvider.setFavProducts(user.favProducts);
       });
     } else {
-      emit(const LoginErrorState('No Token'));
+      emit(const AuthErrorState('No Token'));
     }
   }
 

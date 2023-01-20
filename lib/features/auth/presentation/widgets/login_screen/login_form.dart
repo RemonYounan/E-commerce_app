@@ -99,9 +99,12 @@ class _LoginFormState extends State<LoginForm> {
             onPressed: submit,
             child: BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
-                fToast.init(context);
                 if (state is LoginErrorState) {
-                  showToast(state.message, AppColors.errorColor);
+                  fToast.init(context);
+                  showToast(
+                      context: context,
+                      title: state.message,
+                      color: AppColors.errorColor);
                 } else if (state is AuthSuccessState) {
                   Navigator.pushNamedAndRemoveUntil(
                       context, AppRoutes.main, (route) => false);

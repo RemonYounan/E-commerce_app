@@ -23,7 +23,10 @@ class AddToBagButton extends StatelessWidget {
       onTap: () {
         BlocProvider.of<CartCubit>(context).addToCart(product: product);
         fToast.init(context);
-        showToast(AppStrings.addedToCart, AppColors.backgroundColorDark);
+        showToast(
+            context: context,
+            title: AppStrings.addedToCart,
+            color: AppColors.dark);
       },
       borderRadius: BorderRadius.circular(15),
       child: Container(
