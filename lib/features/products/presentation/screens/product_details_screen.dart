@@ -74,7 +74,7 @@ class ProductDetailsScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 20.h),
                             RelatedProductsSection(product: product),
-                            SizedBox(height: 100.h),
+                            SizedBox(height: 50.h),
                           ],
                         ),
                       ),
@@ -92,36 +92,36 @@ class ProductDetailsScreen extends StatelessWidget {
                       fToast.init(context);
                       showToast(
                         context: context,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                AppStrings.addedToCart,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              AppStrings.addedToCart,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(color: AppColors.white),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Provider.of<GlobalProvider>(context,
+                                        listen: false)
+                                    .changeIndex(2);
+                                Navigator.pushNamed(context, AppRoutes.main);
+                              },
+                              child: Text(
+                                'View cart',
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleSmall!
-                                    .copyWith(color: AppColors.white),
+                                    .copyWith(
+                                      color: AppColors.primaryColorDark,
+                                    ),
                               ),
-                              InkWell(
-                                onTap: () {
-                                  Provider.of<GlobalProvider>(context,
-                                          listen: false)
-                                      .changeIndex(2);
-                                  Navigator.pushNamed(context, AppRoutes.main);
-                                },
-                                child: Text(
-                                  'View cart',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleSmall!
-                                      .copyWith(
-                                        color: AppColors.primaryColorDark,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          );
+                            ),
+                          ],
+                        ),
+                      );
                     },
                     child: Text(AppStrings.addToCart.toUpperCase()),
                   ),

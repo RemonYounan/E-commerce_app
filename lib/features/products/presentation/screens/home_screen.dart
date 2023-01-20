@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                     title: AppStrings.newestProducts,
                     child: const NewestProductsList(),
                   ),
-                  SizedBox(height: 250.h),
+                  SizedBox(height: 80.h),
                 ],
               );
             } else {
