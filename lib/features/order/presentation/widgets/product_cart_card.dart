@@ -184,7 +184,7 @@ class ProductCartCard extends StatelessWidget {
                                         showToast(
                                           context: context,
                                             title: AppStrings.removedFromCart,
-                                            color: AppColors.dark);
+                                            );
                                       },
                                     ),
                                   ],

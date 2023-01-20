@@ -12,7 +12,7 @@ showToast(
     padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(25.0),
-      color: color,
+      color: color ?? AppColors.dark,
     ),
     child: child ??
         Text(

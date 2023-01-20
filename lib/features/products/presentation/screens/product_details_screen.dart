@@ -121,7 +121,7 @@ class ProductDetailsScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          color: AppColors.dark);
+                          );
                     },
                     child: Text(AppStrings.addToCart.toUpperCase()),
                   ),

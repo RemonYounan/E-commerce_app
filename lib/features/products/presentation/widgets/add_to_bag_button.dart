@@ -26,7 +26,7 @@ class AddToBagButton extends StatelessWidget {
         showToast(
             context: context,
             title: AppStrings.addedToCart,
-            color: AppColors.dark);
+            );
       },
       borderRadius: BorderRadius.circular(15),
       child: Container(
