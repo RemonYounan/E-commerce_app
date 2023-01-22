@@ -10,39 +10,44 @@ class BagScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              pinned: true,
-              expandedHeight: 100.h,
-              flexibleSpace: FlexibleSpaceBar(
-                expandedTitleScale: 1.05,
-                titlePadding: EdgeInsets.only(left: 14.w, bottom: 5.h),
-                title: Text(
-                  AppStrings.myBag,
-                  style: Theme.of(context).textTheme.headlineLarge,
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus!.unfocus();
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                pinned: true,
+                expandedHeight: 100.h,
+                flexibleSpace: FlexibleSpaceBar(
+                  expandedTitleScale: 1.05,
+                  titlePadding: EdgeInsets.only(left: 14.w, bottom: 5.h),
+                  title: Text(
+                    AppStrings.myBag,
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
                 ),
-              ),
-              actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.search),
-                ),
-              ],
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  const CartListWidget(),
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.search),
+                  ),
                 ],
               ),
-            ),
-          ],
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    const CartListWidget(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
+        bottomSheet: const CheckOutWidget(),
       ),
-      bottomSheet: const CheckOutWidget(),
     );
   }
 }

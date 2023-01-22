@@ -1,5 +1,5 @@
 class AppConstants {
-  // APi endPoints:
+  // API endPoints:
   static const baseUrl = 'https://feaw.kenrys.net/ramni/wp-json/app/v1';
   static const checkTokenPathUrl = '$baseUrl/token';
   static const registerPathUrl = '$baseUrl/register';
@@ -10,6 +10,9 @@ class AppConstants {
   static const initDataPathUrl = '$baseUrl/initData';
   static const getProductPathUrl = '$baseUrl/getProduct';
   static const toggleFavoritePathUrl = '$baseUrl/togglefav';
+  static const getFavoritePathUrl = '$baseUrl/getFav';
+  static const addAddressPathUrl = '$baseUrl/addAddress';
+  static const removeAddressPathUrl = '$baseUrl/removeAddress';
 
   // App constants:
   static const newToOld = 'news';

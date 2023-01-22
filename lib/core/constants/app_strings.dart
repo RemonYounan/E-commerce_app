@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 class AppStrings {
   static final name = 'name'.tr();
+  static final fullName = 'full_name'.tr();
   static final nameError = 'name_error'.tr();
   static final email = 'email'.tr();
   static final emailError1 = 'email_error1'.tr();
@@ -59,4 +60,14 @@ class AppStrings {
   static final addToFavorites = 'add_to_favorites'.tr();
   static final more = 'more'.tr();
   static final bagEmpty = 'bag_empty'.tr();
+  static final submitOrder = 'sumbmit_order'.tr();
+  static final order = 'order'.tr();
+  static final city = 'city'.tr();
+  static final country = 'country'.tr();
+  static final state = 'state'.tr();
+  static final saveAddress = 'save_address'.tr();
+  static final editAddress = 'edit_address'.tr();
+  static final zipCode = 'zip_code'.tr();
+  static final address = 'address'.tr();
+  static final addShippingAddress = 'add_shipping_address'.tr();
 }

@@ -15,13 +15,37 @@ class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final items = [
-      AppStrings.myOrders,
-      AppStrings.shippingAddresses,
-      AppStrings.paymentMethods,
-      AppStrings.promocodes,
-      AppStrings.myReviews,
-      AppStrings.settings,
+    final List<Map<String, dynamic>> items = [
+      {
+        'title': AppStrings.myOrders,
+        'onTap': () =>
+            Navigator.pushNamed(context, AppRoutes.shippingAddresses),
+      },
+      {
+        'title': AppStrings.shippingAddresses,
+        'onTap': () =>
+            Navigator.pushNamed(context, AppRoutes.shippingAddresses),
+      },
+      {
+        'title': AppStrings.paymentMethods,
+        'onTap': () =>
+            Navigator.pushNamed(context, AppRoutes.shippingAddresses),
+      },
+      {
+        'title': AppStrings.promocodes,
+        'onTap': () =>
+            Navigator.pushNamed(context, AppRoutes.shippingAddresses),
+      },
+      {
+        'title': AppStrings.myReviews,
+        'onTap': () =>
+            Navigator.pushNamed(context, AppRoutes.shippingAddresses),
+      },
+      {
+        'title': AppStrings.settings,
+        'onTap': () =>
+            Navigator.pushNamed(context, AppRoutes.shippingAddresses),
+      },
     ];
     return Scaffold(
       body: SafeArea(
@@ -57,8 +81,9 @@ class ProfileScreen extends StatelessWidget {
                   ...List.generate(
                     items.length,
                     (index) => ProfileItemWidget(
-                      title: items[index],
+                      title: items[index]['title'],
                       subTitle: '',
+                      onTap: items[index]['onTap'],
                     ),
                   ),
                   Padding(

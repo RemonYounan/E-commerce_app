@@ -106,6 +106,11 @@ class AppThemes {
           selectedItemColor: AppColors.primaryColorDark,
           unselectedItemColor: AppColors.greyDark,
         ),
+        cardTheme: CardTheme(color: AppColors.dark),
+        buttonTheme: ButtonThemeData(
+          
+          buttonColor: AppColors.primaryColorDark,
+        ),
         radioTheme: RadioThemeData(
           fillColor: MaterialStateProperty.all(AppColors.primaryColorDark),
         ),
@@ -144,7 +149,8 @@ class AppThemes {
           ),
           fillColor: AppColors.dark,
           filled: true,
-          contentPadding: EdgeInsets.all(20.w),
+          contentPadding:
+              EdgeInsets.symmetric(horizontal: 20.w, vertical: 25.h),
           labelStyle: TextStyle(
             color: AppColors.greyDark,
             fontSize: 14.sp,
@@ -179,7 +185,7 @@ class AppThemes {
           color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
         ),
         titleSmall: AppTextStyle.getAppTextStyle(
-          weight: FontWeight.bold,
+          weight: FontWeight.w500,
           size: 15.sp, // equal to 14px
           color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
         ),

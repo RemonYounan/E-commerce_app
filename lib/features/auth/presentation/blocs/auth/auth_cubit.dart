@@ -1,5 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:bloc/bloc.dart';
+import 'package:ecommerce_app/features/auth/domain/usecases/remove_address_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,6 +8,7 @@ import 'package:ecommerce_app/core/providers/global_provider.dart';
 import 'package:ecommerce_app/features/auth/domain/entities/login.dart';
 import 'package:ecommerce_app/features/auth/domain/entities/register.dart';
 import 'package:ecommerce_app/features/auth/domain/entities/user.dart';
+import 'package:ecommerce_app/features/auth/domain/usecases/add_address_usecase.dart';
 import 'package:ecommerce_app/features/auth/domain/usecases/check_auth_token_usecase.dart';
 import 'package:ecommerce_app/features/auth/domain/usecases/forgot_password_usecase.dart';
 import 'package:ecommerce_app/features/auth/domain/usecases/login_usecase.dart';
@@ -25,8 +26,9 @@ class AuthCubit extends Cubit<AuthState> {
   LoginWithFacebookUsecase loginWithFacebookUsecase;
   LoginWithGoogleUsecase loginWithGoogleUsecase;
   CheckAuthTokenUsecase checkAuthTokenUsecase;
+  AddAddressUsecase addAddressUsecase;
+  RemoveAddressUsecase removeAddressUsecase;
   LogoutUsecase logoutUsecase;
-
   late GlobalProvider globalProvider;
 
   AuthCubit(
@@ -37,8 +39,13 @@ class AuthCubit extends Cubit<AuthState> {
     this.loginWithGoogleUsecase,
     this.checkAuthTokenUsecase,
     this.logoutUsecase,
+    this.addAddressUsecase,
+    this.removeAddressUsecase,
     this.globalProvider,
   ) : super(AuthInitial());
+
+  late User _user;
+  User get user => _user;
 
   Future<void> checkAuthToken() async {
     final auth = await CacheHelper.getDataFromSharedPreference(key: 'AUTH');
@@ -48,6 +55,7 @@ class AuthCubit extends Cubit<AuthState> {
           (error) => emit(
                 AuthErrorState(error.message),
               ), (user) {
+        _user = user;
         emit(AuthSuccessState(user: user));
         globalProvider.setFavProducts(user.favProducts);
       });
@@ -132,6 +140,25 @@ class AuthCubit extends Cubit<AuthState> {
       (message) => emit(
         ForgotPasswordSuccessState(message),
       ),
+    );
+  }
+
+  Future<void> addAddress(Map<String, dynamic> address) async {
+    emit(AuthLoadingState());
+    _user.addresses.addAll(address);
+    final result = await addAddressUsecase(_user.id, address);
+    result.fold(
+      (error) => emit(AuthErrorState(error.message)),
+      (_) => emit(AuthSuccessState(user: _user)),
+    );
+  }
+
+  Future<void> removeAddress(String addresskey) async {
+    _user.addresses.removeWhere((key, value) => key == addresskey);
+    final result = await removeAddressUsecase(_user.id, addresskey);
+    result.fold(
+      (error) => emit(AuthErrorState(error.message)),
+      (_) => emit(AuthSuccessState(user: _user)),
     );
   }
 }

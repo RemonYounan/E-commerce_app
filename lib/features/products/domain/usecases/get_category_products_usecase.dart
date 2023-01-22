@@ -4,10 +4,11 @@ import '../entities/product.dart';
 import '../repositories/proucts_repository.dart';
 
 class GetCategoryProductsUsecase {
-  ProductsRepository productsRepository;
+  final ProductsRepository productsRepository;
 
-  GetCategoryProductsUsecase(this.productsRepository);
-  Future<Either<Failure, List<Product>>> call(int id,int offset,String orderBy) async {
-    return await productsRepository.getCategoryProducts(id,offset,orderBy);
+  const GetCategoryProductsUsecase(this.productsRepository);
+  Future<Either<Failure, List<Product>>> call(
+      int id, int offset, String orderBy) async {
+    return await productsRepository.getCategoryProducts(id, offset, orderBy);
   }
 }

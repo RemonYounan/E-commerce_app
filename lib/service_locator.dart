@@ -1,4 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:ecommerce_app/features/auth/domain/usecases/remove_address_usecase.dart';
+import 'package:ecommerce_app/features/order/data/data_source/order_remote_data_source.dart';
+import 'package:ecommerce_app/features/order/data/repositories/order_repository_impl.dart';
+import 'package:ecommerce_app/features/order/domain/repositories/order_repository.dart';
+import 'package:ecommerce_app/features/auth/domain/usecases/add_address_usecase.dart';
+import 'package:ecommerce_app/features/order/presentation/blocs/order/order_cubit.dart';
+import 'package:ecommerce_app/features/products/domain/usecases/get_fav_products_usecase.dart';
 import 'features/auth/domain/usecases/logout_usecase.dart';
 import 'features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -49,20 +56,23 @@ void init() async {
   sl.registerLazySingleton(() => LoginWithGoogleUsecase(sl()));
   sl.registerLazySingleton(() => CheckAuthTokenUsecase(sl()));
   sl.registerLazySingleton(() => LogoutUsecase(sl()));
+  sl.registerLazySingleton(() => AddAddressUsecase(sl()));
+  sl.registerLazySingleton(() => RemoveAddressUsecase(sl()));
   // Repositories
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
   // DataSources
   sl.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImpl(dio: sl()));
   // Bloc
-  sl.registerLazySingleton<AuthCubit>(
-      () => AuthCubit(sl(), sl(), sl(), sl(), sl(), sl(), sl(), sl()));
+  sl.registerLazySingleton<AuthCubit>(() =>
+      AuthCubit(sl(), sl(), sl(), sl(), sl(), sl(), sl(), sl(), sl(), sl()));
 
   //! feature : Products
   // Usecases
   sl.registerLazySingleton(() => InitDataUsecase(sl()));
   sl.registerLazySingleton(() => GetProductDetailsUsecase(sl()));
   sl.registerLazySingleton(() => GetCategoryProductsUsecase(sl()));
+  sl.registerLazySingleton(() => GetFavProductsUsecase(sl()));
   sl.registerLazySingleton<ToggleFavoriteUsecase>(
       () => ToggleFavoriteUsecase(sl()));
   // Repositories
@@ -73,8 +83,16 @@ void init() async {
       () => ProductsRemoteDataSourceImpl(dio: sl()));
   // Bloc
   sl.registerLazySingleton<ProductsCubit>(
-      () => ProductsCubit(sl(), sl(), sl()));
+      () => ProductsCubit(sl(), sl(), sl(), sl()));
   //! feature : Order
+
+  // Usecases
+  // Repositories
+  sl.registerLazySingleton<OrderRepository>(() => OrderRepositoyImpl(sl()));
+  // DataSources
+  sl.registerLazySingleton<OrderRemoteDataSource>(
+      () => OrderRemoteDataSourceImpl(dio: sl()));
   // Bloc
   sl.registerLazySingleton<CartCubit>(() => CartCubit());
+  sl.registerLazySingleton<OrderCubit>(() => OrderCubit());
 }

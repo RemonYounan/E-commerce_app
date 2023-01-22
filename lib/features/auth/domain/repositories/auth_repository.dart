@@ -12,4 +12,6 @@ abstract class AuthRepository {
   Future<Either<Failure, User>> loginWithGoogle();
   Future<Either<Failure, Unit>> logout();
   Future<Either<Failure, User>> checkAuthToken(String auth);
+  Future<Either<Failure, Unit>> addAddress(int id,Map<String, dynamic> address);
+  Future<Either<Failure, Unit>> removeAddress(int id,String key);
 }

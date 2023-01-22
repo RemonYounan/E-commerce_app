@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ecommerce_app/features/order/presentation/blocs/order/order_cubit.dart';
 import 'features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,6 +59,9 @@ class MyApp extends StatelessWidget {
           BlocProvider<CartCubit>(
             create: (context) =>
                 di.sl<CartCubit>()..getCartFromSharedPreference(),
+          ),
+          BlocProvider<OrderCubit>(
+            create: (context) => di.sl<OrderCubit>(),
           ),
         ],
         child: MaterialApp(

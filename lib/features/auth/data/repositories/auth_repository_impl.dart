@@ -55,4 +55,15 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, Unit>> logout() async {
     return await authRemoteDataSource.logout();
   }
+
+  @override
+  Future<Either<Failure, Unit>> addAddress(int id,
+      Map<String, dynamic> address) async {
+    return await authRemoteDataSource.addAddress(id, address);
+  }
+  
+  @override
+  Future<Either<Failure, Unit>> removeAddress(int id,String key) async {
+     return await authRemoteDataSource.removeAddress(id,key);
+  }
 }

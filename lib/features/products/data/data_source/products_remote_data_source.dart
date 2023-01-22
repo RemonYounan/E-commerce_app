@@ -2,6 +2,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/core/constants/app_constants.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 
 import 'package:ecommerce_app/core/error/failures.dart';
 import 'package:ecommerce_app/features/products/data/models/product_details_model.dart';
@@ -13,6 +14,7 @@ abstract class ProductsRemoteDataSource {
   Future<Either<Failure, Map<String, dynamic>>> initData();
   Future<Either<Failure, dynamic>> toggleFavorite(int id, int uid);
   Future<Either<Failure, ProductDetails>> getProduct(int id);
+  Future<Either<Failure, List<Product>>> getFavProducts(int id);
   Future<Either<Failure, List<Product>>> getCategoryProducts(
       int id, int offset, String orderBy);
 }
@@ -78,6 +80,26 @@ class ProductsRemoteDataSourceImpl implements ProductsRemoteDataSource {
           .toList());
     } else {
       return Left(ServerFailure(message: response.data['error']));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Product>>> getFavProducts(int id) async {
+    try {
+      final response = await dio.get(
+        AppConstants.getFavoritePathUrl,
+        queryParameters: {'id': id},
+      );
+      if (response.statusCode == 200) {
+        final List productsJson = response.data;
+        return Right(productsJson
+            .map((product) => ProductModel.fromJson(product))
+            .toList());
+      } else {
+        return Left(ServerFailure(message: response.data['error']));
+      }
+    } catch (e) {
+      return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }
 }

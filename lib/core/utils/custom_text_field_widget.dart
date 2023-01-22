@@ -7,19 +7,23 @@ class CustomTextFieldWidget extends StatelessWidget {
   CustomTextFieldWidget({
     Key? key,
     required this.label,
-    required this.controller,
-    required this.textInputAction,
-    required this.textInputType,
+    this.hintText,
+    this.controller,
+    this.textInputAction,
+    this.textInputType,
     this.obscureText = false,
     this.validator,
+    this.onChanged,
   }) : super(key: key);
 
   final String label;
-  final TextEditingController controller;
-  final TextInputAction textInputAction;
-  final TextInputType textInputType;
+  final String? hintText;
+  final TextEditingController? controller;
+  final TextInputAction? textInputAction;
+  final TextInputType? textInputType;
   bool? obscureText;
   final String? Function(String?)? validator;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +41,7 @@ class CustomTextFieldWidget extends StatelessWidget {
       child: TextFormField(
         decoration: InputDecoration(
           label: Text(label),
-          // isDense: true,
-          // isCollapsed: true,
+          hintText: hintText,
         ),
         style: Theme.of(context).textTheme.titleSmall,
         controller: controller,
@@ -46,9 +49,7 @@ class CustomTextFieldWidget extends StatelessWidget {
         keyboardType: textInputType,
         obscureText: obscureText ?? false,
         validator: validator,
-        // minLines: null,
-        // maxLines: null,
-        // expands: true,
+        onChanged: onChanged,
       ),
     );
   }

@@ -8,10 +8,12 @@ class ProfileItemWidget extends StatelessWidget {
     Key? key,
     required this.title,
     required this.subTitle,
+    required this.onTap,
   }) : super(key: key);
 
   final String title;
   final String subTitle;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class ProfileItemWidget extends StatelessWidget {
                 ? AppColors.greyDark
                 : AppColors.grey),
       ),
-      onTap: () {},
+      onTap: onTap,
       contentPadding: EdgeInsets.symmetric(horizontal: 15.w),
       title: Text(
         title,

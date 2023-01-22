@@ -1,4 +1,7 @@
 import 'package:ecommerce_app/core/utils/toast.dart';
+import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
+import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/providers/global_provider.dart';
@@ -60,9 +63,14 @@ class _MainScreenState extends State<MainScreen> {
           child: BottomNavigationBar(
             currentIndex: currentIndex,
             iconSize: 30.r,
-            onTap: (value) =>
-                Provider.of<GlobalProvider>(context, listen: false)
-                    .changeIndex(value),
+            onTap: (value) {
+              Provider.of<GlobalProvider>(context, listen: false)
+                  .changeIndex(value);
+              if (value == 3) {
+                final id = BlocProvider.of<AuthCubit>(context).user.id;
+                BlocProvider.of<ProductsCubit>(context).getFavProducts(id);
+              }
+            },
             items: [
               BottomNavigationBarItem(
                   icon: Icon(

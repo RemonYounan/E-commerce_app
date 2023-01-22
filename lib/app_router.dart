@@ -1,3 +1,6 @@
+import 'package:ecommerce_app/features/auth/presentation/screens/add_shipping_address_screen.dart';
+import 'package:ecommerce_app/features/auth/presentation/screens/shipping_address_screen.dart';
+import 'package:ecommerce_app/features/order/presentation/screens/check_out_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'core/common/app_routes.dart';
@@ -68,6 +71,25 @@ class AppRouter {
           type: PageTransitionType.rightToLeft,
           curve: Curves.ease,
           child: CategoryProductsScreen(category: args),
+        );
+      case AppRoutes.checkOut:
+        return PageTransition(
+          type: PageTransitionType.rightToLeft,
+          curve: Curves.ease,
+          child: const CheckOutScreen(),
+        );
+      case AppRoutes.shippingAddresses:
+        return PageTransition(
+          type: PageTransitionType.rightToLeft,
+          curve: Curves.ease,
+          child: const ShippingAddressScreen(),
+        );
+      case AppRoutes.addShippingAddress:
+        final address = settings.arguments as Map<String, dynamic>?;
+        return PageTransition(
+          type: PageTransitionType.rightToLeft,
+          curve: Curves.ease,
+          child: AddShippingAddressScreen(address: address),
         );
       default:
         return null;

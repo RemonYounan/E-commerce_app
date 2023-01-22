@@ -66,6 +66,17 @@
     "delete_from_list" : "Delete from the list",
     "add_to_favorites" : "Add to favorites",
     "more" : "More",
+    "order" : "Order",
+    "address" : "Address",
+    "city" : "City",
+    "country" : "Country",
+    "save_address" : "SAVE ADDRESS",
+    "edit_address" : "EDIT ADDRESS",
+    "state" : "State/Province/Region",
+    "zip_code" : "Zip Code (Postal Code)",
+    "full_name" : "Full Name",
+    "add_shipping_address" : "Add Shipping Address",
+    "sumbmit_order" : "SUBMIT ORDER",
     "bag_empty" : "Bag is empty, start adding products."
 
 }

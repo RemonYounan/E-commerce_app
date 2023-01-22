@@ -23,12 +23,17 @@ class ProductsRepositoryImpl implements ProductsRepository {
   }
 
   @override
-  Future<Either<Failure, dynamic>> toggleFavorite(int id,int uid) async {
-    return await remoteDataSource.toggleFavorite(id,uid);
+  Future<Either<Failure, dynamic>> toggleFavorite(int id, int uid) async {
+    return await remoteDataSource.toggleFavorite(id, uid);
   }
 
   @override
   Future<Either<Failure, ProductDetails>> getProduct(int id) async {
     return await remoteDataSource.getProduct(id);
+  }
+
+  @override
+  Future<Either<Failure, List<Product>>> getFavProducts(int id) async {
+    return await remoteDataSource.getFavProducts(id);
   }
 }
