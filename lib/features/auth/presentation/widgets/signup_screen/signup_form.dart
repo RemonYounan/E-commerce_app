@@ -7,7 +7,7 @@ import '../../../domain/entities/register.dart';
 import '../../blocs/auth/auth_cubit.dart';
 import '../../../../../core/utils/custom_text_field_widget.dart';
 import '../../../../../core/utils/custom_button.dart';
-import '../../../../products/presentation/widgets/loading_widget.dart';
+import '../../../../../core/utils/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

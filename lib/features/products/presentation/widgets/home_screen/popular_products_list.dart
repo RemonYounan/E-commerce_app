@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
+
 import '../../../domain/entities/product.dart';
 import '../../blocs/products_cubit/products_cubit.dart';
 import '../favorite_button.dart';
@@ -15,7 +17,11 @@ class PopularProductsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductsCubit, ProductsState>(
       builder: (context, state) {
-        if (state is ProductsLoadedState) {
+        if (state.status == ProductsStatus.loading) {
+          return const SizedBox.shrink();
+        } else if (state.status == ProductsStatus.error) {
+          return const ErrorMessageWiget();
+        } else {
           final List<Product> popularProducts = state.popularProducts;
           return SizedBox(
             height: 280.h,
@@ -26,15 +32,14 @@ class PopularProductsList extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: ProductGridCard(product: popularProducts[index],
-                  icon: FavoriteButton(id: popularProducts[index].id),
+                  child: ProductGridCard(
+                    product: popularProducts[index],
+                    icon: FavoriteButton(id: popularProducts[index].id),
                   ),
                 );
               },
             ),
           );
-        } else {
-          return Container();
         }
       },
     );

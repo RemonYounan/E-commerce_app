@@ -10,7 +10,7 @@ import 'package:ecommerce_app/core/utils/custom_dropdown_button.dart';
 import 'package:ecommerce_app/core/utils/custom_text_field_widget.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/loading_widget.dart';
+import 'package:ecommerce_app/core/utils/loading_widget.dart';
 
 class AddShippingAddressForm extends StatefulWidget {
   const AddShippingAddressForm({

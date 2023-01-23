@@ -23,21 +23,15 @@ class ProductsCubit extends Cubit<ProductsState> {
     this._getCategoryProductsUsecase,
     this._initDataUsecase,
     this._getFavProductsUsecase,
-  ) : super(ProductsInitial());
+  ) : super(ProductsState());
 
   final GetProductDetailsUsecase _getProductDetailsUsecase;
   final GetCategoryProductsUsecase _getCategoryProductsUsecase;
   final InitDataUsecase _initDataUsecase;
   final GetFavProductsUsecase _getFavProductsUsecase;
-  late ProductsLoadedState _productsLoadedState;
+  ProductsState _state = ProductsState();
 
-  Map<String, dynamic> _appData = {};
-  List<Product> _featuresProducts = [];
-  List<Product> _popularProducts = [];
-  List<Product> _newestProducts = [];
   List<Product> _favProducts = [];
-  List<Category> _categories = [];
-  List<Banner> _banners = [];
   final List<ProductDetails> _productsDetails = [];
   Map<String, dynamic> _addressFields = {};
   Map<String, dynamic> _countries = {};
@@ -46,61 +40,65 @@ class ProductsCubit extends Cubit<ProductsState> {
   Map<String, dynamic> get countries => _countries;
 
   Future<void> initData() async {
-    emit(ProductsLoadingState());
+    emit(_state.copyWith(status: ProductsStatus.loading));
     final result = await _initDataUsecase();
     result.fold(
-      (error) => emit(ProductsErrorState(message: error.message)),
+      (error) => emit(_state.copyWith(
+        status: ProductsStatus.error,
+        errorMessage: error.message,
+      )),
       (data) {
-        _appData = data;
-        final List bannersJson = _appData['banners'];
-        _banners =
+        final List bannersJson = data['banners'];
+        final banners =
             bannersJson.map((banner) => BannerModel.fromJson(banner)).toList();
-        final List featuresProductsJson = _appData['featuresProducts'];
-        _featuresProducts = featuresProductsJson
+        final List featuresProductsJson = data['featuresProducts'];
+        final featuresProducts = featuresProductsJson
             .map((product) => ProductModel.fromJson(product))
             .toList();
-        final List popularProductsJson = _appData['popularProducts'];
-        _popularProducts = popularProductsJson
+        final List popularProductsJson = data['popularProducts'];
+        final popularProducts = popularProductsJson
             .map((product) => ProductModel.fromJson(product))
             .toList();
-        final List newestProductsJson = _appData['newestProducts'];
-        _newestProducts = newestProductsJson
+        final List newestProductsJson = data['newestProducts'];
+        final newestProducts = newestProductsJson
             .map((product) => ProductModel.fromJson(product))
             .toList();
-        final List categoriesJson = _appData['categories'];
-        _categories = categoriesJson
+        final List categoriesJson = data['categories'];
+        final categories = categoriesJson
             .map((category) => CategoryModel.fromJson(category))
             .toList();
-        _addressFields = _appData['address_fields'];
-        _countries = _appData['countries'];
-        emit(
-          _productsLoadedState = ProductsLoadedState(
-            banners: _banners,
-            featuresProducts: _featuresProducts,
-            popularProducts: _popularProducts,
-            newestProducts: _newestProducts,
-            categories: _categories,
-          ),
+        _addressFields = data['address_fields'];
+        _countries = data['countries'];
+        _state = _state.copyWith(
+          banners: banners,
+          featuresProducts: featuresProducts,
+          popularProducts: popularProducts,
+          newestProducts: newestProducts,
+          categories: categories,
+          status: ProductsStatus.loaded,
         );
+        emit(_state);
       },
     );
   }
 
   Future<void> getProduct(int id) async {
     if (_productsDetails.where((element) => element.id == id).isNotEmpty) {
-      _productsLoadedState =
-          _productsLoadedState.copyWith(productsDetails: _productsDetails);
-      emit(_productsLoadedState);
     } else {
-      emit(ProductsLoadingState());
+      emit(_state.copyWith(status: ProductsStatus.productLoading));
       final result = await _getProductDetailsUsecase(id);
       result.fold(
-        (error) => emit(ProductsErrorState(message: error.message)),
+        (error) => emit(ProductsState(
+          errorMessage: error.message,
+          status: ProductsStatus.error,
+        )),
         (product) {
           _productsDetails.add(product);
-          _productsLoadedState =
-              _productsLoadedState.copyWith(productsDetails: _productsDetails);
-          emit(_productsLoadedState);
+          _state = _state.copyWith(
+            productsDetails: _productsDetails,
+            status: ProductsStatus.loaded,
+          );
+          emit(_state);
         },
       );
     }
@@ -109,15 +107,18 @@ class ProductsCubit extends Cubit<ProductsState> {
   Future<List<Product>> getCategoryProducts(
       int id, int offset, String orderBy) async {
     if (offset == 0) {
-      emit(ProductsLoadingState());
+      emit(ProductsState(status: ProductsStatus.loading));
     }
     final result = await _getCategoryProductsUsecase(id, offset, orderBy);
     late List<Product> products;
     result.fold(
-      (error) => emit(ProductsErrorState(message: error.message)),
+      (error) => emit(ProductsState(
+        errorMessage: error.message,
+        status: ProductsStatus.error,
+      )),
       (newProducts) {
         products = newProducts;
-        emit(_productsLoadedState);
+        emit(_state.copyWith(status: ProductsStatus.loaded));
       },
     );
     return products;
@@ -125,16 +126,19 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   Future<void> getFavProducts(int id) async {
     if (_favProducts.isEmpty) {
-      emit(ProductsLoadingState());
+      emit(ProductsState(status: ProductsStatus.loading));
       final result = await _getFavProductsUsecase(id);
       result.fold(
-        (error) => emit(ProductsErrorState(message: error.message)),
+        (error) => emit(ProductsState(
+          errorMessage: error.message,
+          status: ProductsStatus.error,
+        )),
         (products) {
           _favProducts = products;
-          _productsLoadedState = _productsLoadedState.copyWith(
+          _state = _state.copyWith(
             favProducts: products,
           );
-          emit(_productsLoadedState);
+          emit(_state);
         },
       );
     }

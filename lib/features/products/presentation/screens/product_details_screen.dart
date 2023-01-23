@@ -14,7 +14,7 @@ import '../../../order/domain/entities/cart_product.dart';
 import '../../../order/presentation/blocs/cart/cart_cubit.dart';
 import '../../domain/entities/product.dart';
 import '../blocs/products_cubit/products_cubit.dart';
-import '../widgets/loading_widget.dart';
+import '../../../../core/utils/loading_widget.dart';
 import '../widgets/product_details_screen/color_and_size_section.dart';
 import '../widgets/product_details_screen/images_slider_widget.dart';
 import '../widgets/product_details_screen/name_and_price_section.dart';
@@ -36,7 +36,8 @@ class ProductDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductsCubit, ProductsState>(
       builder: (context, state) {
-        if (state is ProductsLoadedState && state.productsDetails.isNotEmpty) {
+        if (state.status == ProductsStatus.loaded &&
+            state.productsDetails.isNotEmpty) {
           final product =
               state.productsDetails.firstWhere((element) => element.id == id);
           return Scaffold(

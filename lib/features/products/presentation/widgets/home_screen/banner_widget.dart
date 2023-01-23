@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
+
 import '../../../../../core/common/app_colors.dart';
 import '../../blocs/products_cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,13 @@ class BannerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductsCubit, ProductsState>(
       builder: (context, state) {
-        if (state is ProductsLoadedState) {
+        if (state.status == ProductsStatus.loading) {
+          return SizedBox(
+            height: 260.h,
+          );
+        } else if (state.status == ProductsStatus.error) {
+          return const ErrorMessageWiget();
+        } else {
           final banners = state.banners;
           return SizedBox(
             height: 200.h,
@@ -46,10 +54,6 @@ class BannerWidget extends StatelessWidget {
                 ],
               ),
             ),
-          );
-        } else {
-          return SizedBox(
-            height: 260.h,
           );
         }
       },

@@ -1,7 +1,9 @@
+import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
+
 import '../../../../../core/common/app_colors.dart';
 
 import '../../blocs/products_cubit/products_cubit.dart';
-import '../loading_widget.dart';
+import '../../../../../core/utils/loading_widget.dart';
 import 'category_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +18,11 @@ class CategoriesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductsCubit, ProductsState>(
       builder: (context, state) {
-        if (state is ProductsLoadedState) {
+        if (state.status == ProductsStatus.loading) {
+          return const LoadingWidget();
+        } else if (state.status == ProductsStatus.error) {
+          return const ErrorMessageWiget();
+        } else {
           return ListView(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
             children: [
@@ -63,10 +69,6 @@ class CategoriesWidget extends StatelessWidget {
                     CategoryItemWidget(category: state.categories[index]),
               ),
             ],
-          );
-        } else {
-          return const Center(
-            child: LoadingWidget(),
           );
         }
       },

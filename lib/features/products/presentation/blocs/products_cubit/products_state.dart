@@ -1,18 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'products_cubit.dart';
 
-abstract class ProductsState extends Equatable {
-  const ProductsState();
+enum ProductsStatus { loading, productLoading, loaded, error }
 
-  @override
-  List<Object> get props => [];
-}
-
-class ProductsInitial extends ProductsState {}
-
-class ProductsLoadingState extends ProductsState {}
-
-class ProductsLoadedState extends ProductsState {
+class ProductsState extends Equatable {
   final List<Product> featuresProducts;
   final List<Product> popularProducts;
   final List<Product> newestProducts;
@@ -20,8 +10,10 @@ class ProductsLoadedState extends ProductsState {
   final List<ProductDetails> productsDetails;
   final List<Category> categories;
   final List<Banner> banners;
+  ProductsStatus status;
+  final String errorMessage;
 
-  const ProductsLoadedState({
+  ProductsState({
     this.featuresProducts = const [],
     this.popularProducts = const [],
     this.newestProducts = const [],
@@ -29,6 +21,8 @@ class ProductsLoadedState extends ProductsState {
     this.productsDetails = const [],
     this.categories = const [],
     this.banners = const [],
+    this.errorMessage = '',
+    this.status = ProductsStatus.loading,
   });
   @override
   List<Object> get props => [
@@ -38,10 +32,12 @@ class ProductsLoadedState extends ProductsState {
         favProducts,
         productsDetails,
         categories,
-        banners
+        banners,
+        status,
+        errorMessage,
       ];
 
-  ProductsLoadedState copyWith({
+  ProductsState copyWith({
     List<Product>? featuresProducts,
     List<Product>? popularProducts,
     List<Product>? newestProducts,
@@ -49,8 +45,10 @@ class ProductsLoadedState extends ProductsState {
     List<Category>? categories,
     List<Banner>? banners,
     List<ProductDetails>? productsDetails,
+    ProductsStatus? status,
+    String? errorMessage,
   }) =>
-      ProductsLoadedState(
+      ProductsState(
         featuresProducts: featuresProducts ?? this.featuresProducts,
         popularProducts: popularProducts ?? this.popularProducts,
         newestProducts: newestProducts ?? this.newestProducts,
@@ -58,16 +56,7 @@ class ProductsLoadedState extends ProductsState {
         categories: categories ?? this.categories,
         banners: banners ?? this.banners,
         productsDetails: productsDetails ?? this.productsDetails,
+        status: status ?? this.status,
+        errorMessage: errorMessage ?? this.errorMessage,
       );
-}
-
-class ProductsErrorState extends ProductsState {
-  final String message;
-
-  const ProductsErrorState({
-    required this.message,
-  });
-
-  @override
-  List<Object> get props => [message];
 }

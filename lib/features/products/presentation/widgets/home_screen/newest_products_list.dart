@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
+
 import '../../blocs/products_cubit/products_cubit.dart';
 import '../favorite_button.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +18,11 @@ class NewestProductsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductsCubit, ProductsState>(
       builder: (context, state) {
-        if (state is ProductsLoadedState) {
+        if (state.status == ProductsStatus.loading) {
+          return const SizedBox.shrink();
+        } else if (state.status == ProductsStatus.error) {
+          return const ErrorMessageWiget();
+        } else {
           final List<Product> newestProducts = state.newestProducts;
           return SizedBox(
             height: 280.h,
@@ -35,8 +41,6 @@ class NewestProductsList extends StatelessWidget {
               },
             ),
           );
-        } else {
-          return Container();
         }
       },
     );
