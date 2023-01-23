@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/utils/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,12 +23,7 @@ class SlpashScreen extends StatelessWidget {
             );
           }
         },
-        child: Center(
-          child: Text(
-            'Loading ...',
-            style: Theme.of(context).textTheme.headlineLarge,
-          ),
-        ),
+        child: const LoadingWidget(),
       ),
     );
   }
