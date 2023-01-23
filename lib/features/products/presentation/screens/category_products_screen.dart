@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
+
 import '../../../../core/providers/global_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +10,6 @@ import 'package:provider/provider.dart';
 import '../../../../core/constants/enums.dart';
 import '../../domain/entities/category.dart';
 import '../../domain/entities/product.dart';
-import '../blocs/products_cubit/products_cubit.dart';
 
 import '../widgets/shop_screen/filter_section.dart';
 import '../widgets/shop_screen/products_grid_view.dart';
@@ -43,8 +44,9 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
   Future<void> _fetch(int pageKey) async {
     try {
       final sortBy = Provider.of<GlobalProvider>(context, listen: false).sortBy;
-      final newProducts = await BlocProvider.of<ProductsCubit>(context)
-          .getCategoryProducts(widget.category.id, pageKey, sortBy);
+      BlocProvider.of<ProductsBloc>(context).add(GetCategoryProductsEvent(
+          id: widget.category.id, offset: pageKey, orderBy: sortBy));
+      final newProducts = BlocProvider.of<ProductsBloc>(context).catProducts;
       final isLastPage = newProducts.length < _pageSize;
       if (isLastPage) {
         pagingController.appendLastPage(newProducts);

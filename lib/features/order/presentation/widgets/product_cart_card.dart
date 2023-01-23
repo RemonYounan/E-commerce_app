@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,7 +31,7 @@ class ProductCartCard extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
       child: GestureDetector(
         onTap: () {
-          BlocProvider.of<ProductsCubit>(context).getProduct(cartProduct.id);
+          BlocProvider.of<ProductsBloc>(context).add(GetProductEvent(id: cartProduct.id));
           Navigator.pushNamed(context, AppRoutes.productDetails, arguments: {
             'id': cartProduct.id,
             'cartProduct': cartProduct,

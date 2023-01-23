@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -7,7 +8,6 @@ import 'package:loading_gifs/loading_gifs.dart';
 import '../../../../core/common/app_colors.dart';
 import '../../../../core/common/app_routes.dart';
 import '../../domain/entities/product.dart';
-import '../blocs/products_cubit/products_cubit.dart';
 
 import 'rate_widget.dart';
 
@@ -45,7 +45,8 @@ class ProductGridCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        BlocProvider.of<ProductsCubit>(context).getProduct(product.id);
+        BlocProvider.of<ProductsBloc>(context)
+            .add(GetProductEvent(id: product.id));
         Navigator.pushNamed(context, AppRoutes.productDetails, arguments: {
           'id': product.id,
           'product': product,

@@ -1,7 +1,7 @@
 import '../../../../../core/common/app_colors.dart';
 import '../../../domain/entities/product.dart';
 import '../favorite_button.dart';
-import '../loading_widget.dart';
+import '../../../../../core/utils/loading_widget.dart';
 import '../product_grid_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

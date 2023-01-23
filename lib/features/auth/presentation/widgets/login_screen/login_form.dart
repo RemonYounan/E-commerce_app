@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/core/utils/loading_widget.dart';
+
 import '../../../../../core/common/app_colors.dart';
 import '../../../../../core/common/app_routes.dart';
 import '../../../../../core/constants/app_strings.dart';
@@ -26,6 +28,13 @@ class _LoginFormState extends State<LoginForm> {
     super.initState();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   void submit() {
@@ -112,7 +121,7 @@ class _LoginFormState extends State<LoginForm> {
               },
               builder: (context, state) {
                 if (state is AuthLoadingState) {
-                  return const CircularProgressIndicator(
+                  return const LoadingWidget(
                     color: AppColors.white,
                   );
                 } else {

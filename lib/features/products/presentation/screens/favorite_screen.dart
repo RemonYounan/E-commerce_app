@@ -1,5 +1,7 @@
+import 'package:ecommerce_app/core/utils/error_message_widget.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/loading_widget.dart';
+import 'package:ecommerce_app/core/utils/loading_widget.dart';
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +11,6 @@ import '../../../../core/constants/app_strings.dart';
 import '../../../../core/constants/enums.dart';
 import '../../../../core/providers/global_provider.dart';
 import '../../domain/entities/product.dart';
-import '../blocs/products_cubit/products_cubit.dart';
 import '../widgets/add_to_bag_button.dart';
 import '../widgets/product_grid_card.dart';
 import '../widgets/product_list_card.dart';
@@ -24,8 +25,8 @@ class FavoriteScreen extends StatelessWidget {
         child: RefreshIndicator(
           onRefresh: () async {
             final id = BlocProvider.of<AuthCubit>(context).user.id;
-            await BlocProvider.of<ProductsCubit>(context)
-                .refreshFavProducts(id);
+            BlocProvider.of<ProductsBloc>(context)
+                .add(RefreshFavProductsEvent(id: id));
           },
           child: CustomScrollView(
             key: const PageStorageKey('FavoritsScreen'),
@@ -86,9 +87,16 @@ class FavoriteScreen extends StatelessWidget {
                 key: const PageStorageKey('FavoritsList'),
                 delegate: SliverChildListDelegate(
                   [
-                    BlocBuilder<ProductsCubit, ProductsState>(
+                    BlocBuilder<ProductsBloc, ProductsState>(
                       builder: (context, state) {
-                        if (state is ProductsLoadedState) {
+                        if (state.status == ProductsStatus.loading) {
+                          return SizedBox(
+                            height: 350.h,
+                            child: const LoadingWidget(),
+                          );
+                        } else if (state.status == ProductsStatus.error) {
+                          return const ErrorMessageWidget();
+                        } else {
                           final List<Product> favProducts = state.favProducts;
                           return Provider.of<GlobalProvider>(context)
                                       .listStyle ==
@@ -130,11 +138,6 @@ class FavoriteScreen extends StatelessWidget {
                                     );
                                   },
                                 );
-                        } else {
-                          return SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.5,
-                            child: const LoadingWidget(),
-                          );
                         }
                       },
                     ),

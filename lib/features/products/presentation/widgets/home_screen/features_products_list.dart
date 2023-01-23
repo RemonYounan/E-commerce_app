@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
+
 import '../../blocs/products_cubit/products_cubit.dart';
 import '../favorite_button.dart';
 import 'package:flutter/material.dart';
@@ -14,29 +16,26 @@ class FeaturesProductsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductsCubit, ProductsState>(
+    return BlocBuilder<ProductsBloc, ProductsState>(
       builder: (context, state) {
-        if (state is ProductsLoadedState) {
-          final List<Product> featuresProducts = state.featuresProducts;
-          return SizedBox(
-            height: 280.h,
-            child: ListView.builder(
-              key: const PageStorageKey('FeaturesProductsList'),
-              scrollDirection: Axis.horizontal,
-              itemCount: featuresProducts.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: ProductGridCard(product: featuresProducts[index],
+        final List<Product> featuresProducts = state.featuresProducts;
+        return SizedBox(
+          height: 280.h,
+          child: ListView.builder(
+            key: const PageStorageKey('FeaturesProductsList'),
+            scrollDirection: Axis.horizontal,
+            itemCount: featuresProducts.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: ProductGridCard(
+                  product: featuresProducts[index],
                   icon: FavoriteButton(id: featuresProducts[index].id),
-                  ),
-                );
-              },
-            ),
-          );
-        } else {
-          return Container();
-        }
+                ),
+              );
+            },
+          ),
+        );
       },
     );
   }

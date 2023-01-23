@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/features/order/presentation/blocs/order/order_cubit.dart';
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
 import 'features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,8 +54,8 @@ class MyApp extends StatelessWidget {
           BlocProvider<AuthCubit>(
             create: (context) => di.sl<AuthCubit>()..checkAuthToken(),
           ),
-          BlocProvider<ProductsCubit>(
-            create: (context) => di.sl<ProductsCubit>()..initData(),
+          BlocProvider<ProductsBloc>(
+            create: (context) => di.sl<ProductsBloc>()..add(InitDataEvent()),
           ),
           BlocProvider<CartCubit>(
             create: (context) =>

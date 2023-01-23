@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -68,7 +69,8 @@ class _MainScreenState extends State<MainScreen> {
                   .changeIndex(value);
               if (value == 3) {
                 final id = BlocProvider.of<AuthCubit>(context).user.id;
-                BlocProvider.of<ProductsCubit>(context).getFavProducts(id);
+                BlocProvider.of<ProductsBloc>(context)
+                    .add(GetFavProductsEvent(id: id));
               }
             },
             items: [

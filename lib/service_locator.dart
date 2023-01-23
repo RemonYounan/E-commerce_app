@@ -6,6 +6,7 @@ import 'package:ecommerce_app/features/order/domain/repositories/order_repositor
 import 'package:ecommerce_app/features/auth/domain/usecases/add_address_usecase.dart';
 import 'package:ecommerce_app/features/order/presentation/blocs/order/order_cubit.dart';
 import 'package:ecommerce_app/features/products/domain/usecases/get_fav_products_usecase.dart';
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
 import 'features/auth/domain/usecases/logout_usecase.dart';
 import 'features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -82,8 +83,8 @@ void init() async {
   sl.registerLazySingleton<ProductsRemoteDataSource>(
       () => ProductsRemoteDataSourceImpl(dio: sl()));
   // Bloc
-  sl.registerLazySingleton<ProductsCubit>(
-      () => ProductsCubit(sl(), sl(), sl(), sl()));
+  sl.registerLazySingleton<ProductsBloc>(
+      () => ProductsBloc(sl(), sl(), sl(), sl()));
   //! feature : Order
 
   // Usecases

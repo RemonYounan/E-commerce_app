@@ -1,5 +1,8 @@
+import 'package:ecommerce_app/core/utils/error_message_widget.dart';
+import 'package:ecommerce_app/core/utils/loading_widget.dart';
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
+
 import '../../../../../core/common/app_colors.dart';
-import '../../blocs/products_cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,9 +15,13 @@ class BannerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductsCubit, ProductsState>(
+    return BlocBuilder<ProductsBloc, ProductsState>(
       builder: (context, state) {
-        if (state is ProductsLoadedState) {
+        if (state.status == ProductsStatus.loading) {
+          return const LoadingWidget();
+        } else if (state.status == ProductsStatus.error) {
+          return const ErrorMessageWidget();
+        } else {
           final banners = state.banners;
           return SizedBox(
             height: 200.h,
@@ -46,10 +53,6 @@ class BannerWidget extends StatelessWidget {
                 ],
               ),
             ),
-          );
-        } else {
-          return SizedBox(
-            height: 260.h,
           );
         }
       },

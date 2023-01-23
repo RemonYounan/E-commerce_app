@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +11,7 @@ import 'package:ecommerce_app/core/utils/custom_dropdown_button.dart';
 import 'package:ecommerce_app/core/utils/custom_text_field_widget.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/loading_widget.dart';
+import 'package:ecommerce_app/core/utils/loading_widget.dart';
 
 class AddShippingAddressForm extends StatefulWidget {
   const AddShippingAddressForm({
@@ -36,11 +37,11 @@ class _AddShippingAddressFormState extends State<AddShippingAddressForm> {
   }
 
   void buildFields() {
-    final addressFields = BlocProvider.of<ProductsCubit>(context).addressFields;
+    final addressFields = BlocProvider.of<ProductsBloc>(context).addressFields;
     addressFields.forEach(
       (key, value) {
         if (value['type'] == 'country') {
-          final countries = BlocProvider.of<ProductsCubit>(context).countries;
+          final countries = BlocProvider.of<ProductsBloc>(context).countries;
           List<DropdownMenuItem> items = [
             DropdownMenuItem(
               value: value['label'],

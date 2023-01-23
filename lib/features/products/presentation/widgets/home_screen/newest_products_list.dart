@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
+
 import '../../blocs/products_cubit/products_cubit.dart';
 import '../favorite_button.dart';
 import 'package:flutter/material.dart';
@@ -14,30 +16,26 @@ class NewestProductsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductsCubit, ProductsState>(
+    return BlocBuilder<ProductsBloc, ProductsState>(
       builder: (context, state) {
-        if (state is ProductsLoadedState) {
-          final List<Product> newestProducts = state.newestProducts;
-          return SizedBox(
-            height: 280.h,
-            child: ListView.builder(
-              key: const PageStorageKey('NewestProductsList'),
-              scrollDirection: Axis.horizontal,
-              itemCount: newestProducts.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w),
-                  child: ProductGridCard(
-                    product: newestProducts[index],
-                    icon: FavoriteButton(id: newestProducts[index].id),
-                  ),
-                );
-              },
-            ),
-          );
-        } else {
-          return Container();
-        }
+        final List<Product> newestProducts = state.newestProducts;
+        return SizedBox(
+          height: 280.h,
+          child: ListView.builder(
+            key: const PageStorageKey('NewestProductsList'),
+            scrollDirection: Axis.horizontal,
+            itemCount: newestProducts.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: ProductGridCard(
+                  product: newestProducts[index],
+                  icon: FavoriteButton(id: newestProducts[index].id),
+                ),
+              );
+            },
+          ),
+        );
       },
     );
   }

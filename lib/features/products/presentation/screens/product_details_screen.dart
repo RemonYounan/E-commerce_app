@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/utils/toast.dart';
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -13,8 +14,8 @@ import '../../../../core/utils/custom_button.dart';
 import '../../../order/domain/entities/cart_product.dart';
 import '../../../order/presentation/blocs/cart/cart_cubit.dart';
 import '../../domain/entities/product.dart';
-import '../blocs/products_cubit/products_cubit.dart';
-import '../widgets/loading_widget.dart';
+
+import '../../../../core/utils/loading_widget.dart';
 import '../widgets/product_details_screen/color_and_size_section.dart';
 import '../widgets/product_details_screen/images_slider_widget.dart';
 import '../widgets/product_details_screen/name_and_price_section.dart';
@@ -34,9 +35,10 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductsCubit, ProductsState>(
+    return BlocBuilder<ProductsBloc, ProductsState>(
       builder: (context, state) {
-        if (state is ProductsLoadedState && state.productsDetails.isNotEmpty) {
+        if (state.status == ProductsStatus.loaded) {
+          print(state);
           final product =
               state.productsDetails.firstWhere((element) => element.id == id);
           return Scaffold(

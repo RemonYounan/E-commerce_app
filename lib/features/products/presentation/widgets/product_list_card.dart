@@ -2,6 +2,7 @@
 import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/common/app_routes.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product.dart';
+import 'package:ecommerce_app/features/products/presentation/blocs/products_bloc/products_bloc.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/rate_widget.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,7 @@ class ProductListCard extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
       child: GestureDetector(
         onTap: () {
-          BlocProvider.of<ProductsCubit>(context).getProduct(product.id);
+          BlocProvider.of<ProductsBloc>(context).add(GetProductEvent(id: product.id));
           Navigator.pushNamed(context, AppRoutes.productDetails, arguments: {
             'id': product.id,
             'product': product,
