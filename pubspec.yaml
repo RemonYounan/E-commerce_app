@@ -31,6 +31,7 @@ dependencies:
   get_it: ^7.2.0
   google_sign_in: ^5.4.2
   infinite_scroll_pagination: ^3.2.0
+  like_button: ^2.0.5
   loading_gifs: ^0.3.0
   page_transition: ^2.0.9
   persistent_bottom_nav_bar: ^5.0.2
