@@ -71,6 +71,7 @@ class AuthCubit extends Cubit<AuthState> {
         (error) => emit(
               SignUpErrorState(error.message),
             ), (user) {
+      _user = user;
       emit(AuthSuccessState(user: user));
       globalProvider.setFavProducts(user.favProducts);
       CacheHelper.saveDataSharedPreference(
@@ -85,6 +86,7 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold((error) {
       emit(LoginErrorState(error.message));
     }, (user) {
+      _user = user;
       emit(AuthSuccessState(user: user));
       globalProvider.setFavProducts(user.favProducts);
       CacheHelper.saveDataSharedPreference(
@@ -99,6 +101,7 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold((error) {
       emit(LoginErrorState(error.message));
     }, (user) {
+      _user = user;
       emit(AuthSuccessState(user: user));
       globalProvider.setFavProducts(user.favProducts);
       CacheHelper.saveDataSharedPreference(
@@ -116,6 +119,7 @@ class AuthCubit extends Cubit<AuthState> {
         (error) => emit(
               LoginErrorState(error.message),
             ), (user) {
+      _user = user;
       emit(AuthSuccessState(user: user));
       globalProvider.setFavProducts(user.favProducts);
       CacheHelper.saveDataSharedPreference(

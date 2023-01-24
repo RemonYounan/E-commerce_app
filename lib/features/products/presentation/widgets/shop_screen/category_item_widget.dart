@@ -1,3 +1,5 @@
+import 'package:animations/animations.dart';
+import 'package:ecommerce_app/features/products/presentation/screens/category_products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_gifs/loading_gifs.dart';
@@ -18,51 +20,56 @@ class CategoryItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.h),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(10),
-        onTap: () {
-          Navigator.pushNamed(context, AppRoutes.catProducts,
-              arguments: category);
-        },
-        child: Container(
-          height: 100.h,
-          decoration: BoxDecoration(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? AppColors.dark
-                : AppColors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                offset: const Offset(0, 1),
-                blurRadius: 25,
-                color: AppColors.shadowColor,
-              )
-            ],
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 23.w),
-                  child: Text(
-                    category.name,
-                    style: Theme.of(context).textTheme.headlineSmall,
+      child: OpenContainer(
+        closedElevation: 0,
+        openElevation: 0,
+        openColor: Colors.transparent,
+        closedColor: Colors.transparent,
+        openBuilder: (context, action) =>
+            CategoryProductsScreen(category: category),
+        closedBuilder: (context, action) => InkWell(
+          borderRadius: BorderRadius.circular(10),
+          onTap: action,
+          child: Container(
+            height: 100.h,
+            decoration: BoxDecoration(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? AppColors.dark
+                  : AppColors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  offset: const Offset(0, 1),
+                  blurRadius: 25,
+                  color: AppColors.shadowColor,
+                )
+              ],
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 23.w),
+                    child: Text(
+                      category.name,
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                  child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ),
-                child: FadeInImage.assetNetwork(
-                  placeholder: cupertinoActivityIndicatorSmall,
-                  image: category.img,
-                  fit: BoxFit.cover,
-                ),
-              ))
-            ],
+                Expanded(
+                    child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(10),
+                    bottomRight: Radius.circular(10),
+                  ),
+                  child: FadeInImage.assetNetwork(
+                    placeholder: cupertinoActivityIndicatorSmall,
+                    image: category.img,
+                    fit: BoxFit.cover,
+                  ),
+                ))
+              ],
+            ),
           ),
         ),
       ),

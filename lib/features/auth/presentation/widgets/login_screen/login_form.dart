@@ -1,4 +1,6 @@
+import 'package:animations/animations.dart';
 import 'package:ecommerce_app/core/utils/loading_widget.dart';
+import 'package:ecommerce_app/features/auth/presentation/screens/forgot_password_screen.dart';
 
 import '../../../../../core/common/app_colors.dart';
 import '../../../../../core/common/app_routes.dart';
@@ -82,16 +84,22 @@ class _LoginFormState extends State<LoginForm> {
           SizedBox(
             height: 15.h,
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.titleSmall,
+          OpenContainer(
+            closedColor: Colors.transparent,
+            openColor: Colors.transparent,
+            middleColor: Colors.transparent,
+            openElevation: 0,
+            closedElevation: 0,
+            openBuilder: (context, action) => const ForgotPasswordScreen(),
+            closedBuilder: (context, action) => Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: action,
+                style: TextButton.styleFrom(
+                  textStyle: Theme.of(context).textTheme.titleSmall,
+                ),
+                child: Text(AppStrings.forgotYourPassword),
               ),
-              child: Text(AppStrings.forgotYourPassword),
-              onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.forgotPassword);
-              },
             ),
           ),
           SizedBox(

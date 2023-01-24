@@ -1,9 +1,11 @@
 import 'package:ecommerce_app/core/common/app_colors.dart';
+import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
 import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/common/app_routes.dart';
@@ -34,50 +36,80 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductsCubit, ProductsState>(
-      builder: (context, state) {
-        if (state.status == ProductsStatus.loaded &&
-            state.productsDetails.isNotEmpty) {
-          final product =
-              state.productsDetails.firstWhere((element) => element.id == id);
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(product.name),
-              actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.share),
-                ),
-              ],
-            ),
-            body: Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(product != null ? product!.name : cartProduct!.name),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.share),
+          ),
+        ],
+      ),
+      body: BlocBuilder<ProductsCubit, ProductsState>(
+        builder: (context, state) {
+          if (state.status == ProductsStatus.productLoading) {
+            return const LoadingWidget();
+          } else if (state.status == ProductsStatus.error) {
+            return const ErrorMessageWiget();
+          } else {
+            final product =
+                state.productsDetails.firstWhere((element) => element.id == id);
+            return Column(
               children: [
                 Expanded(
                   child: ListView(
                     key: PageStorageKey('ProductDetails:$product.id'),
                     children: [
-                      ImagesSliderWidget(
-                        images: product.images,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 15.w, vertical: 14.h),
+                      AnimationLimiter(
                         child: Column(
-                          children: [
-                            ColorAndSizeSection(
-                                attributes: product.attributes, id: product.id),
-                            SizedBox(height: 20.h),
-                            NameAndPriceSection(product: product),
-                            SizedBox(height: 20.h),
-                            Html(
-                              data: product.shortDescription,
-                              style: {'*': Style(fontSize: FontSize.large)},
-                            ),
-                            SizedBox(height: 20.h),
-                            RelatedProductsSection(product: product),
-                            SizedBox(height: 50.h),
-                          ],
-                        ),
+                            children: AnimationConfiguration.toStaggeredList(
+                                childAnimationBuilder: (child) =>
+                                    SlideAnimation(
+                                      verticalOffset: 50.0,
+                                      duration:
+                                          const Duration(milliseconds: 400),
+                                      child: FadeInAnimation(
+                                        child: child,
+                                      ),
+                                    ),
+                                children: [
+                              ImagesSliderWidget(
+                                images: product.images,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 15.w, vertical: 14.h),
+                                child: ColorAndSizeSection(
+                                    attributes: product.attributes,
+                                    id: product.id),
+                              ),
+                              SizedBox(height: 20.h),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 15.w,
+                                ),
+                                child: NameAndPriceSection(product: product),
+                              ),
+                              SizedBox(height: 20.h),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 15.w,
+                                ),
+                                child: Html(
+                                  data: product.shortDescription,
+                                  style: {'*': Style(fontSize: FontSize.large)},
+                                ),
+                              ),
+                              SizedBox(height: 20.h),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 15.w,
+                                ),
+                                child: RelatedProductsSection(product: product),
+                              ),
+                              SizedBox(height: 50.h),
+                            ])),
                       ),
                     ],
                   ),
@@ -128,15 +160,10 @@ class ProductDetailsScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
-          );
-        } else {
-          return Scaffold(
-            appBar: AppBar(),
-            body: const LoadingWidget(),
-          );
-        }
-      },
+            );
+          }
+        },
+      ),
     );
   }
 }

@@ -72,45 +72,32 @@ class AppRouter {
           curve: Curves.ease,
           child: CategoryProductsScreen(category: args),
         );
+
       case AppRoutes.checkOut:
         return PageTransition(
           type: PageTransitionType.rightToLeft,
           curve: Curves.ease,
           child: const CheckOutScreen(),
         );
+
       case AppRoutes.shippingAddresses:
         return PageTransition(
-          type: PageTransitionType.rightToLeft,
+          type: PageTransitionType.rightToLeftWithFade,
+          duration: const Duration(milliseconds: 400),
           curve: Curves.ease,
           child: const ShippingAddressScreen(),
         );
+
       case AppRoutes.addShippingAddress:
         final address = settings.arguments as Map<String, dynamic>?;
         return PageTransition(
-          type: PageTransitionType.rightToLeft,
+          type: PageTransitionType.rightToLeftWithFade,
+          duration: const Duration(milliseconds: 400),
           curve: Curves.ease,
           child: AddShippingAddressScreen(address: address),
         );
       default:
         return null;
     }
-  }
-}
-
-class MyCustomRoute<T> extends MaterialPageRoute<T> {
-  MyCustomRoute(
-      {required WidgetBuilder builder, required RouteSettings settings})
-      : super(builder: builder, settings: settings);
-
-  @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
-    const begin = Offset(0.0, 1.0);
-    const end = Offset.zero;
-    const curve = Curves.ease;
-
-    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-    return SlideTransition(position: animation.drive(tween), child: child);
   }
 }

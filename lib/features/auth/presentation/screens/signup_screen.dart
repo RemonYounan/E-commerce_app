@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import '../../../../core/constants/app_strings.dart';
 import '../widgets/signup_screen/sign_with_widget.dart';
@@ -16,27 +17,40 @@ class SignUpScreen extends StatelessWidget {
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
           child: Form(
-            child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 16.h),
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    AppStrings.signUp,
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
+            child: SingleChildScrollView(
+              child: AnimationLimiter(
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 14.w, vertical: 16.h),
+                  child: Column(
+                      children: AnimationConfiguration.toStaggeredList(
+                          childAnimationBuilder: (child) => ScaleAnimation(
+                                duration: const Duration(milliseconds: 500),
+                                child: FadeInAnimation(
+                                  child: child,
+                                ),
+                              ),
+                          children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            AppStrings.signUp,
+                            style: Theme.of(context).textTheme.headlineLarge,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 50.h,
+                        ),
+                        const SignupForm(),
+                        SizedBox(
+                          height: 90.h,
+                        ),
+                        SignWithWidget(
+                          title: AppStrings.orSignUpWith,
+                        ),
+                      ])),
                 ),
-                SizedBox(
-                  height: 50.h,
-                ),
-                const SignupForm(),
-                SizedBox(
-                  height: 90.h,
-                ),
-                SignWithWidget(
-                  title: AppStrings.orSignUpWith,
-                ),
-              ],
+              ),
             ),
           ),
         ),

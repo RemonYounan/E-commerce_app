@@ -1,3 +1,6 @@
+import 'package:animations/animations.dart';
+import 'package:ecommerce_app/features/auth/presentation/screens/login_screen.dart';
+
 import '../../../../../core/common/app_colors.dart';
 import '../../../../../core/common/app_routes.dart';
 import '../../../../../core/constants/app_strings.dart';
@@ -108,16 +111,23 @@ class _SignupFormState extends State<SignupForm> {
           SizedBox(
             height: 15.h,
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.titleSmall,
+          OpenContainer(
+            closedColor: Colors.transparent,
+            openColor: Colors.transparent,
+            middleColor: Colors.transparent,
+            openElevation: 0,
+            closedElevation: 0,
+            
+            openBuilder: (context, action) => const LoginScreen(),
+            closedBuilder: (context, action) => Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: action,
+                style: TextButton.styleFrom(
+                  textStyle: Theme.of(context).textTheme.titleSmall,
+                ),
+                child: Text(AppStrings.alreadyHaveAccount),
               ),
-              child: Text(AppStrings.alreadyHaveAccount),
-              onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.login);
-              },
             ),
           ),
           SizedBox(

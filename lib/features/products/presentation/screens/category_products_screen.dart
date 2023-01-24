@@ -1,3 +1,6 @@
+import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
+import 'package:ecommerce_app/core/utils/loading_widget.dart';
+
 import '../../../../core/providers/global_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,14 +33,16 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
   final PagingController<int, Product> pagingController =
       PagingController(firstPageKey: 0);
 
-  final _pageSize = 5;
+  late ScrollController _scrollController;
 
+  final _pageSize = 5;
   @override
   void initState() {
     super.initState();
     pagingController.addPageRequestListener((pageKey) {
       _fetch(pageKey);
     });
+    _scrollController = ScrollController();
   }
 
   Future<void> _fetch(int pageKey) async {
@@ -59,8 +64,8 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
 
   @override
   void dispose() {
-    super.dispose();
     pagingController.dispose();
+    super.dispose();
   }
 
   @override
@@ -80,13 +85,30 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: FilterSection(
-                category: widget.category, pagingController: pagingController),
+              category: widget.category,
+              pagingController: pagingController,
+              scrollController: _scrollController,
+            ),
           ),
           Expanded(
-            child:
-                Provider.of<GlobalProvider>(context).listStyle == ListStyle.grid
-                    ? ProductsGridView(pagingController: pagingController)
-                    : ProductsListView(pagingController: pagingController),
+            child: BlocBuilder<ProductsCubit, ProductsState>(
+              builder: (context, state) {
+                if (state.status == ProductsStatus.loading) {
+                  return const LoadingWidget();
+                } else if (state.status == ProductsStatus.error) {
+                  return const ErrorMessageWiget();
+                } else {
+                  return Provider.of<GlobalProvider>(context).listStyle ==
+                          ListStyle.list
+                      ? ProductsListView(
+                          scrollController: _scrollController,
+                          pagingController: pagingController)
+                      : ProductsGridView(
+                          scrollController: _scrollController,
+                          pagingController: pagingController);
+                }
+              },
+            ),
           ),
         ],
       ),

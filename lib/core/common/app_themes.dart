@@ -11,6 +11,11 @@ class AppThemes {
   static ThemeData getLightAppTheme() => ThemeData(
         scaffoldBackgroundColor: AppColors.backgroundColor,
         textTheme: getTextTheme(isDark: false),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: AppColors.lightBlack,
+          elevation: 0,
+          splashColor: Colors.transparent,
+        ),
         progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: AppColors.primaryColor,
         ),
@@ -84,6 +89,9 @@ class AppThemes {
         scaffoldBackgroundColor: AppColors.backgroundColorDark,
         textTheme: getTextTheme(isDark: true),
         indicatorColor: AppColors.white,
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: AppColors.whiteDark,
+        ),
         progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: AppColors.primaryColorDark,
         ),
@@ -108,7 +116,6 @@ class AppThemes {
         ),
         cardTheme: CardTheme(color: AppColors.dark),
         buttonTheme: ButtonThemeData(
-          
           buttonColor: AppColors.primaryColorDark,
         ),
         radioTheme: RadioThemeData(

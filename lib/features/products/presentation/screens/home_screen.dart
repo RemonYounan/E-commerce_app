@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import '../../../../core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
@@ -27,27 +28,39 @@ class HomeScreen extends StatelessWidget {
             } else if (state.status == ProductsStatus.error) {
               return const ErrorMessageWiget();
             } else {
-              return ListView(
-                key: const PageStorageKey('HomeScreenController'),
-                children: [
-                  const BannerWidget(),
-                  SizedBox(height: 32.h),
-                  ProductsSection(
-                    title: AppStrings.featuresProducts,
-                    child: const FeaturesProductsList(),
+              return SingleChildScrollView(
+                child: AnimationLimiter(
+                  child: Column(
+                    key: const PageStorageKey('HomeScreenController'),
+                    children: AnimationConfiguration.toStaggeredList(
+                      duration: const Duration(milliseconds: 400),
+                      childAnimationBuilder: (child) => SlideAnimation(
+                          verticalOffset: 50.0,
+                          child: FadeInAnimation(
+                            child: child,
+                          )),
+                      children: [
+                        const BannerWidget(),
+                        SizedBox(height: 32.h),
+                        ProductsSection(
+                          title: AppStrings.featuresProducts,
+                          child: const FeaturesProductsList(),
+                        ),
+                        SizedBox(height: 32.h),
+                        ProductsSection(
+                          title: AppStrings.popularProducts,
+                          child: const PopularProductsList(),
+                        ),
+                        SizedBox(height: 32.h),
+                        ProductsSection(
+                          title: AppStrings.newestProducts,
+                          child: const NewestProductsList(),
+                        ),
+                        SizedBox(height: 80.h),
+                      ],
+                    ),
                   ),
-                  SizedBox(height: 32.h),
-                  ProductsSection(
-                    title: AppStrings.popularProducts,
-                    child: const PopularProductsList(),
-                  ),
-                  SizedBox(height: 32.h),
-                  ProductsSection(
-                    title: AppStrings.newestProducts,
-                    child: const NewestProductsList(),
-                  ),
-                  SizedBox(height: 80.h),
-                ],
+                ),
               );
             }
           },

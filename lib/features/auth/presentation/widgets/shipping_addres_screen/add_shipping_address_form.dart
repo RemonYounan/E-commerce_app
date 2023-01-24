@@ -11,6 +11,7 @@ import 'package:ecommerce_app/core/utils/custom_text_field_widget.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
 import 'package:ecommerce_app/core/utils/loading_widget.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class AddShippingAddressForm extends StatefulWidget {
   const AddShippingAddressForm({
@@ -122,30 +123,40 @@ class _AddShippingAddressFormState extends State<AddShippingAddressForm> {
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-          child: Column(
-            children: [
-              SizedBox(height: 10.h),
-              ...textFiledsWidgets,
-              SizedBox(height: 10.h),
-              CustomButton(
-                onPressed: sumbit,
-                child: BlocBuilder<AuthCubit, AuthState>(
-                  builder: (context, state) {
-                    if (state is AuthLoadingState) {
-                      return const LoadingWidget(
-                        color: AppColors.white,
-                      );
-                    } else {
-                      return Text(
-                        widget.address == null
-                            ? AppStrings.saveAddress
-                            : AppStrings.editAddress,
-                      );
-                    }
-                  },
-                ),
-              ),
-            ],
+          child: AnimationLimiter(
+            child: Column(
+              children: AnimationConfiguration.toStaggeredList(
+                  duration: const Duration(milliseconds: 375),
+                  childAnimationBuilder: (widget) => SlideAnimation(
+                        horizontalOffset: 50.0,
+                        child: FadeInAnimation(
+                          child: widget,
+                        ),
+                      ),
+                  children: [
+                    SizedBox(height: 10.h),
+                    ...textFiledsWidgets,
+                    SizedBox(height: 10.h),
+                    CustomButton(
+                      onPressed: sumbit,
+                      child: BlocBuilder<AuthCubit, AuthState>(
+                        builder: (context, state) {
+                          if (state is AuthLoadingState) {
+                            return const LoadingWidget(
+                              color: AppColors.white,
+                            );
+                          } else {
+                            return Text(
+                              widget.address == null
+                                  ? AppStrings.saveAddress
+                                  : AppStrings.editAddress,
+                            );
+                          }
+                        },
+                      ),
+                    ),
+                  ]),
+            ),
           ),
         ),
       ),

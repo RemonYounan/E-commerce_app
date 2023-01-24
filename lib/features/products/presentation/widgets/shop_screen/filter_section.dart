@@ -14,10 +14,12 @@ class FilterSection extends StatelessWidget {
     Key? key,
     required this.category,
     required this.pagingController,
+    required this.scrollController,
   }) : super(key: key);
 
   final Category category;
   final PagingController<int, Product> pagingController;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,7 @@ class FilterSection extends StatelessWidget {
           onPressed: () {
             Provider.of<GlobalProvider>(context, listen: false)
                 .changeListStyle();
+            scrollController.jumpTo(0);
           },
           icon: Provider.of<GlobalProvider>(context).listStyle == ListStyle.grid
               ? const Icon(Icons.list_rounded)

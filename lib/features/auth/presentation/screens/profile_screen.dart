@@ -1,3 +1,6 @@
+import 'package:ecommerce_app/features/auth/presentation/screens/shipping_address_screen.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+
 import '../../../../core/common/app_routes.dart';
 import '../../../../core/constants/app_strings.dart';
 
@@ -16,36 +19,18 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> items = [
-      {
-        'title': AppStrings.myOrders,
-        'onTap': () =>
-            Navigator.pushNamed(context, AppRoutes.shippingAddresses),
-      },
+      {'title': AppStrings.myOrders, 'onTap': const ShippingAddressScreen()},
       {
         'title': AppStrings.shippingAddresses,
-        'onTap': () =>
-            Navigator.pushNamed(context, AppRoutes.shippingAddresses),
+        'onTap': const ShippingAddressScreen()
       },
       {
         'title': AppStrings.paymentMethods,
-        'onTap': () =>
-            Navigator.pushNamed(context, AppRoutes.shippingAddresses),
+        'onTap': const ShippingAddressScreen()
       },
-      {
-        'title': AppStrings.promocodes,
-        'onTap': () =>
-            Navigator.pushNamed(context, AppRoutes.shippingAddresses),
-      },
-      {
-        'title': AppStrings.myReviews,
-        'onTap': () =>
-            Navigator.pushNamed(context, AppRoutes.shippingAddresses),
-      },
-      {
-        'title': AppStrings.settings,
-        'onTap': () =>
-            Navigator.pushNamed(context, AppRoutes.shippingAddresses),
-      },
+      {'title': AppStrings.promocodes, 'onTap': const ShippingAddressScreen()},
+      {'title': AppStrings.myReviews, 'onTap': const ShippingAddressScreen()},
+      {'title': AppStrings.settings, 'onTap': const ShippingAddressScreen()},
     ];
     return Scaffold(
       body: SafeArea(
@@ -71,46 +56,54 @@ class ProfileScreen extends StatelessWidget {
             ),
             SliverList(
               delegate: SliverChildListDelegate.fixed(
-                [
-                  SizedBox(height: 20.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: const ImageAndNameSection(),
-                  ),
-                  SizedBox(height: 20.h),
-                  ...List.generate(
-                    items.length,
-                    (index) => ProfileItemWidget(
-                      title: items[index]['title'],
-                      subTitle: '',
-                      onTap: items[index]['onTap'],
+                AnimationConfiguration.toStaggeredList(
+                  childAnimationBuilder: (child) => SlideAnimation(
+                    horizontalOffset: 50.0,
+                    child: FadeInAnimation(
+                      child: child,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: Row(
-                      children: [
-                        Text(AppStrings.darkMode),
-                        Switch(
-                          value: Provider.of<GlobalProvider>(context).isDark,
-                          onChanged: (value) => Provider.of<GlobalProvider>(
-                                  context,
-                                  listen: false)
-                              .changeThemeMode(value),
-                        ),
-                        const Spacer(),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, AppRoutes.signUp, (route) => false);
-                            BlocProvider.of<AuthCubit>(context).logout();
-                          },
-                          child: Text(AppStrings.logout),
-                        ),
-                      ],
+                  children: [
+                    SizedBox(height: 20.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: const ImageAndNameSection(),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 20.h),
+                    ...List.generate(
+                      items.length,
+                      (index) => ProfileItemWidget(
+                        title: items[index]['title'],
+                        subTitle: '',
+                        onTap: items[index]['onTap'],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: Row(
+                        children: [
+                          Text(AppStrings.darkMode),
+                          Switch(
+                            value: Provider.of<GlobalProvider>(context).isDark,
+                            onChanged: (value) => Provider.of<GlobalProvider>(
+                                    context,
+                                    listen: false)
+                                .changeThemeMode(value),
+                          ),
+                          const Spacer(),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, AppRoutes.signUp, (route) => false);
+                              BlocProvider.of<AuthCubit>(context).logout();
+                            },
+                            child: Text(AppStrings.logout),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
