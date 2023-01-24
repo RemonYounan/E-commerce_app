@@ -98,8 +98,11 @@ class CartCubit extends Cubit<CartState> {
 
   void getCartFromSharedPreference() {
     emit(CartLoading(cart: _cart));
-    final cartJsonString = CacheHelper.getDataFromSharedPreference(key: 'CART');
-    _cart = Cart.fromJson(json.decode(cartJsonString));
+    final String? cartJsonString =
+        CacheHelper.getDataFromSharedPreference(key: 'CART');
+    if (cartJsonString != null) {
+      _cart = Cart.fromJson(json.decode(cartJsonString));
+    }
     emit(ProductAddedState(cart: _cart));
   }
 }
