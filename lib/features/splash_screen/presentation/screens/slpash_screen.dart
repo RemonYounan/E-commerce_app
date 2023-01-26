@@ -21,7 +21,6 @@ class SlpashScreen extends StatefulWidget {
 }
 
 class _SlpashScreenState extends State<SlpashScreen> {
-  ConnectivityResult? _connectivityResult;
   late StreamSubscription _connectivitySubscription;
 
   @override
@@ -31,58 +30,57 @@ class _SlpashScreenState extends State<SlpashScreen> {
     _connectivitySubscription = Connectivity()
         .onConnectivityChanged
         .listen((ConnectivityResult result) {
-      setState(() {
+      if (result == ConnectivityResult.none) {
+        showErrorToast();
+      } else if (result == ConnectivityResult.wifi ||
+          result == ConnectivityResult.mobile) {
         BlocProvider.of<AuthCubit>(context).checkAuthToken();
-        _connectivityResult = result;
-      });
+      }
     });
   }
 
   @override
   dispose() {
     super.dispose();
+    _connectivitySubscription.pause();
     _connectivitySubscription.cancel();
   }
 
   Future<void> _checkConnectivityState() async {
     final ConnectivityResult result = await Connectivity().checkConnectivity();
-    if (result == ConnectivityResult.none) {
-      fToast.init(context);
-      showToast(
-        context: context,
-        color: AppColors.errorColor,
-        title: AppStrings.noInternet,
-        duration: const Duration(seconds: 3),
-      );
-    }
-    setState(() {
-      _connectivityResult = result;
-    });
+    if (result == ConnectivityResult.none) showErrorToast();
+  }
+
+  void showErrorToast() {
+    fToast.init(context);
+    showToast(
+      context: context,
+      color: AppColors.errorColor,
+      title: AppStrings.noInternet,
+      duration: const Duration(seconds: 3),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<AuthCubit, AuthState>(
+      body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (_connectivityResult == ConnectivityResult.wifi ||
-              _connectivityResult == ConnectivityResult.mobile) {
-            if (state is AuthSuccessState) {
-              Navigator.pushReplacementNamed(context, AppRoutes.main);
-            } else if (state is NoTokenState) {
-              Navigator.pushReplacementNamed(context, AppRoutes.signUp);
-            } else if (state is AuthErrorState) {
-              fToast.init(context);
-              showToast(
-                  context: context,
-                  color: AppColors.errorColor,
-                  title: state.message);
-            }
+          if (state is AuthSuccessState) {
+            Navigator.pushReplacementNamed(context, AppRoutes.main);
+          } else if (state is NoTokenState) {
+            Future.delayed(const Duration(seconds: 2)).then(
+              (_) => Navigator.pushReplacementNamed(context, AppRoutes.signUp),
+            );
+          } else if (state is AuthErrorState) {
+            fToast.init(context);
+            showToast(
+                context: context,
+                color: AppColors.errorColor,
+                title: state.message);
           }
         },
-        builder: (context, state) {
-          return const LoadingWidget();
-        },
+        child: const LoadingWidget(),
       ),
     );
   }

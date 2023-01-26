@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => MultiBlocProvider(
         providers: [
           BlocProvider<AuthCubit>(
-            create: (context) => di.sl<AuthCubit>()..checkAuthToken(),
+            create: (context) => di.sl<AuthCubit>(),
           ),
           BlocProvider<ProductsCubit>(
             create: (context) => di.sl<ProductsCubit>()..initData(),
