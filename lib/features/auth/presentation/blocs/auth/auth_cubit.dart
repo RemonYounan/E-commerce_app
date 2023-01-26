@@ -165,4 +165,10 @@ class AuthCubit extends Cubit<AuthState> {
       (_) => emit(AuthSuccessState(user: _user)),
     );
   }
+
+  void changeDefaultAddress(String key) {
+    emit(AuthLoadingState());
+    _user.defaultAddresse = key;
+    emit(AuthSuccessState(user: _user));
+  }
 }

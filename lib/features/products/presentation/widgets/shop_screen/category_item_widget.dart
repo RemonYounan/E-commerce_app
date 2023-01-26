@@ -66,6 +66,7 @@ class CategoryItemWidget extends StatelessWidget {
                     placeholder: cupertinoActivityIndicatorSmall,
                     image: category.img,
                     fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
                   ),
                 ))
               ],

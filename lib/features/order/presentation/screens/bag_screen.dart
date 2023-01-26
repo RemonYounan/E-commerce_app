@@ -1,4 +1,6 @@
+import 'package:ecommerce_app/features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_strings.dart';
@@ -46,7 +48,15 @@ class BagScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomSheet: const CheckOutWidget(),
+        bottomSheet: BlocBuilder<CartCubit, CartState>(
+          builder: (context, state) {
+            if (state.cart.products!.isNotEmpty) {
+              return const CheckOutWidget();
+            } else {
+              return const SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }

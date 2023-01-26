@@ -34,7 +34,7 @@ class RelatedProductsSection extends StatelessWidget {
           height: 20.h,
         ),
         SizedBox(
-          height: 280.h,
+          height: 290.h,
           child: ListView.builder(
             key: PageStorageKey('ProductDetailsRelated:$product.id'),
             scrollDirection: Axis.horizontal,

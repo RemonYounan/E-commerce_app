@@ -25,7 +25,7 @@ class FeaturesProductsList extends StatelessWidget {
         } else {
           final List<Product> featuresProducts = state.featuresProducts;
           return SizedBox(
-            height: 280.h,
+            height: 290.h,
             child: ListView.builder(
               key: const PageStorageKey('FeaturesProductsList'),
               scrollDirection: Axis.horizontal,

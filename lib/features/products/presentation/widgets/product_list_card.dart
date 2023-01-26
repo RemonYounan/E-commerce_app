@@ -48,6 +48,7 @@ class ProductListCard extends StatelessWidget {
       openElevation: 0,
       closedElevation: 0,
       closedColor: Colors.transparent,
+      openColor: Colors.transparent,
       openBuilder: (context, action) {
         BlocProvider.of<ProductsCubit>(context).getProduct(product.id);
         return ProductDetailsScreen(

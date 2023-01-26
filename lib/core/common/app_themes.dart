@@ -9,20 +9,16 @@ class AppThemes {
   static const systemTheme = ThemeMode.system;
 
   static ThemeData getLightAppTheme() => ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.light,
+        primaryColor: AppColors.primaryColor,
+        indicatorColor: AppColors.primaryColor,
         scaffoldBackgroundColor: AppColors.backgroundColor,
         textTheme: getTextTheme(isDark: false),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: AppColors.lightBlack,
-          elevation: 0,
-          splashColor: Colors.transparent,
-        ),
-        progressIndicatorTheme: const ProgressIndicatorThemeData(
-          color: AppColors.primaryColor,
-        ),
         appBarTheme: AppBarTheme(
           backgroundColor: AppColors.backgroundColor,
-          elevation: 0,
           centerTitle: true,
+          scrolledUnderElevation: 0,
           titleTextStyle: AppTextStyle.getAppTextStyle(
             weight: FontWeight.bold,
             size: 20.sp, // equal to 18px
@@ -31,6 +27,34 @@ class AppThemes {
           iconTheme: const IconThemeData(
             color: AppColors.lightBlack,
           ),
+        ),
+        cardTheme: CardTheme(
+          color: AppColors.white,
+          surfaceTintColor: Colors.transparent,
+          elevation: 2,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: AppColors.lightBlack,
+          elevation: 0,
+          splashColor: Colors.transparent,
+          foregroundColor: AppColors.white,
+          iconSize: 30,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50),
+          ),
+        ),
+        popupMenuTheme: PopupMenuThemeData(
+          color: AppColors.white,
+          elevation: 10,
+          surfaceTintColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: AppColors.primaryColor,
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: AppColors.backgroundColor,
@@ -47,6 +71,11 @@ class AppThemes {
             ),
           ),
         ),
+        checkboxTheme: CheckboxThemeData(
+          checkColor: const MaterialStatePropertyAll(AppColors.white),
+          fillColor: const MaterialStatePropertyAll(AppColors.lightBlack),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        ),
         radioTheme: RadioThemeData(
           fillColor: MaterialStateProperty.all(AppColors.primaryColor),
         ),
@@ -57,6 +86,7 @@ class AppThemes {
         )),
         bottomSheetTheme: const BottomSheetThemeData(
           backgroundColor: AppColors.backgroundColor,
+          surfaceTintColor: Colors.transparent,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
             topLeft: Radius.circular(35),
@@ -86,18 +116,26 @@ class AppThemes {
       );
 
   static ThemeData getDarkAppTheme() => ThemeData.dark().copyWith(
+        useMaterial3: true,
         scaffoldBackgroundColor: AppColors.backgroundColorDark,
         textTheme: getTextTheme(isDark: true),
         indicatorColor: AppColors.white,
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: AppColors.whiteDark,
+          elevation: 0,
+          splashColor: Colors.transparent,
+          foregroundColor: AppColors.backgroundColorDark,
+          iconSize: 30,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50),
+          ),
         ),
         progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: AppColors.primaryColorDark,
         ),
         appBarTheme: AppBarTheme(
           backgroundColor: AppColors.backgroundColorDark,
-          elevation: 0,
+          scrolledUnderElevation: 0,
           centerTitle: true,
           titleTextStyle: AppTextStyle.getAppTextStyle(
             weight: FontWeight.bold,
@@ -114,8 +152,22 @@ class AppThemes {
           selectedItemColor: AppColors.primaryColorDark,
           unselectedItemColor: AppColors.greyDark,
         ),
-        cardTheme: CardTheme(color: AppColors.dark),
-        buttonTheme: ButtonThemeData(
+        popupMenuTheme: PopupMenuThemeData(
+          color: AppColors.dark,
+          elevation: 10,
+          surfaceTintColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        cardTheme: CardTheme(
+          color: AppColors.dark,
+          surfaceTintColor: Colors.transparent,
+          elevation: 2,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+        buttonTheme: const ButtonThemeData(
           buttonColor: AppColors.primaryColorDark,
         ),
         radioTheme: RadioThemeData(
@@ -132,6 +184,7 @@ class AppThemes {
         ),
         bottomSheetTheme: const BottomSheetThemeData(
           backgroundColor: AppColors.backgroundColorDark,
+          surfaceTintColor: Colors.transparent,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
             topLeft: Radius.circular(35),

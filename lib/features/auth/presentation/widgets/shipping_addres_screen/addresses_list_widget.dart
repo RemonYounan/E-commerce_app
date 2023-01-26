@@ -1,8 +1,10 @@
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:ecommerce_app/features/auth/presentation/widgets/shipping_addres_screen/address_card_widget.dart';
+import 'package:ecommerce_app/features/auth/presentation/widgets/shipping_addres_screen/no_addresses_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class AddressesListWidget extends StatelessWidget {
   AddressesListWidget({Key? key}) : super(key: key);
@@ -12,18 +14,31 @@ class AddressesListWidget extends StatelessWidget {
     final addresses = BlocProvider.of<AuthCubit>(context).user.addresses;
     addresses.forEach(
       (key, value) {
-        print(value);
         addressesWidgets.add(
           AddressCardWidget(
             addressKey: key,
-            addressData: value,
+            addressData: value as Map<String, dynamic>,
+            chooseDefault: true,
           ),
         );
       },
     );
-    return ListView(
-      padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-      children: addressesWidgets,
+    return AnimationLimiter(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+        child: Column(
+          children: AnimationConfiguration.toStaggeredList(
+            childAnimationBuilder: (child) => ScaleAnimation(
+              child: FadeInAnimation(
+                child: child,
+              ),
+            ),
+            children: addressesWidgets.isNotEmpty
+                ? addressesWidgets
+                : [const NoAddressesWidget()],
+          ),
+        ),
+      ),
     );
   }
 }

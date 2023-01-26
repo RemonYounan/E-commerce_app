@@ -43,7 +43,7 @@ class CustomTextFieldWidget extends StatelessWidget {
           label: Text(label),
           hintText: hintText,
         ),
-        style: Theme.of(context).textTheme.titleSmall,
+        style: Theme.of(context).textTheme.labelLarge,
         controller: controller,
         textInputAction: textInputAction,
         keyboardType: textInputType,

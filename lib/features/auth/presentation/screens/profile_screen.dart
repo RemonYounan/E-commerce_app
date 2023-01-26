@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/features/auth/presentation/screens/shipping_address_screen.dart';
+import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import '../../../../core/common/app_routes.dart';
@@ -93,9 +94,10 @@ class ProfileScreen extends StatelessWidget {
                           const Spacer(),
                           TextButton(
                             onPressed: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, AppRoutes.signUp, (route) => false);
+                              Navigator.pushReplacementNamed(
+                                  context, AppRoutes.signUp);
                               BlocProvider.of<AuthCubit>(context).logout();
+                              BlocProvider.of<ProductsCubit>(context).clear();
                             },
                             child: Text(AppStrings.logout),
                           ),

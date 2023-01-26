@@ -44,6 +44,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         return Left(ServerFailure(message: response.data['error']));
       }
     } catch (e) {
+      print(e);
       return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }

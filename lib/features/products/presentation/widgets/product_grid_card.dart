@@ -61,7 +61,7 @@ class ProductGridCard extends StatelessWidget {
         return InkWell(
           onTap: openContainer,
           child: SizedBox(
-            height: 270.h,
+            height: 280.h,
             width: 160.w,
             child: Stack(
               children: [
@@ -79,12 +79,8 @@ class ProductGridCard extends StatelessWidget {
                         placeholderFit: BoxFit.scaleDown,
                       ),
                     ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    RateWidget(
-                      rate: product.rate.toInt(),
-                    ),
+                    SizedBox(height: 2.h),
+                    RateWidget(rate: product.rate.toInt()),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 1.w),
                       child: Text(
@@ -92,16 +88,11 @@ class ProductGridCard extends StatelessWidget {
                         style: Theme.of(context).textTheme.labelSmall,
                       ),
                     ),
-                    SizedBox(height: 2.h),
-                    Padding(
-                      padding: EdgeInsets.all(1.w),
-                      child: Text(
-                        product.name,
-                        style: Theme.of(context).textTheme.titleLarge,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                    Text(
+                      product.name,
+                      style: Theme.of(context).textTheme.titleLarge,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(height: 2.h),
                     priceText
                   ],
                 ),

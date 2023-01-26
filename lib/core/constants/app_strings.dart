@@ -68,7 +68,11 @@ class AppStrings {
   static final state = 'state'.tr();
   static final saveAddress = 'save_address'.tr();
   static final editAddress = 'edit_address'.tr();
+  static final edit = 'edit'.tr();
   static final zipCode = 'zip_code'.tr();
   static final address = 'address'.tr();
+  static final change = 'change'.tr();
   static final addShippingAddress = 'add_shipping_address'.tr();
+  static final noAddresses = 'no_addresses'.tr();
+  static final useAsShippingAddress = 'use_as_shipping_address'.tr();
 }

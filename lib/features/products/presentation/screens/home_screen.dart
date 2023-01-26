@@ -41,17 +41,17 @@ class HomeScreen extends StatelessWidget {
                           )),
                       children: [
                         const BannerWidget(),
-                        SizedBox(height: 32.h),
+                        SizedBox(height: 30.h),
                         ProductsSection(
                           title: AppStrings.featuresProducts,
                           child: const FeaturesProductsList(),
                         ),
-                        SizedBox(height: 32.h),
+                        SizedBox(height: 30.h),
                         ProductsSection(
                           title: AppStrings.popularProducts,
                           child: const PopularProductsList(),
                         ),
-                        SizedBox(height: 32.h),
+                        SizedBox(height: 30.h),
                         ProductsSection(
                           title: AppStrings.newestProducts,
                           child: const NewestProductsList(),

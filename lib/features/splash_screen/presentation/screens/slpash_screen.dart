@@ -21,29 +21,30 @@ class SlpashScreen extends StatefulWidget {
 }
 
 class _SlpashScreenState extends State<SlpashScreen> {
-  late StreamSubscription _connectivitySubscription;
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
 
   @override
   void initState() {
     super.initState();
     _checkConnectivityState();
-    _connectivitySubscription = Connectivity()
-        .onConnectivityChanged
-        .listen((ConnectivityResult result) {
-      if (result == ConnectivityResult.none) {
-        showErrorToast();
-      } else if (result == ConnectivityResult.wifi ||
-          result == ConnectivityResult.mobile) {
-        BlocProvider.of<AuthCubit>(context).checkAuthToken();
-      }
-    });
+    if (mounted) {
+      _connectivitySubscription = Connectivity()
+          .onConnectivityChanged
+          .listen((ConnectivityResult result) {
+        if (result == ConnectivityResult.none) {
+          showErrorToast();
+        } else if (result == ConnectivityResult.wifi ||
+            result == ConnectivityResult.mobile) {
+          BlocProvider.of<AuthCubit>(context).checkAuthToken();
+        }
+      });
+    }
   }
 
   @override
   dispose() {
-    super.dispose();
-    _connectivitySubscription.pause();
     _connectivitySubscription.cancel();
+    super.dispose();
   }
 
   Future<void> _checkConnectivityState() async {
@@ -66,18 +67,22 @@ class _SlpashScreenState extends State<SlpashScreen> {
     return Scaffold(
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state is AuthSuccessState) {
-            Navigator.pushReplacementNamed(context, AppRoutes.main);
-          } else if (state is NoTokenState) {
-            Future.delayed(const Duration(seconds: 2)).then(
-              (_) => Navigator.pushReplacementNamed(context, AppRoutes.signUp),
-            );
-          } else if (state is AuthErrorState) {
-            fToast.init(context);
-            showToast(
-                context: context,
-                color: AppColors.errorColor,
-                title: state.message);
+          if (mounted) {
+            if (state is AuthSuccessState) {
+              Navigator.pushReplacementNamed(context, AppRoutes.main);
+            } else if (state is NoTokenState) {
+              Future.delayed(const Duration(seconds: 2)).then(
+                (_) {
+                  Navigator.pushReplacementNamed(context, AppRoutes.signUp);
+                },
+              );
+            } else if (state is AuthErrorState) {
+              fToast.init(context);
+              showToast(
+                  context: context,
+                  color: AppColors.errorColor,
+                  title: state.message);
+            }
           }
         },
         child: const LoadingWidget(),

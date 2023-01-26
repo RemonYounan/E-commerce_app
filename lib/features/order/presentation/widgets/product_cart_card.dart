@@ -49,7 +49,7 @@ class ProductCartCard extends StatelessWidget {
             child: Stack(
               children: [
                 Container(
-                  height: 115.h,
+                  height: 120.h,
                   decoration: BoxDecoration(
                     color: Theme.of(context).brightness == Brightness.dark
                         ? AppColors.dark
@@ -76,7 +76,7 @@ class ProductCartCard extends StatelessWidget {
                             image: cartProduct.img,
                             fit: BoxFit.cover,
                             placeholderFit: BoxFit.scaleDown,
-                            height: 115.h,
+                            height: 120.h,
                           ),
                         ),
                       ),
@@ -145,16 +145,9 @@ class ProductCartCard extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   PopupMenuButton(
-                                    color: isDark
-                                        ? AppColors.dark
-                                        : AppColors.backgroundColor,
-                                    elevation: 10,
                                     padding: EdgeInsets.zero,
                                     splashRadius: 5,
                                     tooltip: AppStrings.more,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
                                     child: Icon(
                                       Icons.more_vert_rounded,
                                       color: isDark

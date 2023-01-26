@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -139,7 +140,15 @@ class _AddShippingAddressFormState extends State<AddShippingAddressForm> {
                     SizedBox(height: 10.h),
                     CustomButton(
                       onPressed: sumbit,
-                      child: BlocBuilder<AuthCubit, AuthState>(
+                      child: BlocConsumer<AuthCubit, AuthState>(
+                        listener: (context, state) {
+                          if (state is AuthErrorState) {
+                            fToast.init(context);
+                            showToast(context: context, title: state.message);
+                          } else if (state is AuthSuccessState) {
+                            Navigator.pop(context);
+                          }
+                        },
                         builder: (context, state) {
                           if (state is AuthLoadingState) {
                             return const LoadingWidget(

@@ -26,7 +26,7 @@ class GlobalProvider with ChangeNotifier {
     final bool? isDark =
         await CacheHelper.getDataFromSharedPreference(key: 'THEME_MODE');
     if (isDark != null) {
-      isDark ? _themeMode = AppThemes.darkTheme : AppThemes.lightTheme;
+      _themeMode = isDark ? AppThemes.darkTheme : AppThemes.lightTheme;
       _isDark = isDark;
     } else {
       _themeMode = AppThemes.systemTheme;

@@ -24,25 +24,19 @@ class AppRouter {
 
       case AppRoutes.signUp:
         return PageTransition(
-          type: PageTransitionType.rightToLeftJoined,
-          alignment: Alignment.centerRight,
-          childCurrent: const SlpashScreen(),
+          type: PageTransitionType.fade,
           child: const SignUpScreen(),
         );
 
       case AppRoutes.login:
         return PageTransition(
-          type: PageTransitionType.rightToLeftJoined,
-          alignment: Alignment.centerRight,
-          childCurrent: const SignUpScreen(),
+          type: PageTransitionType.fade,
           child: const LoginScreen(),
         );
 
       case AppRoutes.forgotPassword:
         return PageTransition(
-          type: PageTransitionType.rightToLeftJoined,
-          alignment: Alignment.centerRight,
-          childCurrent: const LoginScreen(),
+          type: PageTransitionType.fade,
           child: const ForgotPasswordScreen(),
         );
 
@@ -75,14 +69,16 @@ class AppRouter {
 
       case AppRoutes.checkOut:
         return PageTransition(
-          type: PageTransitionType.rightToLeft,
+          type: PageTransitionType.scale,
+          alignment: Alignment.center,
           curve: Curves.ease,
           child: const CheckOutScreen(),
         );
 
       case AppRoutes.shippingAddresses:
         return PageTransition(
-          type: PageTransitionType.rightToLeftWithFade,
+          type: PageTransitionType.scale,
+          alignment: Alignment.topRight,
           duration: const Duration(milliseconds: 400),
           curve: Curves.ease,
           child: const ShippingAddressScreen(),
@@ -91,7 +87,8 @@ class AppRouter {
       case AppRoutes.addShippingAddress:
         final address = settings.arguments as Map<String, dynamic>?;
         return PageTransition(
-          type: PageTransitionType.rightToLeftWithFade,
+          type: PageTransitionType.scale,
+          alignment: Alignment.topRight,
           duration: const Duration(milliseconds: 400),
           curve: Curves.ease,
           child: AddShippingAddressScreen(address: address),

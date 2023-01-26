@@ -117,7 +117,6 @@ class _SignupFormState extends State<SignupForm> {
             middleColor: Colors.transparent,
             openElevation: 0,
             closedElevation: 0,
-            
             openBuilder: (context, action) => const LoginScreen(),
             closedBuilder: (context, action) => Align(
               alignment: Alignment.centerRight,
@@ -146,8 +145,7 @@ class _SignupFormState extends State<SignupForm> {
                 } else if (state is AuthSuccessState) {
                   Provider.of<GlobalProvider>(context, listen: false)
                       .changeIndex(0);
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, AppRoutes.main, (route) => false);
+                  Navigator.pushReplacementNamed(context, AppRoutes.main);
                 }
               },
               builder: (context, state) {

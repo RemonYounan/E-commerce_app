@@ -31,7 +31,7 @@ class ProductsCubit extends Cubit<ProductsState> {
   final GetFavProductsUsecase _getFavProductsUsecase;
   ProductsState _state = ProductsState();
 
-  List<Product> _favProducts = [];
+  final List<Product> _favProducts = [];
   final List<ProductDetails> _productsDetails = [];
   Map<String, dynamic> _addressFields = {};
   Map<String, dynamic> _countries = {};
@@ -134,7 +134,7 @@ class ProductsCubit extends Cubit<ProductsState> {
           status: ProductsStatus.error,
         )),
         (products) {
-          _favProducts = products;
+          _favProducts.addAll(products);
           _state = _state.copyWith(
             favProducts: products,
           );
@@ -145,7 +145,12 @@ class ProductsCubit extends Cubit<ProductsState> {
   }
 
   Future<void> refreshFavProducts(int id) async {
-    _favProducts = [];
+    _favProducts.clear();
     getFavProducts(id);
+  }
+
+  void clear() {
+    _favProducts.clear();
+    _productsDetails.clear();
   }
 }

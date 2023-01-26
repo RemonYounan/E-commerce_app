@@ -17,18 +17,29 @@ class CustomDropDownButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.h),
-      child: DropdownButtonFormField(
-        style: Theme.of(context).textTheme.labelLarge,
-        dropdownColor: Theme.of(context).brightness == Brightness.dark
-            ? AppColors.dark
-            : AppColors.white,
-        borderRadius: BorderRadius.circular(6),
-        decoration: InputDecoration(
-            contentPadding:
-                EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h)),
-        value: currentValue,
-        items: items,
-        onChanged: onChanged,
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              offset: const Offset(0, 1),
+              blurRadius: 8,
+              color: AppColors.lightShadowColor,
+            ),
+          ],
+        ),
+        child: DropdownButtonFormField(
+          style: Theme.of(context).textTheme.labelLarge,
+          dropdownColor: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.dark
+              : AppColors.white,
+          borderRadius: BorderRadius.circular(6),
+          decoration: InputDecoration(
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 15.w, vertical: 20.h)),
+          value: currentValue,
+          items: items,
+          onChanged: onChanged,
+        ),
       ),
     );
   }

@@ -10,8 +10,9 @@ class User extends Equatable {
   final Map<String, dynamic> addresses;
   final int points;
   final Map<String, dynamic> favProducts;
+  String defaultAddresse;
 
-  const User({
+  User({
     required this.id,
     required this.name,
     required this.email,
@@ -20,9 +21,19 @@ class User extends Equatable {
     required this.addresses,
     required this.points,
     required this.favProducts,
+    this.defaultAddresse = '',
   });
 
   @override
-  List<Object> get props =>
-      [id, name, email, token, auth, addresses, points, favProducts];
+  List<Object> get props => [
+        id,
+        name,
+        email,
+        token,
+        auth,
+        addresses,
+        defaultAddresse,
+        points,
+        favProducts
+      ];
 }

@@ -73,11 +73,15 @@
     "country" : "Country",
     "save_address" : "SAVE ADDRESS",
     "edit_address" : "EDIT ADDRESS",
+    "edit" : "Edit",
+    "change" : "Change",
     "state" : "State/Province/Region",
     "zip_code" : "Zip Code (Postal Code)",
     "full_name" : "Full Name",
     "add_shipping_address" : "Add Shipping Address",
     "sumbmit_order" : "SUBMIT ORDER",
-    "bag_empty" : "Bag is empty, start adding products."
+    "bag_empty" : "Bag is empty, start adding products.",
+    "no_addresses" : "You have no saved addresses.",
+    "use_as_shipping_address" : "Use as the shipping address"
 
 }

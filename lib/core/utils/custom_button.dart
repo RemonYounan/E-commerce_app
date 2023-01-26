@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -14,8 +15,9 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         textStyle: Theme.of(context).textTheme.titleSmall,
+        foregroundColor: AppColors.white,
       ),
-      onPressed: ()=> onPressed(),
+      onPressed: () => onPressed(),
       child: child,
     );
   }
