@@ -60,7 +60,7 @@ class AuthCubit extends Cubit<AuthState> {
         globalProvider.setFavProducts(user.favProducts);
       });
     } else {
-      emit(const AuthErrorState('No Token'));
+      emit(NoTokenState());
     }
   }
 

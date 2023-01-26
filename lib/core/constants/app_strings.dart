@@ -22,6 +22,7 @@ class AppStrings {
   static final forgotYourPassword = 'forgot_your_password'.tr();
   static final emailSent = 'email_sent'.tr();
   static final errorOccured = 'error_occured'.tr();
+  static final noInternet = 'no_internet'.tr();
   static final home = 'home'.tr();
   static final shop = 'shop'.tr();
   static final bag = 'bag'.tr();

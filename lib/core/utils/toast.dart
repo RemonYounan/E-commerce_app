@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 final FToast fToast = FToast();
-showToast(
-    {required BuildContext context,
-    Widget? child,
-    Color? color,
-    String? title}) {
+showToast({
+  required BuildContext context,
+  Widget? child,
+  Color? color,
+  String? title,
+  Duration? duration,
+}) {
   Widget toast = Container(
     padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
     decoration: BoxDecoration(
@@ -21,12 +23,13 @@ showToast(
               .textTheme
               .titleSmall!
               .copyWith(color: AppColors.white),
+          textAlign: TextAlign.center,
         ),
   );
 
   fToast.showToast(
     child: toast,
     gravity: ToastGravity.BOTTOM,
-    toastDuration: const Duration(seconds: 2),
+    toastDuration: duration ?? const Duration(seconds: 2),
   );
 }

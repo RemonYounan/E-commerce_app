@@ -20,7 +20,8 @@
     "password_error1": "Password cannot be empty",
     "password_error2": "Password must be at least 6 characters length",
     "forgot_password_help": "Please, enter your email address. You will receive a link to create a new password via email.",
-    "error_occured": "An error occured",
+    "error_occured": "An error occured, please try again later.",
+    "no_internet": "No internet connection, please connect to the internet and try again.",
 
     "banner": "Street clothes",
     "sale": "Sale",
