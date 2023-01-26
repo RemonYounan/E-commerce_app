@@ -29,6 +29,7 @@ class FavoriteListView extends StatelessWidget {
             duration: const Duration(milliseconds: 375),
             child: SlideAnimation(
               horizontalOffset: 70.0,
+              delay: const Duration(milliseconds: 80),
               duration: const Duration(milliseconds: 400),
               child: FadeInAnimation(
                 child: ProductListCard(

@@ -1,14 +1,18 @@
-import 'package:ecommerce_app/core/constants/app_strings.dart';
-import 'package:ecommerce_app/core/constants/enums.dart';
-import 'package:ecommerce_app/core/providers/global_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import 'package:ecommerce_app/core/constants/app_strings.dart';
+import 'package:ecommerce_app/core/constants/enums.dart';
+import 'package:ecommerce_app/core/providers/global_provider.dart';
+
 class FavoriteScreenAppBar extends StatelessWidget {
   const FavoriteScreenAppBar({
     Key? key,
+    required this.scrollController,
   }) : super(key: key);
+
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +48,7 @@ class FavoriteScreenAppBar extends StatelessWidget {
                   onPressed: () {
                     Provider.of<GlobalProvider>(context, listen: false)
                         .changeListStyle();
+                    scrollController.jumpTo(0);
                   },
                   icon: Provider.of<GlobalProvider>(context).listStyle ==
                           ListStyle.grid
