@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -19,9 +20,11 @@ abstract class AuthRemoteDataSource {
   Future<Either<Failure, User>> loginWithGoogle();
   Future<Either<Failure, Unit>> logout();
   Future<Either<Failure, User>> checkAuthToken(String auth);
-  Future<Either<Failure, Unit>> addAddress(
+  Future<Either<Failure, Map<String, dynamic>>> addAddress(
       int id, Map<String, dynamic> address);
-  Future<Either<Failure, Unit>> removeAddress(int id, String key);
+  Future<Either<Failure, Map<String, dynamic>>> removeAddress(
+      int id, String key);
+  Future<Either<Failure, Map<String, dynamic>>> getStates(String key);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -44,7 +47,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         return Left(ServerFailure(message: response.data['error']));
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }
@@ -118,8 +123,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         return Left(ServerFailure(message: response.data['error']));
       }
     } else {
-      print(result.status);
-      print(result.message);
+      if (kDebugMode) {
+        print(result.message);
+      }
       return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }
@@ -158,7 +164,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<Either<Failure, Unit>> addAddress(
+  Future<Either<Failure, Map<String, dynamic>>> addAddress(
       int id, Map<String, dynamic> address) async {
     try {
       final response = await dio.post(
@@ -168,15 +174,22 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           'address': address,
         },
       );
-      return const Right(unit);
+      if (response.statusCode == 200) {
+        return Right(response.data['new']);
+      } else {
+        return Left(ServerFailure(message: response.data['error']));
+      }
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }
 
   @override
-  Future<Either<Failure, Unit>> removeAddress(int id, String key) async {
+  Future<Either<Failure, Map<String, dynamic>>> removeAddress(
+      int id, String key) async {
     try {
       final response =
           await dio.get(AppConstants.removeAddressPathUrl, queryParameters: {
@@ -184,12 +197,34 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         'addressKey': key,
       });
       if (response.statusCode == 200) {
-        return const Right(unit);
+        return Right(response.data);
       } else {
         return Left(ServerFailure(message: response.data['error']));
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
+      return Left(ServerFailure(message: AppStrings.errorOccured));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> getStates(String key) async {
+    try {
+      final response =
+          await dio.get(AppConstants.getStatePathUrl, queryParameters: {
+        'cc': key,
+      });
+      if (response.data != false) {
+        return Right(response.data);
+      } else {
+        return Left(ServerFailure(message: response.data['error']));
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
       return Left(ServerFailure(message: AppStrings.errorOccured));
     }
   }

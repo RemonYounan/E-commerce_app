@@ -10,7 +10,7 @@ class AddAddressUsecase {
     this.authRepository,
   );
 
-  Future<Either<Failure, Unit>> call(
+  Future<Either<Failure, Map<String, dynamic>>> call(
       int id, Map<String, dynamic> address) async {
     return await authRepository.addAddress(id, address);
   }

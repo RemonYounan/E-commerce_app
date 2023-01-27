@@ -25,70 +25,87 @@ class AddressCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '${addressData['billing_first_name']} ${addressData['billing_last_name']}',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                CustomTextButton(
-                    onPressed: onPressed ??
-                        () => Navigator.pushNamed(
-                              context,
-                              AppRoutes.addShippingAddress,
-                              arguments: addressData,
-                            ),
-                    title: title ?? AppStrings.edit)
-              ],
-            ),
-            Text(
-              addressData['billing_address_1'],
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-            SizedBox(height: 5.h),
-            Text(
-              '${addressData['billing_city']}, ${addressData['billing_state']}, ${addressData['billing_postcode']}',
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-            SizedBox(height: 5.h),
-            Text(
-              addressData['billing_phone'],
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-            SizedBox(height: 5.h),
-            Text(
-              addressData['billing_email'],
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-            if (chooseDefault)
+    return Dismissible(
+      key: Key(addressKey),
+      background: Padding(
+        padding: EdgeInsets.only(right: 20.w),
+        child: const Align(
+          alignment: Alignment.centerRight,
+          child: Icon(
+            Icons.delete,
+            color: AppColors.errorColor,
+          ),
+        ),
+      ),
+      onDismissed: (direction) {
+        BlocProvider.of<AuthCubit>(context).removeAddress(addressKey);
+        
+      },
+      child: Card(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BlocBuilder<AuthCubit, AuthState>(
-                    builder: (context, state) {
-                      return Checkbox(
-                        value: BlocProvider.of<AuthCubit>(context)
-                                .user
-                                .defaultAddresse ==
-                            addressKey,
-                        onChanged: (_) => BlocProvider.of<AuthCubit>(context)
-                            .changeDefaultAddress(addressKey),
-                      );
-                    },
-                  ),
                   Text(
-                    AppStrings.useAsShippingAddress,
-                    style: Theme.of(context).textTheme.titleSmall,
+                    '${addressData['billing_first_name']} ${addressData['billing_last_name']}',
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
+                  CustomTextButton(
+                      onPressed: onPressed ??
+                          () => Navigator.pushNamed(
+                                context,
+                                AppRoutes.addShippingAddress,
+                                arguments: addressData,
+                              ),
+                      title: title ?? AppStrings.edit)
                 ],
               ),
-          ],
+              Text(
+                addressData['billing_address_1'],
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              SizedBox(height: 5.h),
+              Text(
+                '${addressData['billing_city']}, ${addressData['billing_state']}, ${addressData['billing_postcode']}',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              SizedBox(height: 5.h),
+              Text(
+                addressData['billing_phone'],
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              SizedBox(height: 5.h),
+              Text(
+                addressData['billing_email'],
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              if (chooseDefault)
+                Row(
+                  children: [
+                    BlocBuilder<AuthCubit, AuthState>(
+                      builder: (context, state) {
+                        return Checkbox(
+                          value: BlocProvider.of<AuthCubit>(context)
+                                  .user
+                                  .defaultAddresse ==
+                              addressKey,
+                          onChanged: (_) => BlocProvider.of<AuthCubit>(context)
+                              .changeDefaultAddress(addressKey),
+                        );
+                      },
+                    ),
+                    Text(
+                      AppStrings.useAsShippingAddress,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ],
+                ),
+            ],
+          ),
         ),
       ),
     );

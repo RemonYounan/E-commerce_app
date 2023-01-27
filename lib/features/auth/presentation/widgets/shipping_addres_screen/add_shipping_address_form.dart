@@ -30,80 +30,143 @@ class _AddShippingAddressFormState extends State<AddShippingAddressForm> {
   final _formKey = GlobalKey<FormState>();
   final Map<String, dynamic> newAddress = {};
   final List<Widget> textFiledsWidgets = [];
+  List<DropdownMenuItem> statesItems = [];
 
   @override
   void initState() {
     super.initState();
-    buildFields();
+    _buildFields();
   }
 
-  void buildFields() {
+  void _buildFields() {
     final addressFields = BlocProvider.of<ProductsCubit>(context).addressFields;
     addressFields.forEach(
       (key, value) {
         if (value['type'] == 'country') {
-          final countries = BlocProvider.of<ProductsCubit>(context).countries;
-          List<DropdownMenuItem> items = [
-            DropdownMenuItem(
-              value: value['label'],
-              child: Text(value['label']),
-            ),
-          ];
-          countries.forEach((key, value) {
-            items.add(DropdownMenuItem(
-              value: value,
-              child: Text(value),
-            ));
-          });
-          String currentValue = widget.address == null
-              ? value['label'] as String
-              : widget.address![key];
-          void onChanged(dynamic value) {
-            currentValue = value;
-            newAddress.addAll(
-              {key: value},
-            );
-          }
-
-          textFiledsWidgets.add(
-            CustomDropDownButton(
-              currentValue: currentValue,
-              items: items,
-              onChanged: onChanged,
-            ),
-          );
+          _buildCountryDropDownButton(key, value);
+        } else if (value['type'] == 'state') {
+          _buildStateDropDownButton(key, value);
         } else {
-          TextInputType textInputType = TextInputType.name;
-          if (value['type'] == 'tel' || value['label'].contains('ZIP')) {
-            textInputType = TextInputType.phone;
-          } else if (value['type'] == 'email') {
-            TextInputType.emailAddress;
-          }
-          textFiledsWidgets.add(
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.h),
-              child: CustomTextFieldWidget(
-                label: value['label'],
-                hintText: value['placeholder'],
-                validator: value['required'] ? validate : null,
-                controller: widget.address != null
-                    ? TextEditingController(text: widget.address![key])
-                    : null,
-                textInputType: textInputType,
-                onChanged: (value) {
-                  newAddress.addAll(
-                    {key: value},
-                  );
-                },
-              ),
-            ),
-          );
+          _buildTextField(key, value);
         }
       },
     );
   }
 
+  void _buildCountryDropDownButton(String key, dynamic value) {
+    final countries = BlocProvider.of<ProductsCubit>(context).countries;
+    List<DropdownMenuItem> items = [
+      DropdownMenuItem(
+        value: value['label'],
+        enabled: false,
+        child: Text(value['label']),
+      ),
+    ];
+    countries.forEach((key, value) {
+      items.add(DropdownMenuItem(
+        value: value,
+        onTap: () async {
+          final states =
+              await BlocProvider.of<AuthCubit>(context).getState(key);
+          setState(() {
+            statesItems.removeRange(1, statesItems.length);
+            states.forEach((_, state) {
+              statesItems.add(
+                DropdownMenuItem(
+                  value: state,
+                  child: Text(state),
+                ),
+              );
+            });
+          });
+        },
+        child: Text(value),
+      ));
+    });
+    String currentValue = widget.address == null
+        ? value['label'] as String
+        : widget.address![key];
+    void onChanged(dynamic value) {
+      currentValue = value;
+      newAddress.addAll(
+        {key: value},
+      );
+    }
+
+    textFiledsWidgets.add(
+      CustomDropDownButton(
+        currentValue: currentValue,
+        items: items,
+        onChanged: onChanged,
+      ),
+    );
+  }
+
+  void _buildStateDropDownButton(String key, dynamic value) async {
+    statesItems.add(
+      DropdownMenuItem(
+        value: value['label'],
+        enabled: false,
+        child: Text(value['label']),
+      ),
+    );
+    if (widget.address != null) {
+      statesItems.add(
+        DropdownMenuItem(
+          value: widget.address!['billing_state'],
+          child: Text(widget.address!['billing_state']),
+        ),
+      );
+    }
+    String currentValue = widget.address == null
+        ? value['label'] as String
+        : widget.address![key];
+    void onChanged(dynamic value) {
+      currentValue = value;
+      newAddress.addAll(
+        {key: value},
+      );
+    }
+
+    textFiledsWidgets.add(
+      CustomDropDownButton(
+        currentValue: currentValue,
+        items: statesItems,
+        onChanged: onChanged,
+      ),
+    );
+  }
+
+  void _buildTextField(String key, dynamic value) {
+    TextInputType textInputType = TextInputType.name;
+    if (value['type'] == 'tel' || value['label'].contains('ZIP')) {
+      textInputType = TextInputType.phone;
+    } else if (value['type'] == 'email') {
+      TextInputType.emailAddress;
+    }
+    textFiledsWidgets.add(
+      Padding(
+        padding: EdgeInsets.symmetric(vertical: 10.h),
+        child: CustomTextFieldWidget(
+          label: value['label'],
+          hintText: value['placeholder'],
+          validator: value['required'] ? validate : null,
+          controller: widget.address != null
+              ? TextEditingController(text: widget.address![key])
+              : null,
+          textInputType: textInputType,
+          onChanged: (value) {
+            newAddress.addAll(
+              {key: value},
+            );
+          },
+        ),
+      ),
+    );
+  }
+
   void sumbit() {
+    FocusManager.instance.primaryFocus!.unfocus();
     if (_formKey.currentState!.validate()) {
       BlocProvider.of<AuthCubit>(context).addAddress(newAddress);
     }
@@ -127,44 +190,45 @@ class _AddShippingAddressFormState extends State<AddShippingAddressForm> {
           child: AnimationLimiter(
             child: Column(
               children: AnimationConfiguration.toStaggeredList(
-                  duration: const Duration(milliseconds: 375),
-                  childAnimationBuilder: (widget) => SlideAnimation(
-                        horizontalOffset: 50.0,
-                        child: FadeInAnimation(
-                          child: widget,
-                        ),
-                      ),
-                  children: [
-                    SizedBox(height: 10.h),
-                    ...textFiledsWidgets,
-                    SizedBox(height: 10.h),
-                    CustomButton(
-                      onPressed: sumbit,
-                      child: BlocConsumer<AuthCubit, AuthState>(
-                        listener: (context, state) {
-                          if (state is AuthErrorState) {
-                            fToast.init(context);
-                            showToast(context: context, title: state.message);
-                          } else if (state is AuthSuccessState) {
-                            Navigator.pop(context);
-                          }
-                        },
-                        builder: (context, state) {
-                          if (state is AuthLoadingState) {
-                            return const LoadingWidget(
-                              color: AppColors.white,
-                            );
-                          } else {
-                            return Text(
-                              widget.address == null
-                                  ? AppStrings.saveAddress
-                                  : AppStrings.editAddress,
-                            );
-                          }
-                        },
-                      ),
+                duration: const Duration(milliseconds: 375),
+                childAnimationBuilder: (widget) => SlideAnimation(
+                  horizontalOffset: 50.0,
+                  child: FadeInAnimation(
+                    child: widget,
+                  ),
+                ),
+                children: [
+                  SizedBox(height: 10.h),
+                  ...textFiledsWidgets,
+                  SizedBox(height: 10.h),
+                  CustomButton(
+                    onPressed: sumbit,
+                    child: BlocConsumer<AuthCubit, AuthState>(
+                      listener: (context, state) {
+                        if (state is AuthErrorState) {
+                          fToast.init(context);
+                          showToast(context: context, title: state.message);
+                        } else if (state is AuthSuccessState) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is AuthLoadingState) {
+                          return const LoadingWidget(
+                            color: AppColors.white,
+                          );
+                        } else {
+                          return Text(
+                            widget.address == null
+                                ? AppStrings.saveAddress
+                                : AppStrings.editAddress,
+                          );
+                        }
+                      },
                     ),
-                  ]),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

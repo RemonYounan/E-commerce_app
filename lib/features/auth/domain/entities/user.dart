@@ -7,7 +7,7 @@ class User extends Equatable {
   final String email;
   final String token;
   final String auth;
-  final Map<String, dynamic> addresses;
+  Map<String, dynamic> addresses;
   final int points;
   final Map<String, dynamic> favProducts;
   String defaultAddresse;

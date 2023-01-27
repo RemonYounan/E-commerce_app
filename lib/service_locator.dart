@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:ecommerce_app/features/auth/domain/usecases/get_state_usecase.dart';
 import 'package:ecommerce_app/features/auth/domain/usecases/remove_address_usecase.dart';
 import 'package:ecommerce_app/features/order/data/data_source/order_remote_data_source.dart';
 import 'package:ecommerce_app/features/order/data/repositories/order_repository_impl.dart';
@@ -58,14 +59,15 @@ void init() async {
   sl.registerLazySingleton(() => LogoutUsecase(sl()));
   sl.registerLazySingleton(() => AddAddressUsecase(sl()));
   sl.registerLazySingleton(() => RemoveAddressUsecase(sl()));
+  sl.registerLazySingleton(() => GetStateUsecase(sl()));
   // Repositories
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
   // DataSources
   sl.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImpl(dio: sl()));
   // Bloc
-  sl.registerLazySingleton<AuthCubit>(() =>
-      AuthCubit(sl(), sl(), sl(), sl(), sl(), sl(), sl(), sl(), sl(), sl()));
+  sl.registerLazySingleton<AuthCubit>(() => AuthCubit(
+      sl(), sl(), sl(), sl(), sl(), sl(), sl(), sl(), sl(), sl(), sl()));
 
   //! feature : Products
   // Usecases

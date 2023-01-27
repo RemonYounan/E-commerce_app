@@ -10,7 +10,7 @@ class RemoveAddressUsecase {
     this.authRepository,
   );
 
-  Future<Either<Failure, Unit>> call(int id, String key) async {
+  Future<Either<Failure, Map<String, dynamic>>> call(int id, String key) async {
     return await authRepository.removeAddress(id, key);
   }
 }

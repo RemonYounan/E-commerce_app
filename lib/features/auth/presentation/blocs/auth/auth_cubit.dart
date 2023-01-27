@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:ecommerce_app/features/auth/domain/usecases/get_state_usecase.dart';
 import 'package:ecommerce_app/features/auth/domain/usecases/remove_address_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,6 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
   AddAddressUsecase addAddressUsecase;
   RemoveAddressUsecase removeAddressUsecase;
   LogoutUsecase logoutUsecase;
+  GetStateUsecase getStateUsecase;
   late GlobalProvider globalProvider;
 
   AuthCubit(
@@ -41,6 +43,7 @@ class AuthCubit extends Cubit<AuthState> {
     this.logoutUsecase,
     this.addAddressUsecase,
     this.removeAddressUsecase,
+    this.getStateUsecase,
     this.globalProvider,
   ) : super(AuthInitial());
 
@@ -149,20 +152,33 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> addAddress(Map<String, dynamic> address) async {
     emit(AuthLoadingState());
-    _user.addresses.addAll(address);
     final result = await addAddressUsecase(_user.id, address);
     result.fold(
       (error) => emit(AuthErrorState(error.message)),
-      (_) => emit(AuthSuccessState(user: _user)),
+      (data) {
+        _user.addresses = data;
+        if (_user.addresses.length == 1) {
+          _user.defaultAddresse = _user.addresses.keys.first;
+        }
+        emit(AuthSuccessState(user: _user));
+      },
     );
   }
 
   Future<void> removeAddress(String addresskey) async {
+    emit(AuthLoadingState());
     _user.addresses.removeWhere((key, value) => key == addresskey);
+    if (_user.defaultAddresse == addresskey) {
+      _user.defaultAddresse =
+          _user.addresses.isNotEmpty ? _user.addresses.keys.first : '';
+    }
     final result = await removeAddressUsecase(_user.id, addresskey);
     result.fold(
       (error) => emit(AuthErrorState(error.message)),
-      (_) => emit(AuthSuccessState(user: _user)),
+      (data) {
+        _user.addresses = data;
+        emit(AuthSuccessState(user: _user));
+      },
     );
   }
 
@@ -170,5 +186,15 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoadingState());
     _user.defaultAddresse = key;
     emit(AuthSuccessState(user: _user));
+  }
+
+  Future<Map<String, dynamic>> getState(String key) async {
+    final respone = await getStateUsecase(key);
+    Map<String, dynamic> states = {};
+    respone.fold(
+      (error) => emit(AuthErrorState(error.message)),
+      (data) => states = data,
+    );
+    return states;
   }
 }

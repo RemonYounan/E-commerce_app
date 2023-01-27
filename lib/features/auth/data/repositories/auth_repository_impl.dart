@@ -57,13 +57,18 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> addAddress(int id,
-      Map<String, dynamic> address) async {
+  Future<Either<Failure, Map<String, dynamic>>> addAddress(
+      int id, Map<String, dynamic> address) async {
     return await authRemoteDataSource.addAddress(id, address);
   }
-  
+
   @override
-  Future<Either<Failure, Unit>> removeAddress(int id,String key) async {
-     return await authRemoteDataSource.removeAddress(id,key);
+  Future<Either<Failure, Map<String, dynamic>>> removeAddress(int id, String key) async {
+    return await authRemoteDataSource.removeAddress(id, key);
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> getStates(String key) async {
+    return await authRemoteDataSource.getStates(key);
   }
 }

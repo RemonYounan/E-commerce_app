@@ -7,38 +7,44 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class AddressesListWidget extends StatelessWidget {
-  AddressesListWidget({Key? key}) : super(key: key);
-  final List<Widget> addressesWidgets = [];
+  const AddressesListWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final addresses = BlocProvider.of<AuthCubit>(context).user.addresses;
-    addresses.forEach(
-      (key, value) {
-        addressesWidgets.add(
-          AddressCardWidget(
-            addressKey: key,
-            addressData: value as Map<String, dynamic>,
-            chooseDefault: true,
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        final List<Widget> addressesWidgets = [];
+        final addresses = BlocProvider.of<AuthCubit>(context).user.addresses;
+        addresses.forEach(
+          (key, value) {
+            addressesWidgets.add(
+              AddressCardWidget(
+                addressKey: key,
+                addressData: value as Map<String, dynamic>,
+                chooseDefault: true,
+              ),
+            );
+          },
+        );
+        return SingleChildScrollView(
+          child: AnimationLimiter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+              child: Column(
+                children: AnimationConfiguration.toStaggeredList(
+                  childAnimationBuilder: (child) => ScaleAnimation(
+                    child: FadeInAnimation(
+                      child: child,
+                    ),
+                  ),
+                  children: addressesWidgets.isNotEmpty
+                      ? addressesWidgets
+                      : [const NoAddressesWidget()],
+                ),
+              ),
+            ),
           ),
         );
       },
-    );
-    return AnimationLimiter(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-        child: Column(
-          children: AnimationConfiguration.toStaggeredList(
-            childAnimationBuilder: (child) => ScaleAnimation(
-              child: FadeInAnimation(
-                child: child,
-              ),
-            ),
-            children: addressesWidgets.isNotEmpty
-                ? addressesWidgets
-                : [const NoAddressesWidget()],
-          ),
-        ),
-      ),
     );
   }
 }

@@ -34,9 +34,12 @@ class FavoriteScreenList extends StatelessWidget {
                 final List<Product> favProducts = state.favProducts;
                 final isList = Provider.of<GlobalProvider>(context).listStyle ==
                     ListStyle.list;
-                return isList
-                    ? FavoriteListView(favProducts: favProducts)
-                    : FavoriteGridView(favProducts: favProducts);
+                return AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  child: isList
+                      ? FavoriteListView(favProducts: favProducts)
+                      : FavoriteGridView(favProducts: favProducts),
+                );
               }
             },
           ),

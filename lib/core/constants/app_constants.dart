@@ -12,6 +12,7 @@ class AppConstants {
   static const toggleFavoritePathUrl = '$baseUrl/togglefav';
   static const getFavoritePathUrl = '$baseUrl/getFav';
   static const addAddressPathUrl = '$baseUrl/addAddress';
+  static const getStatePathUrl = '$baseUrl/getState';
   static const removeAddressPathUrl = '$baseUrl/removeAddress';
 
   // App constants:
