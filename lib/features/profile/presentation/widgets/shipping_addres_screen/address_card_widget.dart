@@ -17,6 +17,7 @@ class AddressCardWidget extends StatelessWidget {
     this.title,
     this.onPressed,
     this.chooseDefault = false,
+    this.isDismissable = false,
   }) : super(key: key);
 
   final String addressKey;
@@ -24,6 +25,7 @@ class AddressCardWidget extends StatelessWidget {
   final String? title;
   final VoidCallback? onPressed;
   final bool chooseDefault;
+  final bool isDismissable;
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +41,13 @@ class AddressCardWidget extends StatelessWidget {
           ),
         ),
       ),
-      direction: DismissDirection.endToStart,
+      direction:
+          isDismissable ? DismissDirection.endToStart : DismissDirection.none,
       confirmDismiss: (_) => showDialog(
           context: context,
           builder: (context) => AlertDialog(
                   title: Text(AppStrings.deleteAddress),
                   content: Text(AppStrings.deleteAddressContent),
-                  
                   actions: [
                     TextButton(
                       onPressed: () {

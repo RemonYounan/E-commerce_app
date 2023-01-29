@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/common/app_colors.dart';
 import '../../../../../core/common/app_routes.dart';
 import '../../../../../core/constants/app_strings.dart';
-import '../../blocs/auth/auth_cubit.dart';
+import '../../../../auth/presentation/blocs/auth/auth_cubit.dart';
 
 class ImageAndNameSection extends StatelessWidget {
   const ImageAndNameSection({

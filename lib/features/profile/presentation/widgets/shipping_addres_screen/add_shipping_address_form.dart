@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ecommerce_app/core/utils/toast.dart';
+import 'package:ecommerce_app/features/profile/presentation/blocs/profile_cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -67,7 +68,7 @@ class _AddShippingAddressFormState extends State<AddShippingAddressForm> {
         value: key,
         onTap: () async {
           final states =
-              await BlocProvider.of<AuthCubit>(context).getState(key);
+              await BlocProvider.of<ProfileCubit>(context).getState(key);
           setState(() {
             statesItems.removeRange(1, statesItems.length);
             states.forEach((_, state) {

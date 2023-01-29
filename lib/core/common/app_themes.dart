@@ -91,10 +91,10 @@ class AppThemes {
           backgroundColor: AppColors.backgroundColor,
           surfaceTintColor: Colors.transparent,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(35),
-            topRight: Radius.circular(35),
-          )),
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(35),
+            ),
+          ),
         ),
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
@@ -199,10 +199,10 @@ class AppThemes {
           backgroundColor: AppColors.backgroundColorDark,
           surfaceTintColor: Colors.transparent,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(35),
-            topRight: Radius.circular(35),
-          )),
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(35),
+            ),
+          ),
         ),
         textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(

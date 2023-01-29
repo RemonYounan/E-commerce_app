@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/core/constants/app_strings.dart';
-import 'package:ecommerce_app/features/auth/presentation/widgets/shipping_addres_screen/add_shipping_address_form.dart';
+import 'package:ecommerce_app/features/profile/presentation/widgets/shipping_addres_screen/add_shipping_address_form.dart';
 
 class AddShippingAddressScreen extends StatelessWidget {
   const AddShippingAddressScreen({

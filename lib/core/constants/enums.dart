@@ -1,7 +1,8 @@
 enum ListStyle { list, grid }
 
-// enum SortBy {
-//   newest,
-//   priceLowToHigh,
-//   priceHighToLow
-// }
+enum CardType {
+  master,
+  visa,
+  others,
+  invalid
+}

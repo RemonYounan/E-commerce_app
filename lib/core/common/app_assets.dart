@@ -4,5 +4,8 @@ const imagesPath = 'assets/images';
 class AppAssets {
   static const String googleIcon = "$iconsPath/google-icon.svg";
   static const String facebookIcon = "$iconsPath/facebook-icon.svg";
-  static const String bannerImg = "$imagesPath/banner.png";
+  static const String masterCard = "$imagesPath/master_card.svg";
+  static const String visaCard = "$imagesPath/visa_card.svg";
+  static const String chip = "$iconsPath/chip.svg";
+  static const String mastercard = "$iconsPath/mastercard.svg";
 }

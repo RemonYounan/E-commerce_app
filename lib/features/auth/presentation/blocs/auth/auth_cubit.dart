@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:ecommerce_app/features/auth/domain/usecases/get_state_usecase.dart';
+import 'package:ecommerce_app/features/profile/domain/usecases/get_state_usecase.dart';
 import 'package:ecommerce_app/features/auth/domain/usecases/remove_address_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +30,6 @@ class AuthCubit extends Cubit<AuthState> {
   AddAddressUsecase addAddressUsecase;
   RemoveAddressUsecase removeAddressUsecase;
   LogoutUsecase logoutUsecase;
-  GetStateUsecase getStateUsecase;
   late GlobalProvider globalProvider;
 
   AuthCubit(
@@ -43,7 +42,6 @@ class AuthCubit extends Cubit<AuthState> {
     this.logoutUsecase,
     this.addAddressUsecase,
     this.removeAddressUsecase,
-    this.getStateUsecase,
     this.globalProvider,
   ) : super(AuthInitial());
 
@@ -188,13 +186,4 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthSuccessState(user: _user));
   }
 
-  Future<Map<String, dynamic>> getState(String key) async {
-    final respone = await getStateUsecase(key);
-    Map<String, dynamic> states = {};
-    respone.fold(
-      (error) => emit(AuthErrorState(error.message)),
-      (data) => states = data,
-    );
-    return states;
-  }
 }

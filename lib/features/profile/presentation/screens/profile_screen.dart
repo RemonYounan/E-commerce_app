@@ -1,13 +1,14 @@
-import 'package:ecommerce_app/features/auth/presentation/screens/shipping_address_screen.dart';
+import 'package:ecommerce_app/features/profile/presentation/screens/payment_methods_screen.dart';
+import 'package:ecommerce_app/features/profile/presentation/screens/shipping_address_screen.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
+import 'package:ecommerce_app/features/profile/presentation/widgets/profile_screen/profile_item_widget.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import '../../../../core/common/app_routes.dart';
 import '../../../../core/constants/app_strings.dart';
 
 import '../../../../core/providers/global_provider.dart';
-import '../blocs/auth/auth_cubit.dart';
-import '../widgets/profile_screen/profile_item_widget.dart';
+import '../../../auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
       },
       {
         'title': AppStrings.paymentMethods,
-        'onTap': const ShippingAddressScreen()
+        'onTap': const PaymentMethodsScreen()
       },
       {'title': AppStrings.promocodes, 'onTap': const ShippingAddressScreen()},
       {'title': AppStrings.myReviews, 'onTap': const ShippingAddressScreen()},

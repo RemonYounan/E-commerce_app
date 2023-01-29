@@ -6,7 +6,7 @@ class Cart extends Equatable {
   double totalAmount;
 
   Cart({
-    this.products,
+    this.products = const [],
     this.totalAmount = 0,
   });
 

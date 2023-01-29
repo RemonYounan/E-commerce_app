@@ -3,8 +3,8 @@ import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/utils/custom_button.dart';
 import 'package:ecommerce_app/core/utils/custom_text_button.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
-import 'package:ecommerce_app/features/auth/presentation/widgets/shipping_addres_screen/address_card_widget.dart';
-import 'package:ecommerce_app/features/auth/presentation/widgets/shipping_addres_screen/no_addresses_widget.dart';
+import 'package:ecommerce_app/features/profile/presentation/widgets/shipping_addres_screen/address_card_widget.dart';
+import 'package:ecommerce_app/features/profile/presentation/widgets/shipping_addres_screen/no_addresses_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,10 +31,11 @@ class CheckOutScreen extends StatelessWidget {
                 AppStrings.shippingAddresses,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              SizedBox(height: 5.h),
+              SizedBox(height: 20.h),
               const DefaultAddressWidget(),
+              SizedBox(height: 20.h),
               Text(
-                AppStrings.shippingAddresses,
+                AppStrings.payment,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               SizedBox(height: 5.h),

@@ -77,4 +77,14 @@ class AppStrings {
   static final useAsShippingAddress = 'use_as_shipping_address'.tr();
   static final deleteAddress = 'delete_address'.tr();
   static final deleteAddressContent = 'delete_address_content'.tr();
+  static final payment = 'payment'.tr();
+  static final yourPayments = 'your_payments'.tr();
+  static final cardHolderName = 'card_holder_name'.tr();
+  static final expiryDate = 'expiry_date'.tr();
+  static final useAsDefaultPayment = 'use_as_default_payment'.tr();
+  static final addNewCard = 'add_new_card'.tr();
+  static final addCard = 'add_card'.tr();
+  static final nameOnCard = 'name_on_card'.tr();
+  static final cardNumber = 'card_number'.tr();
+  static final cvv = 'cvv'.tr();
 }

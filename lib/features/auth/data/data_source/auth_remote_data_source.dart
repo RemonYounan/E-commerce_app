@@ -24,7 +24,7 @@ abstract class AuthRemoteDataSource {
       int id, Map<String, dynamic> address);
   Future<Either<Failure, Map<String, dynamic>>> removeAddress(
       int id, String key);
-  Future<Either<Failure, Map<String, dynamic>>> getStates(String key);
+  
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -209,23 +209,5 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     }
   }
 
-  @override
-  Future<Either<Failure, Map<String, dynamic>>> getStates(String key) async {
-    try {
-      final response =
-          await dio.get(AppConstants.getStatePathUrl, queryParameters: {
-        'cc': key,
-      });
-      if (response.data != false) {
-        return Right(response.data);
-      } else {
-        return Left(ServerFailure(message: response.data['error']));
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-      return Left(ServerFailure(message: AppStrings.errorOccured));
-    }
-  }
+ 
 }

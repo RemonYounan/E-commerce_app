@@ -1,0 +1,49 @@
+<svg width="375" height="266" viewBox="0 0 375 266" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<filter id="filter0_d_6440_4649" x="-9" y="0" width="394" height="266" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="1"/>
+<feGaussianBlur stdDeviation="12.5"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6440_4649"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6440_4649" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_6440_4649" x1="119.5" y1="237.5" x2="311" y2="116.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint1_linear_6440_4649" x1="326.5" y1="-67" x2="326.5" y2="174" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="clip0_6440_4649">
+<rect width="50" height="16" fill="white" transform="translate(285 43)"/>
+</clipPath>
+</defs>
+<mask id="mask0_6440_4649" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="16" y="24" width="343" height="216">
+<rect x="16" y="24" width="343" height="216" rx="8" fill="#F7F7F7"/>
+</mask>
+<g mask="url(#mask0_6440_4649)">
+<g filter="url(#filter0_d_6440_4649)">
+<rect x="16" y="24" width="344" height="216" rx="8" fill="#EF3651"/>
+</g>
+<path d="M227.5 161.5C207.204 158.502 183.838 160.679 165.418 163.642C144.515 167.005 122.696 164.38 104.493 153.567C80.4884 139.309 51.2911 136.779 25.1923 146.697L16.5 150L8 247H296L294.425 235.028C293.81 230.357 292.712 225.786 290.764 221.496C283.629 205.785 262.541 166.677 227.5 161.5Z" fill="url(#paint0_linear_6440_4649)" fill-opacity="0.1"/>
+<circle cx="326.5" cy="53.5" r="120.5" fill="url(#paint1_linear_6440_4649)" fill-opacity="0.1"/>
+<mask id="mask1_6440_4649" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="40" y="135" width="32" height="24">
+<rect x="40" y="135" width="32" height="24" rx="8" fill="#FFBA49"/>
+</mask>
+<g mask="url(#mask1_6440_4649)">
+<rect x="40" y="135" width="32" height="24" rx="8" fill="#FFBA49"/>
+<rect x="34" y="137" width="20" height="7" rx="2.5" stroke="#D29634" stroke-width="0.3"/>
+<rect x="34" y="144" width="20" height="7" rx="2.5" stroke="#D29634" stroke-width="0.3"/>
+<rect x="34" y="151" width="20" height="7" rx="2.5" stroke="#D29634" stroke-width="0.3"/>
+<rect x="59" y="137" width="20" height="7" rx="2.5" stroke="#D29634" stroke-width="0.3"/>
+<rect x="59" y="144" width="20" height="7" rx="2.5" stroke="#D29634" stroke-width="0.3"/>
+<rect x="59" y="151" width="20" height="7" rx="2.5" stroke="#D29634" stroke-width="0.3"/>
+</g>
+</g>
+<g clip-path="url(#clip0_6440_4649)">
+<path d="M303.984 43.283L297.437 58.758H293.167L289.946 46.4079C289.75 45.6475 289.58 45.3685 288.986 45.0487C288.015 44.5259 286.411 44.0361 285 43.7318L285.095 43.283H291.97C292.42 43.2823 292.855 43.4409 293.196 43.7303C293.538 44.0196 293.764 44.4205 293.833 44.8606L295.535 53.8157L299.74 43.283H303.984ZM320.718 53.7052C320.736 49.6214 315.018 49.3959 315.057 47.5711C315.07 47.0163 315.603 46.4263 316.771 46.2751C318.137 46.1465 319.513 46.3857 320.754 46.9673L321.464 43.6862C320.255 43.2365 318.975 43.0041 317.684 43C313.691 43 310.88 45.1037 310.857 48.1152C310.831 50.344 312.863 51.586 314.395 52.3271C315.968 53.0854 316.496 53.5719 316.49 54.25C316.479 55.2889 315.235 55.7467 314.072 55.7647C312.041 55.796 310.862 55.2207 309.922 54.7869L309.191 58.1781C310.134 58.6072 311.877 58.9817 313.684 59C317.928 59 320.704 56.9233 320.718 53.7052ZM331.263 58.758H335L331.738 43.283H328.29C327.921 43.2797 327.56 43.3861 327.254 43.5885C326.947 43.7908 326.709 44.0798 326.57 44.418L320.508 58.758H324.749L325.592 56.4461H330.775L331.263 58.758ZM326.755 53.2749L328.882 47.4644L330.106 53.2749H326.755ZM309.757 43.283L306.416 58.758H302.375L305.717 43.283H309.757Z" fill="#F7F7F7"/>
+</g>
+</svg>

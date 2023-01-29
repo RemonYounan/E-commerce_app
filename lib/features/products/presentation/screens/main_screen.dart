@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../auth/presentation/screens/profile_screen.dart';
+import '../../../profile/presentation/screens/profile_screen.dart';
 
 import 'home_screen.dart';
 import 'shop_screen.dart';

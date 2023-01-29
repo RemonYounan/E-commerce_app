@@ -8,7 +8,7 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
   }) : super(key: key);
   final Widget child;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CustomButton extends StatelessWidget {
         textStyle: Theme.of(context).textTheme.titleSmall,
         foregroundColor: AppColors.white,
       ),
-      onPressed: () => onPressed(),
+      onPressed: onPressed,
       child: child,
     );
   }

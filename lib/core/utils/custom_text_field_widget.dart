@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../common/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFieldWidget extends StatelessWidget {
-  CustomTextFieldWidget({
+  const CustomTextFieldWidget({
     Key? key,
     required this.label,
     this.hintText,
@@ -12,8 +13,11 @@ class CustomTextFieldWidget extends StatelessWidget {
     this.textInputAction,
     this.textInputType,
     this.obscureText = false,
+    this.suffixIcon,
     this.validator,
     this.onChanged,
+    this.inputFormatters,
+    this.maxLength,
   }) : super(key: key);
 
   final String label;
@@ -21,14 +25,17 @@ class CustomTextFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputAction? textInputAction;
   final TextInputType? textInputType;
-  bool? obscureText;
+  final bool obscureText;
+  final Widget? suffixIcon;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
+  final List<TextInputFormatter>? inputFormatters;
+  final int? maxLength;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 65.h,
+      height: maxLength != null ? 85.h : 65.h,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -39,15 +46,19 @@ class CustomTextFieldWidget extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        inputFormatters: inputFormatters,
         decoration: InputDecoration(
           label: Text(label),
           hintText: hintText,
+          suffix: suffixIcon,
         ),
+        maxLength: maxLength,
+        autovalidateMode: AutovalidateMode.always,
         style: Theme.of(context).textTheme.labelLarge,
         controller: controller,
         textInputAction: textInputAction,
         keyboardType: textInputType,
-        obscureText: obscureText ?? false,
+        obscureText: obscureText,
         validator: validator,
         onChanged: onChanged,
       ),
