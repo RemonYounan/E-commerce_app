@@ -64,7 +64,7 @@ class _AddShippingAddressFormState extends State<AddShippingAddressForm> {
     ];
     countries.forEach((key, value) {
       items.add(DropdownMenuItem(
-        value: value,
+        value: key,
         onTap: () async {
           final states =
               await BlocProvider.of<AuthCubit>(context).getState(key);

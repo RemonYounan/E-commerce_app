@@ -75,4 +75,6 @@ class AppStrings {
   static final addShippingAddress = 'add_shipping_address'.tr();
   static final noAddresses = 'no_addresses'.tr();
   static final useAsShippingAddress = 'use_as_shipping_address'.tr();
+  static final deleteAddress = 'delete_address'.tr();
+  static final deleteAddressContent = 'delete_address_content'.tr();
 }

@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'set_default_check_box.dart';
+
 class AddressCardWidget extends StatelessWidget {
   const AddressCardWidget({
     Key? key,
@@ -37,10 +39,36 @@ class AddressCardWidget extends StatelessWidget {
           ),
         ),
       ),
-      onDismissed: (direction) {
-        BlocProvider.of<AuthCubit>(context).removeAddress(addressKey);
-        
-      },
+      direction: DismissDirection.endToStart,
+      confirmDismiss: (_) => showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                  title: Text(AppStrings.deleteAddress),
+                  content: Text(AppStrings.deleteAddressContent),
+                  
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context, false);
+                      },
+                      child: const Text('CANCEL'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context, true);
+                      },
+                      child: const Text('ACCEPT'),
+                    ),
+                  ])).then((value) {
+        if (value == null) {
+          return;
+        } else if (value) {
+          BlocProvider.of<AuthCubit>(context).removeAddress(addressKey);
+          return;
+        } else {
+          return;
+        }
+      }),
       child: Card(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
@@ -70,7 +98,7 @@ class AddressCardWidget extends StatelessWidget {
               ),
               SizedBox(height: 5.h),
               Text(
-                '${addressData['billing_city']}, ${addressData['billing_state']}, ${addressData['billing_postcode']}',
+                '${addressData['billing_city']}, ${addressData['billing_state']}, ${addressData['billing_country']}, ${addressData['billing_postcode']}',
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               SizedBox(height: 5.h),
@@ -83,27 +111,7 @@ class AddressCardWidget extends StatelessWidget {
                 addressData['billing_email'],
                 style: Theme.of(context).textTheme.titleSmall,
               ),
-              if (chooseDefault)
-                Row(
-                  children: [
-                    BlocBuilder<AuthCubit, AuthState>(
-                      builder: (context, state) {
-                        return Checkbox(
-                          value: BlocProvider.of<AuthCubit>(context)
-                                  .user
-                                  .defaultAddresse ==
-                              addressKey,
-                          onChanged: (_) => BlocProvider.of<AuthCubit>(context)
-                              .changeDefaultAddress(addressKey),
-                        );
-                      },
-                    ),
-                    Text(
-                      AppStrings.useAsShippingAddress,
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ],
-                ),
+              if (chooseDefault) SetDefaultCheckBox(addressKey: addressKey),
             ],
           ),
         ),

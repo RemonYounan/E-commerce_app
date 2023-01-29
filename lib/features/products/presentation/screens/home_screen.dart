@@ -34,11 +34,11 @@ class HomeScreen extends StatelessWidget {
                     key: const PageStorageKey('HomeScreenController'),
                     children: AnimationConfiguration.toStaggeredList(
                       duration: const Duration(milliseconds: 400),
-                      childAnimationBuilder: (child) => SlideAnimation(
-                          verticalOffset: 50.0,
+                      childAnimationBuilder: (child) => ScaleAnimation(
+                          // verticalOffset: 50.0,
                           child: FadeInAnimation(
-                            child: child,
-                          )),
+                        child: child,
+                      )),
                       children: [
                         const BannerWidget(),
                         SizedBox(height: 30.h),

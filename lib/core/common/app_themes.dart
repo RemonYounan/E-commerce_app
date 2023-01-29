@@ -76,6 +76,9 @@ class AppThemes {
           fillColor: const MaterialStatePropertyAll(AppColors.lightBlack),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         ),
+        dialogTheme: const DialogTheme(
+          surfaceTintColor: Colors.transparent,
+        ),
         radioTheme: RadioThemeData(
           fillColor: MaterialStateProperty.all(AppColors.primaryColor),
         ),
@@ -118,8 +121,9 @@ class AppThemes {
   static ThemeData getDarkAppTheme() => ThemeData.dark().copyWith(
         useMaterial3: true,
         scaffoldBackgroundColor: AppColors.backgroundColorDark,
+        primaryColor: AppColors.primaryColorDark,
+        indicatorColor: AppColors.primaryColorDark,
         textTheme: getTextTheme(isDark: true),
-        indicatorColor: AppColors.white,
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: AppColors.whiteDark,
           elevation: 0,
@@ -166,6 +170,15 @@ class AppThemes {
           elevation: 2,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+        checkboxTheme: CheckboxThemeData(
+          checkColor: const MaterialStatePropertyAll(AppColors.dark),
+          fillColor: const MaterialStatePropertyAll(AppColors.whiteDark),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        ),
+        dialogTheme: const DialogTheme(
+          surfaceTintColor: Colors.transparent,
+          backgroundColor: AppColors.dark,
         ),
         buttonTheme: const ButtonThemeData(
           buttonColor: AppColors.primaryColorDark,
