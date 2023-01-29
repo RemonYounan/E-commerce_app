@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
             create: (context) => di.sl<OrderCubit>(),
           ),
           BlocProvider<ProfileCubit>(
-            create: (context) => di.sl<ProfileCubit>(),
+            create: (context) => di.sl<ProfileCubit>()..getCardsSharedPrefrence(),
           ),
         ],
         child: MaterialApp(

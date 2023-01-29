@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
+import 'package:ecommerce_app/core/helpers/cache_helper.dart';
 import 'package:ecommerce_app/features/profile/data/models/credit_card_model.dart';
 import 'package:ecommerce_app/features/profile/domain/entities/credit_card.dart';
 import 'package:equatable/equatable.dart';
@@ -54,6 +55,22 @@ class ProfileCubit extends Cubit<ProfileState> {
       );
       return cardModel.toJson();
     }).toList();
-    print(json.encode(cardsJson));
+    CacheHelper.saveDataSharedPreference(
+        key: 'CREDIT_CARDS', value: json.encode(cardsJson));
+  }
+
+  void getCardsSharedPrefrence() {
+    emit(ProfileLoadingState());
+    final cardsJson =
+        CacheHelper.getDataFromSharedPreference(key: 'CREDIT_CARDS');
+    if (cardsJson != null) {
+      final List cardsJsonList = json.decode(cardsJson);
+      cards.addAll(
+          cardsJsonList.map((e) => CreditCardModel.fromJson(e)).toList());
+      defaultCard = cards.first.cardNumber;
+      emit(AddedCardState(cards: cards, defaultCard: cards.first.cardNumber));
+    } else {
+      emit(const AddedCardState(cards: []));
+    }
   }
 }

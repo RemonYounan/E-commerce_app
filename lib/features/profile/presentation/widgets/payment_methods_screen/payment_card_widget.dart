@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/common/app_assets.dart';
+import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/features/profile/domain/entities/credit_card.dart';
 import 'package:ecommerce_app/features/profile/presentation/blocs/profile_cubit/profile_cubit.dart';
@@ -38,7 +39,10 @@ class PaymentCardWidget extends StatelessWidget {
                     card.cardNumber
                         .toString()
                         .replaceRange(0, 12, '****  ****  ****  '),
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineMedium!
+                        .copyWith(color: AppColors.white),
                   ),
                   SizedBox(height: 40.h),
                   Row(
@@ -50,12 +54,19 @@ class PaymentCardWidget extends StatelessWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .labelMedium!
-                                .copyWith(fontWeight: FontWeight.w500),
+                                .copyWith(
+                                    color: AppColors.white,
+                                    fontWeight: FontWeight.w500),
                           ),
                           SizedBox(height: 5.h),
                           Text(
                             card.name,
-                            style: Theme.of(context).textTheme.titleLarge,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color: AppColors.white,
+                                ),
                           ),
                         ],
                       ),
@@ -67,12 +78,19 @@ class PaymentCardWidget extends StatelessWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .labelMedium!
-                                .copyWith(fontWeight: FontWeight.w500),
+                                .copyWith(
+                                    color: AppColors.white,
+                                    fontWeight: FontWeight.w500),
                           ),
                           SizedBox(height: 5.h),
                           Text(
                             card.expiryDate,
-                            style: Theme.of(context).textTheme.titleLarge,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color: AppColors.white,
+                                ),
                           ),
                         ],
                       ),

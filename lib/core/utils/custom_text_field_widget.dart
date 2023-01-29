@@ -53,7 +53,6 @@ class CustomTextFieldWidget extends StatelessWidget {
           suffix: suffixIcon,
         ),
         maxLength: maxLength,
-        autovalidateMode: AutovalidateMode.always,
         style: Theme.of(context).textTheme.labelLarge,
         controller: controller,
         textInputAction: textInputAction,
