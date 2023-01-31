@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/features/profile/presentation/screens/add_shipping_address_screen.dart';
+import 'package:ecommerce_app/features/profile/presentation/screens/payment_methods_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/shipping_address_screen.dart';
 import 'package:ecommerce_app/features/order/presentation/screens/check_out_screen.dart';
 import 'package:flutter/material.dart';
@@ -93,6 +94,13 @@ class AppRouter {
           curve: Curves.ease,
           child: AddShippingAddressScreen(address: address),
         );
+      case AppRoutes.payments:
+        return PageTransition(
+            type: PageTransitionType.scale,
+            alignment: Alignment.topRight,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.ease,
+            child: const PaymentMethodsScreen());
       default:
         return null;
     }

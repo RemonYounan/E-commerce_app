@@ -1,28 +1,18 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'order_cubit.dart';
 
-abstract class OrderState extends Equatable {
-  const OrderState();
+enum OrderStatus { loading, loaded, error }
 
-  @override
-  List<Object> get props => [];
-}
-
-class OrderInitial extends OrderState {}
-
-class AddAddressLoadingState extends OrderState {}
-
-class AddAddressSuccessState extends OrderState {}
-
-class AddAddressErrorState extends OrderState {
+class OrderState extends Equatable {
+  final OrderStatus status;
+  final ShippingCost? shippingCost;
   final String message;
 
-  const AddAddressErrorState({
-    required this.message,
+  const OrderState({
+    this.status = OrderStatus.loading,
+    this.shippingCost,
+    this.message = '',
   });
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [status, message];
 }
-
-// class OrderInitial extends OrderState {}

@@ -32,15 +32,19 @@ class AddressesListWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
               child: Column(
                 children: AnimationConfiguration.toStaggeredList(
-                  childAnimationBuilder: (child) => ScaleAnimation(
-                    child: FadeInAnimation(
-                      child: child,
-                    ),
-                  ),
-                  children: addressesWidgets.isNotEmpty
-                      ? addressesWidgets
-                      : [const NoAddressesWidget()],
-                ),
+                    childAnimationBuilder: (child) => ScaleAnimation(
+                          child: FadeInAnimation(
+                            child: child,
+                          ),
+                        ),
+                    children: addressesWidgets.isNotEmpty
+                        ? addressesWidgets
+                        : [
+                            SizedBox(
+                              height: 250.h,
+                              child: const NoAddressesWidget(),
+                            )
+                          ]),
               ),
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:ecommerce_app/features/order/domain/usecases/get_shipping_cost_usecase.dart';
 import 'package:ecommerce_app/features/profile/data/data_sources/profile_api.dart';
 import 'package:ecommerce_app/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:ecommerce_app/features/profile/domain/repositories/profile_repository.dart';
@@ -92,6 +93,7 @@ void init() async {
   //! feature : Order
 
   // Usecases
+  sl.registerLazySingleton(() => GetShippingCostUsecase(sl()));
   // Repositories
   sl.registerLazySingleton<OrderRepository>(() => OrderRepositoyImpl(sl()));
   // DataSources
@@ -99,7 +101,7 @@ void init() async {
       () => OrderRemoteDataSourceImpl(dio: sl()));
   // Bloc
   sl.registerLazySingleton<CartCubit>(() => CartCubit());
-  sl.registerLazySingleton<OrderCubit>(() => OrderCubit());
+  sl.registerLazySingleton<OrderCubit>(() => OrderCubit(sl()));
 
   //! feature : Profile
   // Usecases

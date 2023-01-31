@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/constants/enums.dart';
 import 'package:ecommerce_app/core/helpers/Card_number_formatter.dart';
@@ -5,6 +6,8 @@ import 'package:ecommerce_app/core/helpers/card_month_formatter.dart';
 import 'package:ecommerce_app/core/helpers/card_utils.dart';
 import 'package:ecommerce_app/core/utils/custom_button.dart';
 import 'package:ecommerce_app/core/utils/custom_text_field_widget.dart';
+import 'package:ecommerce_app/core/utils/loading_widget.dart';
+import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:ecommerce_app/features/profile/domain/entities/credit_card.dart';
 import 'package:ecommerce_app/features/profile/presentation/blocs/profile_cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
@@ -67,6 +70,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
         name: nameController.text,
         cardNumber:
             int.parse(CardUtils.getCleanedNumber(cardNumberController.text)),
+        type: CardUtils.getCardTypeFrmNumber(cardNumberController.text),
         expiryDate: expiryController.text,
         cvv: int.parse(cvvController.text),
       );
@@ -164,7 +168,27 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                 ),
                 CustomButton(
                   onPressed: canSubmit() ? submit : null,
-                  child: Text(AppStrings.addCard),
+                  child: BlocConsumer<ProfileCubit, ProfileState>(
+                    listener: (context, state) {
+                      if (state is ProfileErrorState) {
+                        fToast.init(context);
+                        showToast(
+                          context: context,
+                          title: state.message,
+                          color: AppColors.errorColor,
+                        );
+                      } else if (state is AddedCardState) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is ProfileLoadingState) {
+                        return const LoadingWidget(color: AppColors.white);
+                      } else {
+                        return Text(AppStrings.addCard);
+                      }
+                    },
+                  ),
                 ),
               ],
             ),

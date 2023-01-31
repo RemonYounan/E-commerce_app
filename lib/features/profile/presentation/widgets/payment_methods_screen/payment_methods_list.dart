@@ -51,7 +51,12 @@ class PaymentMethodsList extends StatelessWidget {
                             )
                           : SizedBox(
                               height: 250.h,
-                              child: const NoAddressesWidget(),
+                              child: Center(
+                                child: Text(
+                                  AppStrings.noCards,
+                                  style: Theme.of(context).textTheme.titleLarge,
+                                ),
+                              ),
                             );
                     }
                   },

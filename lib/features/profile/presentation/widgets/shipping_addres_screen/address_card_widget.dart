@@ -53,13 +53,13 @@ class AddressCardWidget extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context, false);
                       },
-                      child: const Text('CANCEL'),
+                      child: Text(AppStrings.no),
                     ),
                     TextButton(
                       onPressed: () {
                         Navigator.pop(context, true);
                       },
-                      child: const Text('ACCEPT'),
+                      child: Text(AppStrings.yes),
                     ),
                   ])).then((value) {
         if (value == null) {
@@ -85,13 +85,14 @@ class AddressCardWidget extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   CustomTextButton(
-                      onPressed: onPressed ??
-                          () => Navigator.pushNamed(
-                                context,
-                                AppRoutes.addShippingAddress,
-                                arguments: addressData,
-                              ),
-                      title: title ?? AppStrings.edit)
+                    onPressed: onPressed ??
+                        () => Navigator.pushNamed(
+                              context,
+                              AppRoutes.addShippingAddress,
+                              arguments: addressData,
+                            ),
+                    title: title ?? AppStrings.edit,
+                  ),
                 ],
               ),
               Text(

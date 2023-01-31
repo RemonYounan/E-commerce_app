@@ -1,10 +1,12 @@
 import 'package:animations/animations.dart';
-import 'package:ecommerce_app/core/common/app_routes.dart';
-import 'package:ecommerce_app/features/order/presentation/screens/check_out_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+
+import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
+import 'package:ecommerce_app/features/order/presentation/blocs/order/order_cubit.dart';
+import 'package:ecommerce_app/features/order/presentation/screens/check_out_screen.dart';
 
 import '../../../../../core/common/app_colors.dart';
 import '../../../../../core/constants/app_strings.dart';
@@ -109,7 +111,17 @@ class CheckOutWidget extends StatelessWidget {
                     openElevation: 0,
                     openBuilder: (context, action) => const CheckOutScreen(),
                     closedBuilder: (context, action) => CustomButton(
-                      onPressed: action,
+                      onPressed: () {
+                        final address = BlocProvider.of<AuthCubit>(context)
+                            .getDefaultAddress();
+                        if (address.isNotEmpty) {
+                          BlocProvider.of<OrderCubit>(context).getShippingCost(
+                            address['billing_country'],
+                            address['billing_country'],
+                          );
+                        }
+                        action();
+                      },
                       child: Text(AppStrings.checkOut.toUpperCase()),
                     ),
                   ),

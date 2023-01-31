@@ -63,6 +63,8 @@ class AppStrings {
   static final bagEmpty = 'bag_empty'.tr();
   static final submitOrder = 'sumbmit_order'.tr();
   static final order = 'order'.tr();
+  static final delivery = 'delivery'.tr();
+  static final summary = 'summary'.tr();
   static final city = 'city'.tr();
   static final country = 'country'.tr();
   static final state = 'state'.tr();
@@ -74,9 +76,12 @@ class AppStrings {
   static final change = 'change'.tr();
   static final addShippingAddress = 'add_shipping_address'.tr();
   static final noAddresses = 'no_addresses'.tr();
+  static final noCards = 'no_cards'.tr();
   static final useAsShippingAddress = 'use_as_shipping_address'.tr();
   static final deleteAddress = 'delete_address'.tr();
   static final deleteAddressContent = 'delete_address_content'.tr();
+  static final deleteCard = 'delete_card'.tr();
+  static final deleteCardContent = 'delete_card_content'.tr();
   static final payment = 'payment'.tr();
   static final yourPayments = 'your_payments'.tr();
   static final cardHolderName = 'card_holder_name'.tr();
@@ -87,4 +92,6 @@ class AppStrings {
   static final nameOnCard = 'name_on_card'.tr();
   static final cardNumber = 'card_number'.tr();
   static final cvv = 'cvv'.tr();
+  static final no = 'no'.tr();
+  static final yes = 'yes'.tr();
 }

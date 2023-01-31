@@ -9,4 +9,5 @@ class AppRoutes {
   static const String checkOut = "/check-out";
   static const String shippingAddresses = "/shipping-addresses";
   static const String addShippingAddress = "/add-shipping-address";
+  static const String payments = "/payments";
 }

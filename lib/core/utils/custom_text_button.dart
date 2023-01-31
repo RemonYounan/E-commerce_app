@@ -10,7 +10,7 @@ class CustomTextButton extends StatelessWidget {
     required this.title,
   }) : super(key: key);
 
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String title;
 
   @override

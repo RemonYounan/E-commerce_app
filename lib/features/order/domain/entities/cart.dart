@@ -2,7 +2,7 @@ import 'cart_product.dart';
 import 'package:equatable/equatable.dart';
 
 class Cart extends Equatable {
-  final List<CartProduct>? products;
+  List<CartProduct>? products;
   double totalAmount;
 
   Cart({

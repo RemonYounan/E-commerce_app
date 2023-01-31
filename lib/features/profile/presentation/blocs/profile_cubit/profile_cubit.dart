@@ -39,10 +39,24 @@ class ProfileCubit extends Cubit<ProfileState> {
     saveCardsSharedPrefrence();
   }
 
-  void setDefaultCard(int cardNumber) {
+  void removeCreditCard(int cardNumber) {
     emit(ProfileLoadingState());
-    defaultCard = cardNumber;
+    cards.removeWhere((element) => element.cardNumber == cardNumber);
+    if (cards.isNotEmpty && defaultCard == cardNumber) {
+      defaultCard = cards.first.cardNumber;
+    }
     emit(AddedCardState(cards: cards, defaultCard: defaultCard));
+    saveCardsSharedPrefrence();
+  }
+
+  void setDefaultCard(int cardNumber) {
+    if (defaultCard != cardNumber) {
+      emit(ProfileLoadingState());
+      defaultCard = cardNumber;
+      CacheHelper.saveDataSharedPreference(
+          key: 'DEFAULT_CARD', value: defaultCard);
+      emit(AddedCardState(cards: cards, defaultCard: defaultCard));
+    }
   }
 
   void saveCardsSharedPrefrence() {
@@ -50,13 +64,17 @@ class ProfileCubit extends Cubit<ProfileState> {
       final cardModel = CreditCardModel(
         name: card.name,
         cardNumber: card.cardNumber,
+        type: card.type,
         expiryDate: card.expiryDate,
         cvv: card.cvv,
       );
       return cardModel.toJson();
     }).toList();
+    print(json.encode(cardsJson));
     CacheHelper.saveDataSharedPreference(
         key: 'CREDIT_CARDS', value: json.encode(cardsJson));
+    CacheHelper.saveDataSharedPreference(
+        key: 'DEFAULT_CARD', value: defaultCard);
   }
 
   void getCardsSharedPrefrence() {
@@ -67,8 +85,14 @@ class ProfileCubit extends Cubit<ProfileState> {
       final List cardsJsonList = json.decode(cardsJson);
       cards.addAll(
           cardsJsonList.map((e) => CreditCardModel.fromJson(e)).toList());
-      defaultCard = cards.first.cardNumber;
-      emit(AddedCardState(cards: cards, defaultCard: cards.first.cardNumber));
+      final cachedDefaultCard =
+          CacheHelper.getDataFromSharedPreference(key: 'DEFAULT_CARD');
+      if (cachedDefaultCard != null) {
+        defaultCard = cachedDefaultCard;
+      } else {
+        defaultCard = 0;
+      }
+      emit(AddedCardState(cards: cards, defaultCard: defaultCard));
     } else {
       emit(const AddedCardState(cards: []));
     }

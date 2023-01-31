@@ -27,7 +27,6 @@ class CardUtils {
       case CardType.visa:
         img = 'visa.png';
         break;
-
       case CardType.others:
         icon = const Icon(
           Icons.credit_card,
@@ -46,7 +45,7 @@ class CardUtils {
     Widget? widget;
     if (img.isNotEmpty) {
       widget = Image.asset(
-        'assets/images/$img',
+        'assets/icons/$img',
       );
     } else {
       widget = icon;

@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:ecommerce_app/features/profile/domain/usecases/get_state_usecase.dart';
 import 'package:ecommerce_app/features/auth/domain/usecases/remove_address_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -186,4 +185,8 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthSuccessState(user: _user));
   }
 
+  Map<String, dynamic> getDefaultAddress() {
+    final defaultAddress = _user.defaultAddresse;
+    return _user.addresses[defaultAddress];
+  }
 }
