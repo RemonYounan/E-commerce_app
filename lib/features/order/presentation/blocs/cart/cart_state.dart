@@ -1,32 +1,27 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'cart_cubit.dart';
 
 abstract class CartState extends Equatable {
-  final Cart cart;
-  const CartState({
+  const CartState();
+
+  @override
+  List<Object> get props => [];
+}
+
+class CartEmptyState extends CartState {}
+
+class CartLoadingState extends CartState {}
+
+class CartLoadedState extends CartState {
+  const CartLoadedState({
     required this.cart,
   });
 
-  @override
-  List<Object> get props => [cart];
-}
-
-class CartLoading extends CartState {
-  const CartLoading({required super.cart});
-  @override
-  List<Object> get props => [cart];
-}
-
-class ProductAddedState extends CartState {
-  const ProductAddedState({required super.cart});
+  final Cart cart;
 
   @override
   List<Object> get props => [cart];
 }
 
-class ProductRemovedState extends CartState {
-  const ProductRemovedState({required super.cart});
+class ProductAddedState extends CartState {}
 
-  @override
-  List<Object> get props => [cart];
-}
+class ProductRemovedState extends CartState {}

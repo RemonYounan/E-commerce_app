@@ -94,10 +94,15 @@ class CheckOutWidget extends StatelessWidget {
                       const Spacer(),
                       BlocBuilder<CartCubit, CartState>(
                         builder: (context, state) {
-                          return Text(
-                            '${state.cart.totalAmount.toInt()}\$',
-                            style: Theme.of(context).textTheme.headlineSmall,
-                          );
+                          if (state is CartLoadedState) {
+                            final totalAmount = state.cart.totalAmount.toInt();
+                            return Text(
+                              '$totalAmount\$',
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            );
+                          } else {
+                            return const SizedBox.shrink();
+                          }
                         },
                       )
                     ],

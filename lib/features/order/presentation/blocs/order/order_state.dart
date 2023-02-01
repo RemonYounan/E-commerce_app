@@ -1,18 +1,27 @@
 part of 'order_cubit.dart';
 
-enum OrderStatus { loading, loaded, error }
+abstract class OrderState extends Equatable {
+  const OrderState();
 
-class OrderState extends Equatable {
-  final OrderStatus status;
-  final ShippingCost? shippingCost;
+  @override
+  List<Object> get props => [];
+}
+
+class InitialState extends OrderState {}
+
+class OrderLoadingState extends OrderState {}
+
+class OrderLoadedState extends OrderState {}
+
+class OrderPlacedState extends OrderState {}
+
+class OrderErrorState extends OrderState {
   final String message;
 
-  const OrderState({
-    this.status = OrderStatus.loading,
-    this.shippingCost,
-    this.message = '',
+  const OrderErrorState({
+    required this.message,
   });
 
   @override
-  List<Object> get props => [status, message];
+  List<Object> get props => [message];
 }

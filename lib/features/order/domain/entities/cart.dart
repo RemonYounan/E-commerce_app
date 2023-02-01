@@ -2,7 +2,7 @@ import 'cart_product.dart';
 import 'package:equatable/equatable.dart';
 
 class Cart extends Equatable {
-  List<CartProduct>? products;
+  List<CartProduct> products;
   double totalAmount;
 
   Cart({
@@ -21,7 +21,7 @@ class Cart extends Equatable {
       );
 
   Map<String, dynamic> toJson() => {
-        'products': products!.map((e) => e.toJson()).toList(),
+        'products': products.map((e) => e.toJson()).toList(),
         'totalAmount': totalAmount,
       };
 }

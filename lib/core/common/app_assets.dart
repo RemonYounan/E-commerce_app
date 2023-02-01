@@ -10,4 +10,5 @@ class AppAssets {
   static const String mastercard = "$iconsPath/mastercard.svg";
   static const String mastercardIcon = "$iconsPath/mastercard_icon.svg";
   static const String visaIcon = "$iconsPath/visa_icon.svg";
+  static const String bags = "$imagesPath/bags.svg";
 }

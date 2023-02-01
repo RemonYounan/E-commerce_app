@@ -1,16 +1,12 @@
-import 'package:ecommerce_app/core/common/app_routes.dart';
-import 'package:ecommerce_app/core/utils/custom_text_button.dart';
-import 'package:ecommerce_app/features/order/presentation/widgets/check_out_screen/check_out_payment_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:ecommerce_app/core/common/app_routes.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
-import 'package:ecommerce_app/core/utils/custom_button.dart';
+import 'package:ecommerce_app/core/utils/custom_text_button.dart';
+import 'package:ecommerce_app/features/order/presentation/widgets/check_out_screen/check_out_payment_card.dart';
 import 'package:ecommerce_app/features/order/presentation/widgets/check_out_screen/default_address_widget.dart';
 
-import '../../../../core/common/app_colors.dart';
-import '../blocs/cart/cart_cubit.dart';
 import '../widgets/check_out_screen/check_out_summary_widget.dart';
 
 class CheckOutScreen extends StatelessWidget {
@@ -51,7 +47,18 @@ class CheckOutScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 5.h),
-              const CheckOutPaymentCard(),
+              RadioListTile(
+                value: 'CreditCard',
+                title: const CheckOutPaymentCard(),
+                groupValue: 'cod',
+                onChanged: (value) {},
+              ),
+              RadioListTile(
+                value: 'cod',
+                title: const Text('Cache on delivery'),
+                groupValue: 'cod',
+                onChanged: (value) {},
+              ),
             ],
           ),
         ),
@@ -60,4 +67,3 @@ class CheckOutScreen extends StatelessWidget {
     );
   }
 }
-

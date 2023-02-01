@@ -94,4 +94,8 @@ class AppStrings {
   static final cvv = 'cvv'.tr();
   static final no = 'no'.tr();
   static final yes = 'yes'.tr();
+  static final success = 'success'.tr();
+  static final orderSuccess = 'order_success'.tr();
+  static final thankYou = 'thank_you'.tr();
+  static final continueShopping = 'continue_shopping'.tr();
 }

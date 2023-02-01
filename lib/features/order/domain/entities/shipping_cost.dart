@@ -5,10 +5,10 @@ class ShippingCost extends Equatable {
   final double cost;
 
   const ShippingCost({
-    required this.id,
-    required this.cost,
+    this.id = '',
+    this.cost = 0,
   });
 
   @override
-  List<Object> get props => [id, cost];
+  List<Object> get props => [];
 }

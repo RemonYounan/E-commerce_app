@@ -11,10 +11,12 @@ part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
   Cart _cart = Cart();
-  CartCubit() : super(CartLoading(cart: Cart()));
+  CartCubit() : super(CartEmptyState());
+
+  Cart get cart => _cart;
 
   void addToCart({Product? product, CartProduct? newCartProduct}) {
-    emit(CartLoading(cart: _cart));
+    emit(CartLoadingState());
     late CartProduct cartProduct;
     if (product != null) {
       cartProduct = CartProduct(
@@ -31,49 +33,49 @@ class CartCubit extends Cubit<CartState> {
     } else {
       cartProduct = newCartProduct!;
     }
-    if (_cart.products == null) {
+    if (_cart.products.isEmpty) {
       _cart = Cart(products: [cartProduct], totalAmount: cartProduct.price);
     } else {
       bool isInCart = false;
-      for (var prod in _cart.products!) {
+      for (var prod in _cart.products) {
         if (prod.id == cartProduct.id) {
           prod.count += 1;
           isInCart = true;
         }
       }
       if (!isInCart) {
-        _cart.products!.add(cartProduct);
+        _cart.products.add(cartProduct);
       }
       _cart.totalAmount += cartProduct.price;
     }
-    emit(ProductAddedState(cart: _cart));
+    emit(ProductAddedState());
+    emit(CartLoadedState(cart: _cart));
     saveCartInSharedPrefernce();
   }
 
   void increaseProductQuantity(int id) {
-    emit(CartLoading(cart: _cart));
-    for (var prod in _cart.products!) {
+    emit(CartLoadingState());
+    for (var prod in _cart.products) {
       if (prod.id == id) {
         prod.count += 1;
         _cart.totalAmount += prod.price;
       }
     }
-
-    emit(ProductAddedState(cart: _cart));
+    emit(ProductAddedState());
+    emit(CartLoadedState(cart: _cart));
     saveCartInSharedPrefernce();
   }
 
   void decreaseProductQuantity(int id) {
-    emit(CartLoading(cart: _cart));
-    for (var prod in _cart.products!) {
+    emit(CartLoadingState());
+    for (var prod in _cart.products) {
       if (prod.id == id) {
+        // here we just decreasing the count not removing the product from cart
         if (prod.count != 1) {
           prod.count -= 1;
-          if (_cart.totalAmount != 0) {
-            _cart.totalAmount -= prod.price;
-          }
-
-          emit(ProductRemovedState(cart: _cart));
+          _cart.totalAmount -= prod.price;
+          emit(ProductRemovedState());
+          emit(CartLoadedState(cart: _cart));
           saveCartInSharedPrefernce();
         }
       }
@@ -81,13 +83,18 @@ class CartCubit extends Cubit<CartState> {
   }
 
   void removeFromCart(int id) {
-    emit(CartLoading(cart: _cart));
-    final product = _cart.products!.firstWhere((element) => element.id == id);
+    emit(CartLoadingState());
+    final product = _cart.products.firstWhere((element) => element.id == id);
     if (_cart.totalAmount != 0) {
       _cart.totalAmount -= product.price * product.count;
     }
-    _cart.products!.removeWhere((element) => element.id == id);
-    emit(ProductRemovedState(cart: _cart));
+    _cart.products.removeWhere((element) => element.id == id);
+    emit(ProductRemovedState());
+    if (_cart.products.isEmpty) {
+      emit(CartEmptyState());
+    } else {
+      emit(CartLoadedState(cart: _cart));
+    }
     saveCartInSharedPrefernce();
   }
 
@@ -97,12 +104,21 @@ class CartCubit extends Cubit<CartState> {
   }
 
   void getCartFromSharedPreference() {
-    emit(CartLoading(cart: _cart));
+    emit(CartLoadingState());
     final String? cartJsonString =
         CacheHelper.getDataFromSharedPreference(key: 'CART');
     if (cartJsonString != null) {
       _cart = Cart.fromJson(json.decode(cartJsonString));
+      emit(CartLoadedState(cart: _cart));
+    } else {
+      emit(CartEmptyState());
     }
-    emit(ProductAddedState(cart: _cart));
+  }
+
+  void clearCart() {
+    emit(CartLoadingState());
+    _cart = Cart();
+    CacheHelper.removeData(key: 'CART');
+    emit(CartEmptyState());
   }
 }
