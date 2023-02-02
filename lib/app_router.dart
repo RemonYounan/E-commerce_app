@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/features/order/presentation/screens/order_placed.dart';
+import 'package:ecommerce_app/features/order/presentation/screens/order_details_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/add_shipping_address_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/payment_methods_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/shipping_address_screen.dart';
@@ -99,11 +99,20 @@ class AppRouter {
 
       case AppRoutes.payments:
         return PageTransition(
-            type: PageTransitionType.scale,
-            alignment: Alignment.topRight,
-            duration: const Duration(milliseconds: 400),
-            curve: Curves.ease,
-            child: const PaymentMethodsScreen());
+          type: PageTransitionType.scale,
+          alignment: Alignment.topRight,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.ease,
+          child: const PaymentMethodsScreen(),
+        );
+
+      case AppRoutes.orderDetails:
+        final id = settings.arguments as int;
+        return PageTransition(
+          type: PageTransitionType.rightToLeft,
+          curve: Curves.ease,
+          child: OrderDetailsScreen(id: id),
+        );
       default:
         return null;
     }

@@ -98,4 +98,17 @@ class AppStrings {
   static final orderSuccess = 'order_success'.tr();
   static final thankYou = 'thank_you'.tr();
   static final continueShopping = 'continue_shopping'.tr();
+  static final deliverd = 'deliverd'.tr();
+  static final processing = 'processing'.tr();
+  static final cancelled = 'cancelled'.tr();
+  static final orderNo = 'order_no'.tr();
+  static final details = 'details'.tr();
+  static final noOrders = 'no_orders'.tr();
+  static final units = 'units'.tr();
+  static final orderDetails = 'order_details'.tr();
+  static final shippingAddresse = 'shipping_addresse'.tr();
+  static final paymentMethod = 'payment_method'.tr();
+  static final cashOnDelivery = 'cash_on_delivery'.tr();
+  static final discount = 'discount'.tr();
+  static final shippingCost = 'shipping_cost'.tr();
 }

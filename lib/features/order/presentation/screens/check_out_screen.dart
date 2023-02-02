@@ -1,4 +1,6 @@
+import 'package:ecommerce_app/features/profile/presentation/blocs/profile_cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:ecommerce_app/core/common/app_routes.dart';
@@ -47,11 +49,19 @@ class CheckOutScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 5.h),
-              RadioListTile(
-                value: 'CreditCard',
-                title: const CheckOutPaymentCard(),
-                groupValue: 'cod',
-                onChanged: (value) {},
+              BlocBuilder<ProfileCubit, ProfileState>(
+                builder: (context, state) {
+                  if (state.cards.isNotEmpty) {
+                    return RadioListTile(
+                      value: 'CreditCard',
+                      title: const CheckOutPaymentCard(),
+                      groupValue: 'cod',
+                      onChanged: (value) {},
+                    );
+                  } else {
+                    return const SizedBox.shrink();
+                  }
+                },
               ),
               RadioListTile(
                 value: 'cod',

@@ -11,4 +11,5 @@ class AppRoutes {
   static const String addShippingAddress = "/add-shipping-address";
   static const String payments = "/payments";
   static const String orderPlaced = "/order-placed";
+  static const String orderDetails = "/order-details";
 }

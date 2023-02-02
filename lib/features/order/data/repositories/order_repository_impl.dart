@@ -3,6 +3,8 @@ import 'package:dartz/dartz.dart';
 import 'package:ecommerce_app/features/order/data/data_source/order_remote_data_source.dart';
 import 'package:ecommerce_app/features/order/data/models/create_order_request_model.dart';
 import 'package:ecommerce_app/features/order/domain/entities/create_order_request.dart';
+import 'package:ecommerce_app/features/order/domain/entities/order.dart';
+import 'package:ecommerce_app/features/order/domain/entities/order_details.dart';
 import 'package:ecommerce_app/features/order/domain/entities/shipping_cost.dart';
 import 'package:ecommerce_app/features/order/domain/repositories/order_repository.dart';
 
@@ -29,5 +31,15 @@ class OrderRepositoyImpl implements OrderRepository {
         selectedMethod: orderRequest.selectedMethod,
         products: orderRequest.products);
     return await remoteDataSource.createOrder(orderRequestModel);
+  }
+
+  @override
+  Future<Either<Failure, List<OrderItem>>> getOrders(int id) async {
+    return await remoteDataSource.getOrders(id);
+  }
+
+  @override
+  Future<Either<Failure, OrderDetails>> getOrder(int id) async {
+    return await remoteDataSource.getOrder(id);
   }
 }

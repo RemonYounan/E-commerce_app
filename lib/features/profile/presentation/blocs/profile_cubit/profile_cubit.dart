@@ -70,7 +70,6 @@ class ProfileCubit extends Cubit<ProfileState> {
       );
       return cardModel.toJson();
     }).toList();
-    print(json.encode(cardsJson));
     CacheHelper.saveDataSharedPreference(
         key: 'CREDIT_CARDS', value: json.encode(cardsJson));
     CacheHelper.saveDataSharedPreference(

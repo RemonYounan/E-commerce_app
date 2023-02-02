@@ -16,6 +16,8 @@ class AppConstants {
   static const removeAddressPathUrl = '$baseUrl/removeAddress';
   static const getShippingCostPathUrl = '$baseUrl/getShippingCost';
   static const createOrderPathUrl = '$baseUrl/createOrder';
+  static const getOrdersPathUrl = '$baseUrl/getOrders';
+  static const getOrderPathUrl = '$baseUrl/getOrder';
 
   // App constants:
   static const newToOld = 'news';

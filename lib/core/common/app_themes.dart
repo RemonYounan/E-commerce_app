@@ -87,6 +87,24 @@ class AppThemes {
           alignment: Alignment.centerLeft,
           foregroundColor: AppColors.lightBlack,
         )),
+        tabBarTheme: TabBarTheme(
+          indicatorColor: Colors.transparent,
+          overlayColor:
+              MaterialStatePropertyAll(AppColors.primaryColor.withOpacity(0.1)),
+          indicatorSize: TabBarIndicatorSize.tab,
+          labelStyle: AppTextStyle.getAppTextStyle(
+            weight: FontWeight.bold,
+            size: 15.sp, // equal to 14px
+            color: AppColors.white,
+          ),
+          labelColor: AppColors.white,
+          indicator: BoxDecoration(
+            borderRadius: BorderRadius.circular(29),
+            shape: BoxShape.rectangle,
+            color: AppColors.lightBlack,
+          ),
+          dividerColor: Colors.transparent,
+        ),
         bottomSheetTheme: const BottomSheetThemeData(
           backgroundColor: AppColors.backgroundColor,
           surfaceTintColor: Colors.transparent,
@@ -139,6 +157,7 @@ class AppThemes {
         ),
         appBarTheme: AppBarTheme(
           backgroundColor: AppColors.backgroundColorDark,
+          elevation: 0,
           scrolledUnderElevation: 0,
           centerTitle: true,
           titleTextStyle: AppTextStyle.getAppTextStyle(
@@ -194,6 +213,22 @@ class AppThemes {
               borderRadius: BorderRadius.circular(25),
             ),
           ),
+        ),
+        tabBarTheme: TabBarTheme(
+          indicatorColor: Colors.transparent,
+          overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+          indicatorSize: TabBarIndicatorSize.tab,
+          labelStyle: AppTextStyle.getAppTextStyle(
+            weight: FontWeight.bold,
+            size: 15.sp, // equal to 14px
+            color: AppColors.dark,
+          ),
+          labelColor: AppColors.dark,
+          indicator: BoxDecoration(
+            borderRadius: BorderRadius.circular(29),
+            color: AppColors.white,
+          ),
+          dividerColor: Colors.transparent,
         ),
         bottomSheetTheme: const BottomSheetThemeData(
           backgroundColor: AppColors.backgroundColorDark,

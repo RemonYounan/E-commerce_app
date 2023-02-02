@@ -83,8 +83,7 @@ class ProductsCubit extends Cubit<ProductsState> {
   }
 
   Future<void> getProduct(int id) async {
-    if (_productsDetails.where((element) => element.id == id).isNotEmpty) {
-    } else {
+    if (_productsDetails.where((element) => element.id == id).isEmpty) {
       emit(_state.copyWith(status: ProductsStatus.productLoading));
       final result = await _getProductDetailsUsecase(id);
       result.fold(

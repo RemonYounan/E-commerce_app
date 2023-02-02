@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/features/order/presentation/screens/my_orders_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/payment_methods_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/shipping_address_screen.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
@@ -21,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> items = [
-      {'title': AppStrings.myOrders, 'onTap': const ShippingAddressScreen()},
+      {'title': AppStrings.myOrders, 'onTap': const MyOrdersScreen()},
       {
         'title': AppStrings.shippingAddresses,
         'onTap': const ShippingAddressScreen()

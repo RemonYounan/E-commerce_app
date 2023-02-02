@@ -17,60 +17,36 @@ class CheckOutPaymentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
-        if (state.cards.isEmpty) {
-          return SizedBox(
-            height: 150.h,
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  AppStrings.noCards,
-                  style: Theme.of(context).textTheme.titleLarge,
+        final isVisa = state.cards
+                .firstWhere(
+                    (element) => element.cardNumber == state.defaultCard)
+                .type ==
+            CardType.visa;
+        return Row(
+          children: [
+            Container(
+              height: 45.h,
+              width: 70.w,
+              decoration: BoxDecoration(
+                color: isVisa ? Colors.transparent : AppColors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: SvgPicture.asset(
+                  isVisa ? AppAssets.visaIcon : AppAssets.mastercardIcon,
                 ),
-                CustomTextButton(
-                  onPressed: () => Navigator.pushNamed(
-                    context,
-                    AppRoutes.payments,
-                  ),
-                  title: AppStrings.addNewCard,
-                ),
-              ],
+              ),
             ),
-          );
-        } else {
-          final isVisa = state.cards
-                  .firstWhere(
-                      (element) => element.cardNumber == state.defaultCard)
-                  .type ==
-              CardType.visa;
-          return Row(
-            children: [
-              Container(
-                height: 45.h,
-                width: 70.w,
-                decoration: BoxDecoration(
-                  color: isVisa ? Colors.transparent : AppColors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: SvgPicture.asset(
-                    isVisa ? AppAssets.visaIcon : AppAssets.mastercardIcon,
-                  ),
-                ),
-              ),
-              SizedBox(width: 20.w),
-              Text(
-                state.defaultCard
-                    .toString()
-                    .replaceRange(0, 12, '****  ****  ****  '),
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-            ],
-          );
-        }
+            SizedBox(width: 20.w),
+            Text(
+              state.defaultCard
+                  .toString()
+                  .replaceRange(0, 12, '****  ****  ****  '),
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+          ],
+        );
       },
     );
   }

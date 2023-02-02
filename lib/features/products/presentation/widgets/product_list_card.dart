@@ -82,8 +82,8 @@ class ProductListCard extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Expanded(
-                          flex: 3,
+                        SizedBox(
+                          width: 115.w,
                           child: ClipRRect(
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(8),
@@ -101,7 +101,7 @@ class ProductListCard extends StatelessWidget {
                           width: 10.w,
                         ),
                         Expanded(
-                          flex: 7,
+                          flex: 2,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
