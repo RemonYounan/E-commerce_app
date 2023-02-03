@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/constants/app_strings.dart';
+import 'package:ecommerce_app/core/utils/custom_search_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,7 +23,10 @@ class BagScreenAppbarWidget extends StatelessWidget {
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () => showSearch(
+              context: context,
+              delegate: CustomSearchDelegate(),
+            ),
           icon: const Icon(Icons.search),
         ),
       ],

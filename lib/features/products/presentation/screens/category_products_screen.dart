@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/utils/custom_search_delegate.dart';
 import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
 import 'package:ecommerce_app/core/utils/loading_widget.dart';
 
@@ -75,7 +76,10 @@ class _CategoryProductsScreenState extends State<CategoryProductsScreen> {
         title: Text(widget.category.name),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => showSearch(
+              context: context,
+              delegate: CustomSearchDelegate(),
+            ),
             icon: const Icon(Icons.search),
           ),
         ],

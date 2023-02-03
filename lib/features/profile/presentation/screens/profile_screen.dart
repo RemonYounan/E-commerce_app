@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/utils/custom_search_delegate.dart';
 import 'package:ecommerce_app/features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:ecommerce_app/features/order/presentation/blocs/order/order_cubit.dart';
 import 'package:ecommerce_app/features/order/presentation/screens/my_orders_screen.dart';
@@ -58,7 +59,10 @@ class ProfileScreen extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () => showSearch(
+                    context: context,
+                    delegate: CustomSearchDelegate(),
+                  ),
                   icon: const Icon(Icons.search),
                 ),
               ],

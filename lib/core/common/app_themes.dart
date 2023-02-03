@@ -157,7 +157,8 @@ class AppThemes {
         ),
         appBarTheme: AppBarTheme(
           backgroundColor: AppColors.backgroundColorDark,
-          elevation: 0,
+          surfaceTintColor: Colors.transparent,
+          foregroundColor: AppColors.backgroundColorDark,
           scrolledUnderElevation: 0,
           centerTitle: true,
           titleTextStyle: AppTextStyle.getAppTextStyle(

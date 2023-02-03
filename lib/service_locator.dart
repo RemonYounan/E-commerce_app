@@ -3,6 +3,7 @@ import 'package:ecommerce_app/features/order/domain/usecases/create_order_usecas
 import 'package:ecommerce_app/features/order/domain/usecases/get_order_details_usecase.dart';
 import 'package:ecommerce_app/features/order/domain/usecases/get_orders_usecase.dart';
 import 'package:ecommerce_app/features/order/domain/usecases/get_shipping_cost_usecase.dart';
+import 'package:ecommerce_app/features/products/domain/usecases/get_search_products_usecase.dart';
 import 'package:ecommerce_app/features/profile/data/data_sources/profile_api.dart';
 import 'package:ecommerce_app/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:ecommerce_app/features/profile/domain/repositories/profile_repository.dart';
@@ -82,6 +83,7 @@ void init() async {
   sl.registerLazySingleton(() => GetProductDetailsUsecase(sl()));
   sl.registerLazySingleton(() => GetCategoryProductsUsecase(sl()));
   sl.registerLazySingleton(() => GetFavProductsUsecase(sl()));
+  sl.registerLazySingleton(() => GetSearchProductsUsecase(sl()));
   sl.registerLazySingleton<ToggleFavoriteUsecase>(
       () => ToggleFavoriteUsecase(sl()));
   // Repositories
@@ -92,7 +94,8 @@ void init() async {
       () => ProductsRemoteDataSourceImpl(dio: sl()));
   // Bloc
   sl.registerLazySingleton<ProductsCubit>(
-      () => ProductsCubit(sl(), sl(), sl(), sl()));
+      () => ProductsCubit(sl(), sl(), sl(), sl(), sl()));
+
   //! feature : Order
 
   // Usecases

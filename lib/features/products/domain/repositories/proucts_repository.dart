@@ -10,4 +10,5 @@ abstract class ProductsRepository {
   Future<Either<Failure, List<Product>>> getFavProducts(int id);
   Future<Either<Failure, List<Product>>> getCategoryProducts(
       int id, int offset, String orderBy);
+  Future<Either<Failure, List<Product>>> getSearchProducts(String search);
 }

@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce_app/core/error/failures.dart';
 import 'package:ecommerce_app/features/products/data/data_source/products_remote_data_source.dart';
@@ -35,5 +34,11 @@ class ProductsRepositoryImpl implements ProductsRepository {
   @override
   Future<Either<Failure, List<Product>>> getFavProducts(int id) async {
     return await remoteDataSource.getFavProducts(id);
+  }
+
+  @override
+  Future<Either<Failure, List<Product>>> getSearchProducts(
+      String search) async {
+    return await remoteDataSource.getSearchProducts(search);
   }
 }

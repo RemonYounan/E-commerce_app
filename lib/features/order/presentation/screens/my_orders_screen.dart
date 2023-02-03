@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/utils/custom_search_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,7 +38,13 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
         appBar: AppBar(
           title: Text(AppStrings.myOrders),
           actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+            IconButton(
+              onPressed: () => showSearch(
+                context: context,
+                delegate: CustomSearchDelegate(),
+              ),
+              icon: const Icon(Icons.search),
+            )
           ],
           bottom: TabBar(
             splashBorderRadius: BorderRadius.circular(29),

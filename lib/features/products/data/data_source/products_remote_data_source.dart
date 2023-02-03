@@ -17,6 +17,7 @@ abstract class ProductsRemoteDataSource {
   Future<Either<Failure, List<Product>>> getFavProducts(int id);
   Future<Either<Failure, List<Product>>> getCategoryProducts(
       int id, int offset, String orderBy);
+  Future<Either<Failure, List<Product>>> getSearchProducts(String search);
 }
 
 class ProductsRemoteDataSourceImpl implements ProductsRemoteDataSource {
@@ -100,6 +101,23 @@ class ProductsRemoteDataSourceImpl implements ProductsRemoteDataSource {
       }
     } catch (e) {
       return Left(ServerFailure(message: AppStrings.errorOccured));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Product>>> getSearchProducts(
+      String search) async {
+    final response =
+        await dio.get(AppConstants.getProductsPathUrl, queryParameters: {
+      'search': search,
+    });
+    if (response.statusCode == 200) {
+      final List productsJson = response.data;
+      return Right(productsJson
+          .map((product) => ProductModel.fromJson(product))
+          .toList());
+    } else {
+      return Left(ServerFailure(message: response.data['error']));
     }
   }
 }

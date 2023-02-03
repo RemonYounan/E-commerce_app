@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:ecommerce_app/features/products/domain/usecases/get_fav_products_usecase.dart';
+import 'package:ecommerce_app/features/products/domain/usecases/get_search_products_usecase.dart';
 
 import '../../../data/models/banner_model.dart';
 import '../../../data/models/category_model.dart';
@@ -22,12 +23,14 @@ class ProductsCubit extends Cubit<ProductsState> {
     this._getCategoryProductsUsecase,
     this._initDataUsecase,
     this._getFavProductsUsecase,
+    this._getSearchProductsUsecase,
   ) : super(ProductsState());
 
   final GetProductDetailsUsecase _getProductDetailsUsecase;
   final GetCategoryProductsUsecase _getCategoryProductsUsecase;
   final InitDataUsecase _initDataUsecase;
   final GetFavProductsUsecase _getFavProductsUsecase;
+  final GetSearchProductsUsecase _getSearchProductsUsecase;
   ProductsState _state = ProductsState();
 
   final List<Product> _favProducts = [];
@@ -145,6 +148,26 @@ class ProductsCubit extends Cubit<ProductsState> {
   Future<void> refreshFavProducts(int id) async {
     _favProducts.clear();
     getFavProducts(id);
+  }
+
+  Future<void> getSearchProducts(String search) async {
+    emit(ProductsState(status: ProductsStatus.loading));
+    final result = await _getSearchProductsUsecase(search);
+    result.fold(
+        (error) => emit(ProductsState(
+              errorMessage: error.message,
+              status: ProductsStatus.error,
+            )), (products) {
+      _state = _state.copyWith(
+        status: ProductsStatus.loaded,
+        searchProducts: products,
+      );
+      emit(_state);
+    });
+  }
+
+  void clearSearchProducts() {
+    emit(_state.copyWith(searchProducts: []));
   }
 
   void clear() {

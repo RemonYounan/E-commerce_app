@@ -52,7 +52,7 @@ class ProductDetailsScreen extends StatelessWidget {
             return const LoadingWidget();
           } else if (state.status == ProductsStatus.error) {
             return const ErrorMessageWiget();
-          } else {
+          } else if (state.status == ProductsStatus.loaded) {
             final product =
                 state.productsDetails.firstWhere((element) => element.id == id);
             return Column(
@@ -161,6 +161,8 @@ class ProductDetailsScreen extends StatelessWidget {
                 ),
               ],
             );
+          } else {
+            return const SizedBox.shrink();
           }
         },
       ),
