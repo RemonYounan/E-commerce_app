@@ -96,4 +96,11 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(const AddedCardState(cards: []));
     }
   }
+
+  void clear() {
+    cards.clear();
+    defaultCard = 0;
+    CacheHelper.removeData(key: 'CREDIT_CARDS');
+    CacheHelper.removeData(key: 'DEFAULT_CARD');
+  }
 }

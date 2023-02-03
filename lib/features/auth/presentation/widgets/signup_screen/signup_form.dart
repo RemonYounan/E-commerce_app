@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:ecommerce_app/core/utils/show_error_toast.dart';
 import 'package:ecommerce_app/features/auth/presentation/screens/login_screen.dart';
 
 import '../../../../../core/common/app_colors.dart';
@@ -137,15 +138,14 @@ class _SignupFormState extends State<SignupForm> {
             child: BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state is SignUpErrorState) {
-                  fToast.init(context);
-                  showToast(
-                      context: context,
-                      title: state.message,
-                      color: AppColors.errorColor);
+                  showErrorToast(context, state.message);
+                } else if (state is AuthLoginWithLoadingState) {
+                  showLoadingDialog(context);
                 } else if (state is AuthSuccessState) {
                   Provider.of<GlobalProvider>(context, listen: false)
                       .changeIndex(0);
-                  Navigator.pushReplacementNamed(context, AppRoutes.main);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, AppRoutes.main, (route) => false);
                 }
               },
               builder: (context, state) {

@@ -1,5 +1,11 @@
+import 'package:ecommerce_app/features/order/presentation/blocs/cart/cart_cubit.dart';
+import 'package:ecommerce_app/features/order/presentation/blocs/order/order_cubit.dart';
 import 'package:ecommerce_app/features/order/presentation/screens/my_orders_screen.dart';
+import 'package:ecommerce_app/features/profile/presentation/blocs/profile_cubit/profile_cubit.dart';
+import 'package:ecommerce_app/features/profile/presentation/screens/my_reviews_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/payment_methods_screen.dart';
+import 'package:ecommerce_app/features/profile/presentation/screens/promocodes_screen.dart';
+import 'package:ecommerce_app/features/profile/presentation/screens/settings_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/shipping_address_screen.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
 import 'package:ecommerce_app/features/profile/presentation/widgets/profile_screen/profile_item_widget.dart';
@@ -31,9 +37,9 @@ class ProfileScreen extends StatelessWidget {
         'title': AppStrings.paymentMethods,
         'onTap': const PaymentMethodsScreen()
       },
-      {'title': AppStrings.promocodes, 'onTap': const ShippingAddressScreen()},
-      {'title': AppStrings.myReviews, 'onTap': const ShippingAddressScreen()},
-      {'title': AppStrings.settings, 'onTap': const ShippingAddressScreen()},
+      {'title': AppStrings.promocodes, 'onTap': const PromocodesScreen()},
+      {'title': AppStrings.myReviews, 'onTap': const MyReviewsScreen()},
+      {'title': AppStrings.settings, 'onTap': const SettingsScreen()},
     ];
     return Scaffold(
       body: SafeArea(
@@ -79,31 +85,6 @@ class ProfileScreen extends StatelessWidget {
                         title: items[index]['title'],
                         subTitle: '',
                         onTap: items[index]['onTap'],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15.w),
-                      child: Row(
-                        children: [
-                          Text(AppStrings.darkMode),
-                          Switch(
-                            value: Provider.of<GlobalProvider>(context).isDark,
-                            onChanged: (value) => Provider.of<GlobalProvider>(
-                                    context,
-                                    listen: false)
-                                .changeThemeMode(value),
-                          ),
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushReplacementNamed(
-                                  context, AppRoutes.signUp);
-                              BlocProvider.of<AuthCubit>(context).logout();
-                              BlocProvider.of<ProductsCubit>(context).clear();
-                            },
-                            child: Text(AppStrings.logout),
-                          ),
-                        ],
                       ),
                     ),
                   ],

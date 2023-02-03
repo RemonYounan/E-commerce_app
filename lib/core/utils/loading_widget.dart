@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -26,4 +25,22 @@ class LoadingWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+showLoadingDialog(BuildContext context) {
+  AlertDialog alert = AlertDialog(
+    backgroundColor: Colors.transparent,
+    shape: const CircleBorder(),
+    content: SizedBox(
+        height: 55.r,
+        width: 55.r,
+        child: const Center(child: CircularProgressIndicator())),
+  );
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

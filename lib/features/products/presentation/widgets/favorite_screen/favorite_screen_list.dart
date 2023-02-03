@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/constants/enums.dart';
 import 'package:ecommerce_app/core/providers/global_provider.dart';
 import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
@@ -32,14 +33,26 @@ class FavoriteScreenList extends StatelessWidget {
                 return const ErrorMessageWiget();
               } else {
                 final List<Product> favProducts = state.favProducts;
-                final isList = Provider.of<GlobalProvider>(context).listStyle ==
-                    ListStyle.list;
-                return AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 300),
-                  child: isList
-                      ? FavoriteListView(favProducts: favProducts)
-                      : FavoriteGridView(favProducts: favProducts),
-                );
+                if (favProducts.isNotEmpty) {
+                  final isList =
+                      Provider.of<GlobalProvider>(context).listStyle ==
+                          ListStyle.list;
+                  return AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    child: isList
+                        ? FavoriteListView(favProducts: favProducts)
+                        : FavoriteGridView(favProducts: favProducts),
+                  );
+                } else {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    child: Center(
+                        child: Text(
+                      AppStrings.noFavProducts,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    )),
+                  );
+                }
               }
             },
           ),

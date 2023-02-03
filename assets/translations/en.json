@@ -113,11 +113,14 @@
     "cvv" : "CVV",
     "no" : "No",
     "yes" : "Yes",
+    "no_saved_address" : "You have no saved address",
+    "no_saved_address_content" : "Do you want to add new address now?",
     "card_holder_name" : "Card Holder Name",
     "delete_address" : "Delete address ?",
     "delete_address_content" : "Are you sure you want to delete this address ?",
     "delete_card" : "Delete card ?",
     "delete_card_content" : "Are you sure you want to delete this card ?",
-    "use_as_shipping_address" : "Use as the shipping address"
+    "use_as_shipping_address" : "Use as the shipping address",
+    "no_fav_products" : "There is no favorite products here yet !"
 
 }

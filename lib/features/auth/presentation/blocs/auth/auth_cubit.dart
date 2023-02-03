@@ -82,6 +82,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> loginWithFacebook() async {
+    emit(AuthLoginWithLoadingState());
     final result = await loginWithFacebookUsecase();
     result.fold((error) {
       emit(LoginErrorState(error.message));
@@ -97,6 +98,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> loginWithGoogle() async {
+    emit(AuthLoginWithLoadingState());
     final result = await loginWithGoogleUsecase();
     result.fold((error) {
       emit(LoginErrorState(error.message));
@@ -183,6 +185,11 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoadingState());
     _user.defaultAddresse = key;
     emit(AuthSuccessState(user: _user));
+  }
+
+  bool hasAddress() {
+    final defaultAddress = _user.defaultAddresse;
+    return _user.addresses[defaultAddress] != null;
   }
 
   Map<String, dynamic> getDefaultAddress() {

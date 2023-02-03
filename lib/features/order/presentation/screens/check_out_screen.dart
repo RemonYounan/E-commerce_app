@@ -65,7 +65,7 @@ class CheckOutScreen extends StatelessWidget {
               ),
               RadioListTile(
                 value: 'cod',
-                title: const Text('Cache on delivery'),
+                title: Text(AppStrings.cashOnDelivery),
                 groupValue: 'cod',
                 onChanged: (value) {},
               ),

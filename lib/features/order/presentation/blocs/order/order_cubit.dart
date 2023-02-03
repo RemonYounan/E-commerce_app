@@ -113,4 +113,9 @@ class OrderCubit extends Cubit<OrderState> {
       });
     }
   }
+
+  void clear() {
+    emit(OrderLoadingState());
+    _ordersDetails.clear();
+  }
 }

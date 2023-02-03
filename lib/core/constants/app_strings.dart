@@ -111,4 +111,7 @@ class AppStrings {
   static final cashOnDelivery = 'cash_on_delivery'.tr();
   static final discount = 'discount'.tr();
   static final shippingCost = 'shipping_cost'.tr();
+  static final noFavProducts = 'no_fav_products'.tr();
+  static final noSavedAddresses = 'no_saved_address'.tr();
+  static final noSavedAddressesContent = 'no_saved_address_content'.tr();
 }

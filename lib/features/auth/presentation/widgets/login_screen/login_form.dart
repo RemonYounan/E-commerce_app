@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:ecommerce_app/core/utils/loading_widget.dart';
+import 'package:ecommerce_app/core/utils/show_error_toast.dart';
 import 'package:ecommerce_app/features/auth/presentation/screens/forgot_password_screen.dart';
 
 import '../../../../../core/common/app_colors.dart';
@@ -110,11 +111,9 @@ class _LoginFormState extends State<LoginForm> {
             child: BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state is LoginErrorState) {
-                  fToast.init(context);
-                  showToast(
-                      context: context,
-                      title: state.message,
-                      color: AppColors.errorColor);
+                  showErrorToast(context, state.message);
+                } else if (state is AuthLoginWithLoadingState) {
+                  showLoadingDialog(context);
                 } else if (state is AuthSuccessState) {
                   Navigator.pushNamedAndRemoveUntil(
                       context, AppRoutes.main, (route) => false);

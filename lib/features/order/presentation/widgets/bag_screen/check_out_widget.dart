@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:ecommerce_app/core/common/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -117,15 +118,38 @@ class CheckOutWidget extends StatelessWidget {
                     openBuilder: (context, action) => const CheckOutScreen(),
                     closedBuilder: (context, action) => CustomButton(
                       onPressed: () {
-                        final address = BlocProvider.of<AuthCubit>(context)
-                            .getDefaultAddress();
-                        if (address.isNotEmpty) {
-                          BlocProvider.of<OrderCubit>(context).getShippingCost(
-                            address['billing_country'],
-                            address['billing_country'],
+                        final hasAddress =
+                            BlocProvider.of<AuthCubit>(context).hasAddress();
+                        if (hasAddress) {
+                          final address = BlocProvider.of<AuthCubit>(context)
+                              .getDefaultAddress();
+                          if (address.isNotEmpty) {
+                            BlocProvider.of<OrderCubit>(context)
+                                .getShippingCost(
+                              address['billing_country'],
+                              address['billing_country'],
+                            );
+                          }
+                          action();
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text(AppStrings.noSavedAddresses),
+                              content: Text(AppStrings.noSavedAddressesContent),
+                              actions: [
+                                TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: Text(AppStrings.no)),
+                                TextButton(
+                                    onPressed: () =>
+                                        Navigator.pushReplacementNamed(context,
+                                            AppRoutes.addShippingAddress),
+                                    child: Text(AppStrings.yes)),
+                              ],
+                            ),
                           );
                         }
-                        action();
                       },
                       child: Text(AppStrings.checkOut.toUpperCase()),
                     ),
