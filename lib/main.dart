@@ -19,10 +19,10 @@ import 'core/helpers/bloc_observer.dart';
 import 'features/products/presentation/blocs/products_cubit/products_cubit.dart';
 
 void main() async {
-  di.init();
-  Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  di.init();
+  Bloc.observer = MyBlocObserver();
   await CacheHelper.init();
   runApp(
     EasyLocalization(
@@ -65,7 +65,8 @@ class MyApp extends StatelessWidget {
             create: (context) => di.sl<OrderCubit>(),
           ),
           BlocProvider<ProfileCubit>(
-            create: (context) => di.sl<ProfileCubit>()..getCardsSharedPrefrence(),
+            create: (context) =>
+                di.sl<ProfileCubit>()..getCardsSharedPrefrence(),
           ),
         ],
         child: MaterialApp(

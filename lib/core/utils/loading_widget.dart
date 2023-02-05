@@ -28,19 +28,14 @@ class LoadingWidget extends StatelessWidget {
 }
 
 showLoadingDialog(BuildContext context) {
-  AlertDialog alert = AlertDialog(
-    backgroundColor: Colors.transparent,
-    shape: const CircleBorder(),
-    content: SizedBox(
-        height: 55.r,
-        width: 55.r,
-        child: const Center(child: CircularProgressIndicator())),
-  );
   showDialog(
     barrierDismissible: false,
     context: context,
     builder: (BuildContext context) {
-      return alert;
+      return const AlertDialog(
+        backgroundColor: Colors.transparent,
+        content: LoadingWidget(),
+      );
     },
   );
 }

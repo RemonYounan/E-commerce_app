@@ -1,28 +1,19 @@
 import 'package:ecommerce_app/core/utils/custom_search_delegate.dart';
-import 'package:ecommerce_app/features/order/presentation/blocs/cart/cart_cubit.dart';
-import 'package:ecommerce_app/features/order/presentation/blocs/order/order_cubit.dart';
 import 'package:ecommerce_app/features/order/presentation/screens/my_orders_screen.dart';
-import 'package:ecommerce_app/features/profile/presentation/blocs/profile_cubit/profile_cubit.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/my_reviews_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/payment_methods_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/promocodes_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/settings_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/shipping_address_screen.dart';
-import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
 import 'package:ecommerce_app/features/profile/presentation/widgets/profile_screen/profile_item_widget.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-import '../../../../core/common/app_routes.dart';
 import '../../../../core/constants/app_strings.dart';
 
-import '../../../../core/providers/global_provider.dart';
-import '../../../auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/profile_screen/image_and_name_section.dart';
-import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);

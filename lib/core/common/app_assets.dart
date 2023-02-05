@@ -2,6 +2,7 @@ const iconsPath = 'assets/icons';
 const imagesPath = 'assets/images';
 
 class AppAssets {
+  static const String appIcon = "$iconsPath/app_icon.png";
   static const String googleIcon = "$iconsPath/google-icon.svg";
   static const String facebookIcon = "$iconsPath/facebook-icon.svg";
   static const String masterCard = "$imagesPath/master_card.svg";

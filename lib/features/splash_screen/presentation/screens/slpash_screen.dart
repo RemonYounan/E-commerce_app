@@ -3,12 +3,13 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:ecommerce_app/core/common/app_assets.dart';
 import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
-import 'package:ecommerce_app/core/utils/loading_widget.dart';
 import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/common/app_routes.dart';
 import '../../../auth/presentation/blocs/auth/auth_cubit.dart';
@@ -85,7 +86,14 @@ class _SlpashScreenState extends State<SlpashScreen> {
             }
           }
         },
-        child: const LoadingWidget(),
+        child: Center(
+          child: Image.asset(
+            AppAssets.appIcon,
+            height: 150.r,
+            width: 150.r,
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }
