@@ -5,7 +5,6 @@ import 'package:ecommerce_app/features/products/presentation/screens/product_det
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_gifs/loading_gifs.dart';
 
 import '../../../../core/common/app_colors.dart';
 import '../../../../core/common/app_routes.dart';
@@ -79,9 +78,7 @@ class ProductCartCard extends StatelessWidget {
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
                                   const PlaceholderLoadingWidget(),
-                            )
-                          
-                            ),
+                            )),
                       ),
                       Expanded(
                         flex: 7,

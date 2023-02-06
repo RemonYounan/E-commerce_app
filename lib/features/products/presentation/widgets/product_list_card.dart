@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_gifs/loading_gifs.dart';
 
 class ProductListCard extends StatelessWidget {
   const ProductListCard({

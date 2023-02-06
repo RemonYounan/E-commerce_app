@@ -4,7 +4,6 @@ import 'package:ecommerce_app/core/utils/placeholder_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_gifs/loading_gifs.dart';
 
 import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/constants/enums.dart';
@@ -55,9 +54,7 @@ class OrderItemWidget extends StatelessWidget {
                       fit: BoxFit.cover,
                       placeholder: (context, url) =>
                           const PlaceholderLoadingWidget(),
-                    )
-                    
-                    ),
+                    )),
               ),
               SizedBox(width: 20.w),
               Expanded(

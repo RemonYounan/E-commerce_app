@@ -5,7 +5,6 @@ import 'package:ecommerce_app/core/utils/placeholder_loading_widget.dart';
 import 'package:ecommerce_app/features/order/presentation/widgets/order_details_screen/order_info_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_gifs/loading_gifs.dart';
 
 import '../../../../../core/common/app_colors.dart';
 import '../../../../../core/constants/app_strings.dart';
@@ -95,9 +94,7 @@ class OrderDetailsWidget extends StatelessWidget {
                               fit: BoxFit.cover,
                               placeholder: (context, url) =>
                                   const PlaceholderLoadingWidget(),
-                            )
-                            
-                            ),
+                            )),
                       ),
                       SizedBox(width: 15.w),
                       Expanded(

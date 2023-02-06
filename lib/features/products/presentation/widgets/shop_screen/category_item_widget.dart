@@ -4,7 +4,6 @@ import 'package:ecommerce_app/core/utils/placeholder_loading_widget.dart';
 import 'package:ecommerce_app/features/products/presentation/screens/category_products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_gifs/loading_gifs.dart';
 
 import '../../../../../core/common/app_colors.dart';
 import '../../../../../core/common/app_routes.dart';
