@@ -76,13 +76,14 @@ class ProductDetailsScreen extends StatelessWidget {
                                 children: [
                               ImagesSliderWidget(
                                 images: product.images,
+                                id: product.id,
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 15.w, vertical: 14.h),
                                 child: ColorAndSizeSection(
-                                    attributes: product.attributes,
-                                    id: product.id),
+                                  attributes: product.attributes,
+                                ),
                               ),
                               SizedBox(height: 20.h),
                               Padding(

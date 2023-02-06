@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/core/common/app_routes.dart';
+import 'package:ecommerce_app/core/utils/placeholder_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,15 +48,16 @@ class OrderItemWidget extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: ClipRRect(
-                  borderRadius:
-                      const BorderRadius.horizontal(left: Radius.circular(10)),
-                  child: FadeInImage.assetNetwork(
-                    placeholder: cupertinoActivityIndicatorSmall,
-                    placeholderFit: BoxFit.scaleDown,
-                    fit: BoxFit.cover,
-                    image: order.img,
-                  ),
-                ),
+                    borderRadius: const BorderRadius.horizontal(
+                        left: Radius.circular(10)),
+                    child: CachedNetworkImage(
+                      imageUrl: order.img,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) =>
+                          const PlaceholderLoadingWidget(),
+                    )
+                    
+                    ),
               ),
               SizedBox(width: 20.w),
               Expanded(

@@ -1,6 +1,5 @@
 import 'package:animations/animations.dart';
 import 'package:ecommerce_app/core/common/app_colors.dart';
-import 'package:ecommerce_app/core/common/app_routes.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/providers/global_provider.dart';
 import 'package:ecommerce_app/core/utils/custom_button.dart';
@@ -43,6 +42,7 @@ class SubmitOrderButton extends StatelessWidget {
               BlocProvider.of<CartCubit>(context).clearCart();
               Provider.of<GlobalProvider>(context, listen: false)
                   .changeIndex(0);
+              Navigator.pop(context);
               action();
             } else if (state is OrderErrorState) {
               fToast.init(context);

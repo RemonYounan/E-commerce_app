@@ -30,9 +30,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: () async {
-            final id = BlocProvider.of<AuthCubit>(context).user.id;
-            await BlocProvider.of<ProductsCubit>(context)
-                .refreshFavProducts(id);
+            await BlocProvider.of<ProductsCubit>(context).refreshFavProducts();
           },
           color: AppColors.primaryColor,
           child: CustomScrollView(

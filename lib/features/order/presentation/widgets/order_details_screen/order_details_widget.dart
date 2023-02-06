@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/core/utils/extensions.dart';
+import 'package:ecommerce_app/core/utils/placeholder_loading_widget.dart';
 import 'package:ecommerce_app/features/order/presentation/widgets/order_details_screen/order_info_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -86,15 +88,16 @@ class OrderDetailsWidget extends StatelessWidget {
                       Expanded(
                         flex: 3,
                         child: ClipRRect(
-                          borderRadius: const BorderRadius.horizontal(
-                              left: Radius.circular(10)),
-                          child: FadeInImage.assetNetwork(
-                            placeholder: cupertinoActivityIndicatorSmall,
-                            placeholderFit: BoxFit.scaleDown,
-                            fit: BoxFit.cover,
-                            image: product.img,
-                          ),
-                        ),
+                            borderRadius: const BorderRadius.horizontal(
+                                left: Radius.circular(10)),
+                            child: CachedNetworkImage(
+                              imageUrl: product.img,
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) =>
+                                  const PlaceholderLoadingWidget(),
+                            )
+                            
+                            ),
                       ),
                       SizedBox(width: 15.w),
                       Expanded(

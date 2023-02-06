@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                     children: AnimationConfiguration.toStaggeredList(
                       duration: const Duration(milliseconds: 400),
                       childAnimationBuilder: (child) => ScaleAnimation(
-                          // verticalOffset: 50.0,
+                          
                           child: FadeInAnimation(
                         child: child,
                       )),

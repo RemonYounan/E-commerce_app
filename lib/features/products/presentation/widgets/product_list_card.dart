@@ -1,7 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:animations/animations.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/core/common/app_colors.dart';
-import 'package:ecommerce_app/core/common/app_routes.dart';
+import 'package:ecommerce_app/core/utils/placeholder_loading_widget.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
 import 'package:ecommerce_app/features/products/presentation/screens/product_details_screen.dart';
@@ -85,17 +85,16 @@ class ProductListCard extends StatelessWidget {
                         SizedBox(
                           width: 115.w,
                           child: ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(8),
-                                bottomLeft: Radius.circular(8)),
-                            child: FadeInImage.assetNetwork(
-                              placeholder: cupertinoActivityIndicatorSmall,
-                              image: product.img,
-                              fit: BoxFit.cover,
-                              placeholderFit: BoxFit.scaleDown,
-                              height: 115.h,
-                            ),
-                          ),
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(8),
+                                  bottomLeft: Radius.circular(8)),
+                              child: CachedNetworkImage(
+                                imageUrl: product.img,
+                                height: 115.h,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) =>
+                                    const PlaceholderLoadingWidget(),
+                              )),
                         ),
                         SizedBox(
                           width: 10.w,

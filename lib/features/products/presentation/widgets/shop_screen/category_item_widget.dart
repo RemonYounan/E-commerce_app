@@ -1,4 +1,6 @@
 import 'package:animations/animations.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_app/core/utils/placeholder_loading_widget.dart';
 import 'package:ecommerce_app/features/products/presentation/screens/category_products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,18 +59,20 @@ class CategoryItemWidget extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                    child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                    child: CachedNetworkImage(
+                      imageUrl: category.img,
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
+                      placeholder: (context, url) =>
+                          const PlaceholderLoadingWidget(),
+                    ),
                   ),
-                  child: FadeInImage.assetNetwork(
-                    placeholder: cupertinoActivityIndicatorSmall,
-                    image: category.img,
-                    fit: BoxFit.cover,
-                    alignment: Alignment.topCenter,
-                  ),
-                ))
+                ),
               ],
             ),
           ),

@@ -1,16 +1,16 @@
 import 'package:animations/animations.dart';
-import 'package:ecommerce_app/features/products/presentation/screens/product_details_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_gifs/loading_gifs.dart';
+
+import 'package:ecommerce_app/core/utils/placeholder_loading_widget.dart';
+import 'package:ecommerce_app/features/products/presentation/screens/product_details_screen.dart';
 
 import '../../../../core/common/app_colors.dart';
-import '../../../../core/common/app_routes.dart';
 import '../../domain/entities/product.dart';
 import '../blocs/products_cubit/products_cubit.dart';
-
 import 'rate_widget.dart';
 
 class ProductGridCard extends StatelessWidget {
@@ -70,13 +70,13 @@ class ProductGridCard extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: FadeInImage.assetNetwork(
-                        placeholder: cupertinoActivityIndicatorSmall,
-                        image: product.img,
-                        fit: BoxFit.cover,
-                        height: 180.h,
+                      child: CachedNetworkImage(
+                        imageUrl: product.img,
+                        height: 170.h,
                         width: 162.w,
-                        placeholderFit: BoxFit.scaleDown,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) =>
+                            const PlaceholderLoadingWidget(),
                       ),
                     ),
                     SizedBox(height: 2.h),
@@ -151,7 +151,7 @@ class ProductGridCard extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 160.h,
+                  top: 150.h,
                   right: 1,
                   child: icon,
                 ),

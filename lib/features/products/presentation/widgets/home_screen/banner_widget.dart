@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:ecommerce_app/core/utils/loading_widget.dart';
+import 'package:ecommerce_app/core/utils/placeholder_loading_widget.dart';
 
 import '../../../../../core/common/app_colors.dart';
 import '../../blocs/products_cubit/products_cubit.dart';
@@ -50,33 +52,31 @@ class _BannerWidgetState extends State<BannerWidget> {
                     itemCount: banners.length,
                     itemBuilder: (context, index, realIndex) => Stack(
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: FadeInImage.assetNetwork(
-                            placeholder: cupertinoActivityIndicatorSmall,
-                            image: banners[index].img,
-                            fit: BoxFit.cover,
-                            placeholderFit: BoxFit.scaleDown,
-                            height: 200.h,
-                            width: double.infinity,
+                        Positioned.fill(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: CachedNetworkImage(
+                              imageUrl: banners[index].img,
+                              placeholder: (context, url) =>
+                                  const PlaceholderLoadingWidget(),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         Positioned(
                           left: 16.w,
                           bottom: 15.h,
-                          child: Container(
-                            padding: const EdgeInsets.all(4),
-                            color: AppColors.lightBlack.withOpacity(0.4),
-                            child: Text(
-                              banners[index].title,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineLarge!
-                                  .copyWith(
-                                    color: AppColors.white,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                            ),
+                          child: Text(
+                            banners[index].title,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineLarge!
+                                .copyWith(
+                                  color: AppColors.white,
+                                  fontWeight: FontWeight.w900,
+                                ),
                           ),
                         ),
                       ],

@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/core/utils/custom_search_delegate.dart';
+import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
@@ -63,10 +65,15 @@ class FavoriteScreenAppBar extends StatelessWidget {
       ),
       actions: [
         IconButton(
+          onPressed: () =>
+              BlocProvider.of<ProductsCubit>(context).refreshFavProducts(),
+          icon: const Icon(Icons.refresh),
+        ),
+        IconButton(
           onPressed: () => showSearch(
-              context: context,
-              delegate: CustomSearchDelegate(),
-            ),
+            context: context,
+            delegate: CustomSearchDelegate(),
+          ),
           icon: const Icon(Icons.search),
         ),
       ],

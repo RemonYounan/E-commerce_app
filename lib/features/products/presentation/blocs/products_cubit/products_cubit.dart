@@ -33,6 +33,7 @@ class ProductsCubit extends Cubit<ProductsState> {
   final GetSearchProductsUsecase _getSearchProductsUsecase;
   ProductsState _state = ProductsState();
 
+  late int userId;
   final List<Product> _favProducts = [];
   final List<ProductDetails> _productsDetails = [];
   Map<String, dynamic> _addressFields = {};
@@ -128,6 +129,7 @@ class ProductsCubit extends Cubit<ProductsState> {
   Future<void> getFavProducts(int id) async {
     if (_favProducts.isEmpty) {
       emit(ProductsState(status: ProductsStatus.loading));
+      userId = id;
       final result = await _getFavProductsUsecase(id);
       result.fold(
         (error) => emit(ProductsState(
@@ -145,9 +147,9 @@ class ProductsCubit extends Cubit<ProductsState> {
     }
   }
 
-  Future<void> refreshFavProducts(int id) async {
+  Future<void> refreshFavProducts() async {
     _favProducts.clear();
-    getFavProducts(id);
+    getFavProducts(userId);
   }
 
   Future<void> getSearchProducts(String search) async {
