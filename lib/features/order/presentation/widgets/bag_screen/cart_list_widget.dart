@@ -1,5 +1,5 @@
-import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/utils/loading_widget.dart';
+import 'package:ecommerce_app/features/order/presentation/widgets/bag_screen/bag_empty_widget.dart';
 import 'package:ecommerce_app/features/order/presentation/widgets/product_cart_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,15 +50,7 @@ class CartListWidget extends StatelessWidget {
         } else if (state is CartLoadingState) {
           return const LoadingWidget();
         } else if (state is CartEmptyState) {
-          return SizedBox(
-            height: 300.h,
-            child: Center(
-              child: Text(
-                AppStrings.bagEmpty,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ),
-          );
+          return const EmptyBagWidget();
         } else {
           return const SizedBox.shrink();
         }

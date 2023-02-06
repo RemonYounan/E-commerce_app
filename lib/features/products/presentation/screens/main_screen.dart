@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
+import 'package:ecommerce_app/features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -82,9 +83,23 @@ class _MainScreenState extends State<MainScreen> {
                       : Icons.shopping_cart_outlined),
                   label: AppStrings.shop),
               BottomNavigationBarItem(
-                  icon: Icon(currentIndex == 2
-                      ? Icons.shopping_bag_rounded
-                      : Icons.shopping_bag_outlined),
+                  icon: BlocBuilder<CartCubit, CartState>(
+                    builder: (context, state) {
+                      if (state is CartLoadedState) {
+                        return Badge(
+                          label: Text(state.cart.products.length.toString()),
+                          textStyle: Theme.of(context).textTheme.labelMedium,
+                          child: Icon(currentIndex == 2
+                              ? Icons.shopping_bag_rounded
+                              : Icons.shopping_bag_outlined),
+                        );
+                      } else {
+                        return Icon(currentIndex == 2
+                            ? Icons.shopping_bag_rounded
+                            : Icons.shopping_bag_outlined);
+                      }
+                    },
+                  ),
                   label: AppStrings.bag),
               BottomNavigationBarItem(
                   icon: Icon(currentIndex == 3

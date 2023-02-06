@@ -60,7 +60,8 @@ class AppStrings {
   static final deleteFromList = 'delete_from_list'.tr();
   static final addToFavorites = 'add_to_favorites'.tr();
   static final more = 'more'.tr();
-  static final bagEmpty = 'bag_empty'.tr();
+  static final bagEmptyTitle = 'bag_empty_title'.tr();
+  static final bagEmptyDiscription = 'bag_empty_disc'.tr();
   static final submitOrder = 'sumbmit_order'.tr();
   static final order = 'order'.tr();
   static final delivery = 'delivery'.tr();
@@ -75,8 +76,10 @@ class AppStrings {
   static final address = 'address'.tr();
   static final change = 'change'.tr();
   static final addShippingAddress = 'add_shipping_address'.tr();
-  static final noAddresses = 'no_addresses'.tr();
-  static final noCards = 'no_cards'.tr();
+  static final noAddressesTitle = 'no_addresses_title'.tr();
+  static final noAddressesDisc = 'no_addresses_disc'.tr();
+  static final noCardsTitle = 'no_cards_title'.tr();
+  static final noCardsDisc = 'no_cards_disc'.tr();
   static final useAsShippingAddress = 'use_as_shipping_address'.tr();
   static final deleteAddress = 'delete_address'.tr();
   static final deleteAddressContent = 'delete_address_content'.tr();
@@ -103,7 +106,10 @@ class AppStrings {
   static final cancelled = 'cancelled'.tr();
   static final orderNo = 'order_no'.tr();
   static final details = 'details'.tr();
-  static final noOrders = 'no_orders'.tr();
+  static final noOrdersTitle = 'no_orders_title'.tr();
+  static final noOrdersDisc = 'no_orders_disc'.tr();
+  static final noResultTitle = 'no_result_title'.tr();
+  static final noResultDisc = 'no_result_disc'.tr();
   static final units = 'units'.tr();
   static final orderDetails = 'order_details'.tr();
   static final shippingAddresse = 'shipping_addresse'.tr();
@@ -111,7 +117,8 @@ class AppStrings {
   static final cashOnDelivery = 'cash_on_delivery'.tr();
   static final discount = 'discount'.tr();
   static final shippingCost = 'shipping_cost'.tr();
-  static final noFavProducts = 'no_fav_products'.tr();
+  static final noFavorits = 'no_favorits'.tr();
+  static final noFavoritsDiscription = 'no_favorits_discription'.tr();
   static final noSavedAddresses = 'no_saved_address'.tr();
   static final noSavedAddressesContent = 'no_saved_address_content'.tr();
 }

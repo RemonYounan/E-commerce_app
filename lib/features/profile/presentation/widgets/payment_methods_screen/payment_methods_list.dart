@@ -1,9 +1,10 @@
+import 'package:ecommerce_app/core/common/app_assets.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
+import 'package:ecommerce_app/core/utils/empty_state_widget.dart';
 import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
 import 'package:ecommerce_app/core/utils/loading_widget.dart';
 import 'package:ecommerce_app/features/profile/presentation/blocs/profile_cubit/profile_cubit.dart';
 import 'package:ecommerce_app/features/profile/presentation/widgets/payment_methods_screen/payment_card_widget.dart';
-import 'package:ecommerce_app/features/profile/presentation/widgets/shipping_addres_screen/no_addresses_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,14 +50,10 @@ class PaymentMethodsList extends StatelessWidget {
                                 card: state.cards[index],
                               ),
                             )
-                          : SizedBox(
-                              height: 250.h,
-                              child: Center(
-                                child: Text(
-                                  AppStrings.noCards,
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                ),
-                              ),
+                          : EmptyStateWidget(
+                              imgPath: AppAssets.noPayments,
+                              title: AppStrings.noCardsTitle,
+                              discription: AppStrings.noCardsDisc,
                             );
                     }
                   },

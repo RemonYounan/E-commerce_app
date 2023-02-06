@@ -78,7 +78,10 @@
     "processing" : "Processing",
     "cancelled" : "Cancelled",
     "order_no" : "Order No:",
-    "no_orders" : "There is no orders here yet !",
+    "no_orders_title" : "No Orders",
+    "no_orders_disc" : "Looks like you haven't ordered anything yet",
+    "no_result_title" : "No Result",
+    "no_result_disc" : "Sorry, there are no results for this search. Please try another phrase",
     "details" : "Details",
     "units" : "Units:",
     "payment_method" : "Payment method:",
@@ -97,9 +100,12 @@
     "full_name" : "Full Name",
     "add_shipping_address" : "Add Shipping Address",
     "sumbmit_order" : "SUBMIT ORDER",
-    "bag_empty" : "Bag is empty, start adding products.",
-    "no_addresses" : "You have no saved addresses.",
-    "no_cards" : "You have no saved cards.",
+    "bag_empty_title" : "Your bag is Empty",
+    "bag_empty_disc" : "Looks like you haven't added\n anything to your bag yet",
+    "no_addresses_title" : "No Addresses",
+    "no_addresses_disc" : "Click on the add button to add new address",
+    "no_cards_title" : "No Cards",
+    "no_cards_disc" : "Click on the add button to add new card",
     "summary" : "Summary:",
     "delivery" : "Delivery:",
     "payment" : "Payment",
@@ -121,6 +127,7 @@
     "delete_card" : "Delete card ?",
     "delete_card_content" : "Are you sure you want to delete this card ?",
     "use_as_shipping_address" : "Use as the shipping address",
-    "no_fav_products" : "There is no favorite products here yet !"
+    "no_favorits" : "No Favorites",
+    "no_favorits_discription" : "You can add an item to your favorites by clicking 'favorite Icon'"
 
 }

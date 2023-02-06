@@ -91,11 +91,11 @@ class CartCubit extends Cubit<CartState> {
     _cart.products.removeWhere((element) => element.id == id);
     emit(ProductRemovedState());
     if (_cart.products.isEmpty) {
-      emit(CartEmptyState());
+      clearCart();
     } else {
       emit(CartLoadedState(cart: _cart));
+      saveCartInSharedPrefernce();
     }
-    saveCartInSharedPrefernce();
   }
 
   void saveCartInSharedPrefernce() {

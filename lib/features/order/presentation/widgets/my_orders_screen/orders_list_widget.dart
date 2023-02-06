@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/core/common/app_assets.dart';
+import 'package:ecommerce_app/core/utils/empty_state_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,11 +49,10 @@ class OrdersListWidget extends StatelessWidget {
                 ),
               ),
             )
-          : Center(
-              child: Text(
-                AppStrings.noOrders,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
+          : EmptyStateWidget(
+              imgPath: AppAssets.emptyBag,
+              title: AppStrings.noOrdersTitle,
+              discription: AppStrings.noOrdersDisc,
             ),
     );
   }

@@ -1,6 +1,8 @@
+import 'package:ecommerce_app/core/common/app_assets.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
+import 'package:ecommerce_app/core/utils/empty_state_widget.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:ecommerce_app/features/profile/presentation/widgets/shipping_addres_screen/address_card_widget.dart';
-import 'package:ecommerce_app/features/profile/presentation/widgets/shipping_addres_screen/no_addresses_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,27 +29,27 @@ class AddressesListWidget extends StatelessWidget {
           },
         );
         return SingleChildScrollView(
-          child: AnimationLimiter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-              child: Column(
-                children: AnimationConfiguration.toStaggeredList(
-                    childAnimationBuilder: (child) => ScaleAnimation(
-                          child: FadeInAnimation(
-                            child: child,
-                          ),
-                        ),
-                    children: addressesWidgets.isNotEmpty
-                        ? addressesWidgets
-                        : [
-                            SizedBox(
-                              height: 250.h,
-                              child: const NoAddressesWidget(),
-                            )
-                          ]),
-              ),
-            ),
-          ),
+          child: addressesWidgets.isNotEmpty
+              ? AnimationLimiter(
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+                    child: Column(
+                      children: AnimationConfiguration.toStaggeredList(
+                          childAnimationBuilder: (child) => ScaleAnimation(
+                                child: FadeInAnimation(
+                                  child: child,
+                                ),
+                              ),
+                          children: addressesWidgets),
+                    ),
+                  ),
+                )
+              : EmptyStateWidget(
+                  imgPath: AppAssets.noResults,
+                  title: AppStrings.noAddressesTitle,
+                  discription: AppStrings.noAddressesDisc,
+                ),
         );
       },
     );

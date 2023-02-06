@@ -1,4 +1,7 @@
+import 'package:ecommerce_app/core/common/app_assets.dart';
 import 'package:ecommerce_app/core/common/app_colors.dart';
+import 'package:ecommerce_app/core/constants/app_strings.dart';
+import 'package:ecommerce_app/core/utils/empty_state_widget.dart';
 import 'package:ecommerce_app/core/utils/loading_widget.dart';
 import 'package:ecommerce_app/core/utils/show_error_toast.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
@@ -85,18 +88,24 @@ class SearchResultsList extends StatelessWidget {
           return const LoadingWidget();
         } else if (state.status == ProductsStatus.loaded) {
           final products = state.searchProducts;
-          return ListView.builder(
-            itemCount: products.length,
-            itemBuilder: (context, index) {
-              final product = products[index];
-              return ProductListCard(
-                product: product,
-                icon: FavoriteButton(
-                  id: product.id,
-                ),
-              );
-            },
-          );
+          return products.isNotEmpty
+              ? ListView.builder(
+                  itemCount: products.length,
+                  itemBuilder: (context, index) {
+                    final product = products[index];
+                    return ProductListCard(
+                      product: product,
+                      icon: FavoriteButton(
+                        id: product.id,
+                      ),
+                    );
+                  },
+                )
+              : EmptyStateWidget(
+                  imgPath: AppAssets.noResults,
+                  title: AppStrings.noResultTitle,
+                  discription: AppStrings.noResultDisc,
+                );
         } else {
           return const SizedBox.shrink();
         }

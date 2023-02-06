@@ -28,6 +28,10 @@ class AppThemes {
             color: AppColors.lightBlack,
           ),
         ),
+        switchTheme: const SwitchThemeData(
+          trackColor: MaterialStatePropertyAll(AppColors.primaryColor),
+          
+        ),
         cardTheme: CardTheme(
           color: AppColors.white,
           surfaceTintColor: Colors.transparent,
@@ -142,6 +146,9 @@ class AppThemes {
         primaryColor: AppColors.primaryColorDark,
         indicatorColor: AppColors.primaryColorDark,
         textTheme: getTextTheme(isDark: true),
+        switchTheme: const SwitchThemeData(
+          trackColor: MaterialStatePropertyAll(AppColors.primaryColor),
+        ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: AppColors.whiteDark,
           elevation: 0,

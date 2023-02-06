@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../core/common/app_colors.dart';
 import '../../../../../core/common/app_routes.dart';
@@ -20,9 +21,9 @@ class ImageAndNameSection extends StatelessWidget {
         if (state is AuthSuccessState) {
           return Row(
             children: [
-              CircleAvatar(
-                radius: 32.r,
-                backgroundColor: AppColors.primaryColor,
+              FaIcon(
+                FontAwesomeIcons.circleUser,
+                size: 40.r,
               ),
               SizedBox(width: 20.w),
               Column(

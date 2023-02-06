@@ -1,6 +1,9 @@
+import 'package:ecommerce_app/core/common/app_assets.dart';
+import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/constants/enums.dart';
 import 'package:ecommerce_app/core/providers/global_provider.dart';
+import 'package:ecommerce_app/core/utils/empty_state_widget.dart';
 import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
 import 'package:ecommerce_app/core/utils/loading_widget.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product.dart';
@@ -44,13 +47,10 @@ class FavoriteScreenList extends StatelessWidget {
                         : FavoriteGridView(favProducts: favProducts),
                   );
                 } else {
-                  return SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.5,
-                    child: Center(
-                        child: Text(
-                      AppStrings.noFavProducts,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    )),
+                  return EmptyStateWidget(
+                    imgPath: AppAssets.noResults,
+                    title: AppStrings.noFavorits,
+                    discription: AppStrings.noFavoritsDiscription,
                   );
                 }
               }

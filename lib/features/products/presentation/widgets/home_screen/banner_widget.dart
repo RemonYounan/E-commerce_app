@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -18,17 +19,12 @@ class BannerWidget extends StatefulWidget {
 }
 
 class _BannerWidgetState extends State<BannerWidget> {
-  late PageController _controller;
+  int _currentIndex = 0;
+  late CarouselController _controller;
   @override
   void initState() {
     super.initState();
-    _controller = PageController();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+    _controller = CarouselController();
   }
 
   @override
@@ -44,58 +40,78 @@ class _BannerWidgetState extends State<BannerWidget> {
         } else {
           final banners = state.banners;
           return SizedBox(
-            height: 220.h,
+            height: 250.h,
             child: Column(
               children: [
                 Expanded(
-                  flex: 5,
-                  child: PageView.builder(
-                    key: const PageStorageKey('banner'),
-                    controller: _controller,
-                    itemCount: 2,
-                    itemBuilder: (context, index) => Stack(
+                  flex: 1,
+                  child: CarouselSlider.builder(
+                    carouselController: _controller,
+                    itemCount: banners.length,
+                    itemBuilder: (context, index, realIndex) => Stack(
                       children: [
-                        FadeInImage.assetNetwork(
-                          placeholder: cupertinoActivityIndicatorSmall,
-                          image: banners[0].img,
-                          fit: BoxFit.cover,
-                          placeholderFit: BoxFit.scaleDown,
-                          height: 200.h,
-                          width: double.infinity,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: FadeInImage.assetNetwork(
+                            placeholder: cupertinoActivityIndicatorSmall,
+                            image: banners[index].img,
+                            fit: BoxFit.cover,
+                            placeholderFit: BoxFit.scaleDown,
+                            height: 200.h,
+                            width: double.infinity,
+                          ),
                         ),
                         Positioned(
                           left: 16.w,
                           bottom: 15.h,
-                          child: Text(
-                            banners[0].title,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineLarge!
-                                .copyWith(
-                                  color: AppColors.white,
-                                  fontWeight: FontWeight.w900,
-                                ),
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            color: AppColors.lightBlack.withOpacity(0.4),
+                            child: Text(
+                              banners[index].title,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineLarge!
+                                  .copyWith(
+                                    color: AppColors.white,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                            ),
                           ),
                         ),
                       ],
                     ),
+                    options: CarouselOptions(
+                      autoPlay: true,
+                      enlargeCenterPage: true,
+                      viewportFraction: 1,
+                      onPageChanged: (i, _) {
+                        setState(() {
+                          _currentIndex = i;
+                        });
+                      },
+                    ),
                   ),
                 ),
-                Expanded(
-                  child: SmoothPageIndicator(
-                    controller: _controller,
-                    count: 2,
-                    effect: JumpingDotEffect(
-                      activeDotColor: Theme.of(context).primaryColor,
-                      verticalOffset: 2,
-                      dotColor: Theme.of(context).brightness == Brightness.dark
-                          ? AppColors.greyDark
-                          : AppColors.grey,
-                    ),
-                    onDotClicked: (index) => _controller.animateToPage(
-                      index,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeIn,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    banners.length,
+                    (index) => GestureDetector(
+                      onTap: () => _controller.animateToPage(
+                        index,
+                        curve: Curves.easeInOut,
+                      ),
+                      child: Container(
+                        width: 12.r,
+                        height: 12.r,
+                        margin: EdgeInsets.symmetric(
+                            vertical: 8.h, horizontal: 4.w),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: (Theme.of(context).primaryColor).withOpacity(
+                                _currentIndex == index ? 0.9 : 0.2)),
+                      ),
                     ),
                   ),
                 ),

@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,23 +22,25 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppStrings.settings),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
-        child: Column(children: [
-          Row(
-            children: [
-              Text(
-                AppStrings.darkMode,
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-              const Spacer(),
-              Switch(
-                value: Provider.of<GlobalProvider>(context).isDark,
-                onChanged: (value) =>
-                    Provider.of<GlobalProvider>(context, listen: false)
-                        .changeThemeMode(value),
-              ),
-            ],
+      body: Column(
+        children: [
+          ListTile(
+            title: Row(
+              children: [
+                Text(
+                  AppStrings.darkMode,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                const Spacer(),
+                Switch(
+                  inactiveTrackColor: AppColors.grey,
+                  value: Provider.of<GlobalProvider>(context).isDark,
+                  onChanged: (value) =>
+                      Provider.of<GlobalProvider>(context, listen: false)
+                          .changeThemeMode(value),
+                ),
+              ],
+            ),
           ),
           SizedBox(height: 20.h),
           ListTile(
@@ -56,7 +59,7 @@ class SettingsScreen extends StatelessWidget {
             ),
             trailing: const Icon(Icons.logout),
           ),
-        ]),
+        ],
       ),
     );
   }
