@@ -38,6 +38,7 @@ class ProductsGridView extends StatelessWidget {
               columnCount: pagingController.itemList!.length,
               child: ScaleAnimation(
                 duration: const Duration(milliseconds: 400),
+                delay: const Duration(milliseconds: 50),
                 child: FadeInAnimation(
                   child: ProductGridCard(
                     product: item,

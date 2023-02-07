@@ -33,9 +33,9 @@ class ProductsListView extends StatelessWidget {
           builderDelegate: PagedChildBuilderDelegate<Product>(
               itemBuilder: (context, item, i) =>
                   AnimationConfiguration.staggeredList(
-                    delay: const Duration(milliseconds: 150),
                     position: i,
                     duration: const Duration(milliseconds: 375),
+                    delay: const Duration(milliseconds: 100),
                     child: SlideAnimation(
                       horizontalOffset: 50.0,
                       child: FadeInAnimation(

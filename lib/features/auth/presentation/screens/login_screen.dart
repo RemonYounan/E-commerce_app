@@ -25,6 +25,7 @@ class LoginScreen extends StatelessWidget {
                   children: AnimationConfiguration.toStaggeredList(
                     childAnimationBuilder: (child) => ScaleAnimation(
                       duration: const Duration(milliseconds: 400),
+                      delay: const Duration(milliseconds: 50),
                       child: FadeInAnimation(
                         child: child,
                       ),

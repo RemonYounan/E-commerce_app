@@ -37,6 +37,7 @@ class AddressesListWidget extends StatelessWidget {
                     child: Column(
                       children: AnimationConfiguration.toStaggeredList(
                           childAnimationBuilder: (child) => ScaleAnimation(
+                            delay: const Duration(milliseconds: 50),
                                 child: FadeInAnimation(
                                   child: child,
                                 ),

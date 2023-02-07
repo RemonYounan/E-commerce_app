@@ -31,8 +31,7 @@ class CategoriesWidget extends StatelessWidget {
                 child: Column(
                   children: AnimationConfiguration.toStaggeredList(
                     duration: const Duration(milliseconds: 375),
-                    childAnimationBuilder: (child) => SlideAnimation(
-                      verticalOffset: 50.0,
+                    childAnimationBuilder: (child) => ScaleAnimation(
                       child: FadeInAnimation(
                         child: child,
                       ),

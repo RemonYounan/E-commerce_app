@@ -121,4 +121,5 @@ class AppStrings {
   static final noFavoritsDiscription = 'no_favorits_discription'.tr();
   static final noSavedAddresses = 'no_saved_address'.tr();
   static final noSavedAddressesContent = 'no_saved_address_content'.tr();
+  static final promoCodeError = 'promo_code_error'.tr();
 }

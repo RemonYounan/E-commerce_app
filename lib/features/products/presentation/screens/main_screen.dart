@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:ecommerce_app/features/order/presentation/blocs/cart/cart_cubit.dart';
@@ -57,7 +58,18 @@ class _MainScreenState extends State<MainScreen> {
       },
       child: Scaffold(
         key: _scaffoldKey,
-        body: screens[currentIndex],
+        body: PageTransitionSwitcher(
+          duration: const Duration(milliseconds: 300),
+          transitionBuilder: (child, primaryAnimation, secondaryAnimation) =>
+              SharedAxisTransition(
+            animation: primaryAnimation,
+            secondaryAnimation: secondaryAnimation,
+            transitionType: SharedAxisTransitionType.scaled,
+            fillColor: Colors.transparent,
+            child: child,
+          ),
+          child: screens[currentIndex],
+        ),
         bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(12), topRight: Radius.circular(15)),

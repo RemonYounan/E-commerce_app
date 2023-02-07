@@ -31,6 +31,7 @@ class CartListWidget extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return AnimationConfiguration.staggeredList(
                       position: index,
+                      delay: const Duration(milliseconds: 50),
                       child: SlideAnimation(
                         horizontalOffset: 50.0,
                         child: FadeInAnimation(

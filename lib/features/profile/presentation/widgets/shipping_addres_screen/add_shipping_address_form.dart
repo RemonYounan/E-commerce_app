@@ -192,6 +192,7 @@ class _AddShippingAddressFormState extends State<AddShippingAddressForm> {
             child: Column(
               children: AnimationConfiguration.toStaggeredList(
                 duration: const Duration(milliseconds: 375),
+                delay: const Duration(milliseconds: 50),
                 childAnimationBuilder: (widget) => SlideAnimation(
                   horizontalOffset: 50.0,
                   child: FadeInAnimation(

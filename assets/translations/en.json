@@ -84,6 +84,7 @@
     "no_result_disc" : "Sorry, there are no results for this search. Please try another phrase",
     "details" : "Details",
     "units" : "Units:",
+    "promo_code_error" : "Promo code is not valid",
     "payment_method" : "Payment method:",
     "cash_on_delivery" : "Cash on delivery",
     "discount" : "Discount:",

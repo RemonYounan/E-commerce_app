@@ -35,10 +35,10 @@ class HomeScreen extends StatelessWidget {
                     children: AnimationConfiguration.toStaggeredList(
                       duration: const Duration(milliseconds: 400),
                       childAnimationBuilder: (child) => ScaleAnimation(
-                          
+                          delay: const Duration(milliseconds: 50),
                           child: FadeInAnimation(
-                        child: child,
-                      )),
+                            child: child,
+                          )),
                       children: [
                         const BannerWidget(),
                         SizedBox(height: 20.h),

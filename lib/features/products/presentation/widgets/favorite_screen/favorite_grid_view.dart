@@ -35,6 +35,7 @@ class FavoriteGridView extends StatelessWidget {
             duration: const Duration(milliseconds: 375),
             child: ScaleAnimation(
               duration: const Duration(milliseconds: 400),
+              delay: const Duration(milliseconds: 50),
               child: FadeInAnimation(
                 child: ProductGridCard(
                   product: favProducts[index],
