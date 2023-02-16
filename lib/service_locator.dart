@@ -55,7 +55,7 @@ void init() async {
   //
 
   // Providers
-  sl.registerLazySingleton(() => GlobalProvider(sl()));
+  sl.registerLazySingleton(() => GlobalProvider(sl(), sl()));
   //! feature : Auth
 
   // Usecases

@@ -147,25 +147,38 @@ class ProductsCubit extends Cubit<ProductsState> {
     }
   }
 
+  Future<void> removeFromFavProducts(int id) async {
+    emit(ProductsState(status: ProductsStatus.loading));
+    _favProducts.removeWhere((element) => element.id == id);
+    _state = _state.copyWith(
+      favProducts: _favProducts,
+    );
+    emit(_state);
+  }
+
   Future<void> refreshFavProducts() async {
     _favProducts.clear();
     getFavProducts(userId);
   }
 
+  String searchText = '';
   Future<void> getSearchProducts(String search) async {
-    emit(ProductsState(status: ProductsStatus.loading));
-    final result = await _getSearchProductsUsecase(search);
-    result.fold(
-        (error) => emit(ProductsState(
-              errorMessage: error.message,
-              status: ProductsStatus.error,
-            )), (products) {
-      _state = _state.copyWith(
-        status: ProductsStatus.loaded,
-        searchProducts: products,
-      );
-      emit(_state);
-    });
+    if (searchText.isEmpty || searchText != search) {
+      emit(ProductsState(status: ProductsStatus.loading));
+      final result = await _getSearchProductsUsecase(search);
+      result.fold(
+          (error) => emit(ProductsState(
+                errorMessage: error.message,
+                status: ProductsStatus.error,
+              )), (products) {
+        _state = _state.copyWith(
+          status: ProductsStatus.loaded,
+          searchProducts: products,
+        );
+        emit(_state);
+      });
+    }
+    searchText = search;
   }
 
   void clearSearchProducts() {

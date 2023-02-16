@@ -33,6 +33,7 @@ class FavoriteListView extends StatelessWidget {
               duration: const Duration(milliseconds: 400),
               child: FadeInAnimation(
                 child: ProductListCard(
+                  key: ValueKey(favProducts[index].id),
                   product: favProducts[index],
                   icon: AddToBagButton(
                     product: favProducts[index],

@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
+
 import '../common/app_themes.dart';
 import '../constants/app_constants.dart';
 import '../constants/app_strings.dart';
@@ -10,7 +12,7 @@ class GlobalProvider with ChangeNotifier {
   // ThemeModeManager
   bool _isDark = false;
 
-  GlobalProvider(this._toggleFavoriteUsecase);
+  GlobalProvider(this._toggleFavoriteUsecase, this._productsCubit);
   bool get isDark => _isDark;
   ThemeMode _themeMode = AppThemes.systemTheme;
   ThemeMode get themeMode => _themeMode;
@@ -79,6 +81,7 @@ class GlobalProvider with ChangeNotifier {
 
   // FavProducts Manager
   final ToggleFavoriteUsecase _toggleFavoriteUsecase;
+  final ProductsCubit _productsCubit;
 
   late Map<String, dynamic> _favProducts;
 
@@ -92,6 +95,7 @@ class GlobalProvider with ChangeNotifier {
   Future<void> toggleFavorite(int id, int uid) async {
     if (_favProducts.containsKey('$id')) {
       _favProducts.remove('$id');
+      _productsCubit.removeFromFavProducts(id);
     } else {
       _favProducts.addAll({'$id': true});
     }
