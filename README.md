@@ -1,9 +1,11 @@
 # E-commerce App with Flutter and WordPress APIs
 
 
-![image2](https://user-images.githubusercontent.com/85307930/221375243-7e6c5c13-340b-47df-b499-cfc65cad66a8.jpeg)
+![Screenshot](image1.png)
 
-![image1](https://user-images.githubusercontent.com/85307930/221375240-58391441-35f1-4191-83c2-1acb099da722.jpeg)
+![Screenshot](image2.png)
+
+![Screenshot](image3.png)
 
 This is a mobile e-commerce application built using the Flutter framework and WordPress APIs. The app allows users to browse and purchase products, and provides features such as animations, push notifications, and analytics integration.
 
