@@ -1,6 +1,6 @@
 class AppConstants {
   // API endPoints:
-  static const baseUrl = 'https://woodei.com//wp-json/app/v1';
+  static const baseUrl = 'https://feaw.kenrys.net/ramni/wp-json/app/v1';
   static const checkTokenPathUrl = '$baseUrl/token';
   static const registerPathUrl = '$baseUrl/register';
   static const loginPathUrl = '$baseUrl/login';
