@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/common/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -30,13 +31,13 @@ class ForgotPasswordScreen extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         AppStrings.forgotPassword,
-                        style: Theme.of(context).textTheme.headlineLarge,
+                        style: AppTextStyle.headlineTextStyle1(context),
                       ),
                     ),
                     SizedBox(height: 70.h),
                     Text(
                       AppStrings.forgotPasswordHelp,
-                      style: Theme.of(context).textTheme.titleSmall,
+                      style: AppTextStyle.titleMediumTextStyle(context),
                     ),
                     SizedBox(height: 18.h),
                     const ForgotPasswordForm(),

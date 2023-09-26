@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/common/app_colors.dart';
+import '../../../../../core/common/app_text_styles.dart';
 
 class OrderInfoItemWidget extends StatelessWidget {
   const OrderInfoItemWidget({
@@ -24,9 +25,9 @@ class OrderInfoItemWidget extends StatelessWidget {
             flex: 2,
             child: Text(
               title,
-              style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                    color: isDark ? AppColors.greyDark : AppColors.grey,
-                  ),
+              style: AppTextStyle.titleNormalTextStyle2(context).copyWith(
+                color: isDark ? AppColors.greyDark : AppColors.grey,
+              ),
             ),
           ),
           SizedBox(width: 10.w),
@@ -34,7 +35,7 @@ class OrderInfoItemWidget extends StatelessWidget {
             flex: 3,
             child: Text(
               value,
-              style: Theme.of(context).textTheme.titleSmall,
+              style: AppTextStyle.titleMediumTextStyle(context),
             ),
           ),
         ],

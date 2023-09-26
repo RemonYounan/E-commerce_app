@@ -4,6 +4,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../common/app_colors.dart';
+import '../common/app_text_styles.dart';
 
 class EmptyStateWidget extends StatelessWidget {
   const EmptyStateWidget({
@@ -44,14 +45,14 @@ class EmptyStateWidget extends StatelessWidget {
               SizedBox(height: 20.h),
               Text(
                 title,
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: AppTextStyle.headlineTextStyle2(context),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 10.h),
               if (discription != null)
                 Text(
                   discription!,
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  style: AppTextStyle.titleMediumTextStyle(context).copyWith(
                       color: isDark ? AppColors.greyDark : AppColors.grey),
                   textAlign: TextAlign.center,
                 )

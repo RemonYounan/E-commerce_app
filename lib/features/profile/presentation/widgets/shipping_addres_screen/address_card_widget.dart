@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/common/app_text_styles.dart';
 import 'set_default_check_box.dart';
 
 class AddressCardWidget extends StatelessWidget {
@@ -82,7 +83,7 @@ class AddressCardWidget extends StatelessWidget {
                 children: [
                   Text(
                     '${addressData['billing_first_name']} ${addressData['billing_last_name']}',
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: AppTextStyle.subheadTextStyle(context),
                   ),
                   CustomTextButton(
                     onPressed: onPressed ??
@@ -97,22 +98,22 @@ class AddressCardWidget extends StatelessWidget {
               ),
               Text(
                 addressData['billing_address_1'],
-                style: Theme.of(context).textTheme.titleSmall,
+                style: AppTextStyle.titleMediumTextStyle(context),
               ),
               SizedBox(height: 5.h),
               Text(
                 '${addressData['billing_city']}, ${addressData['billing_state']}, ${addressData['billing_country']}, ${addressData['billing_postcode']}',
-                style: Theme.of(context).textTheme.titleSmall,
+                style: AppTextStyle.titleMediumTextStyle(context),
               ),
               SizedBox(height: 5.h),
               Text(
                 addressData['billing_phone'],
-                style: Theme.of(context).textTheme.titleSmall,
+                style: AppTextStyle.titleMediumTextStyle(context),
               ),
               SizedBox(height: 5.h),
               Text(
                 addressData['billing_email'],
-                style: Theme.of(context).textTheme.titleSmall,
+                style: AppTextStyle.titleMediumTextStyle(context),
               ),
               if (chooseDefault) SetDefaultCheckBox(addressKey: addressKey),
             ],

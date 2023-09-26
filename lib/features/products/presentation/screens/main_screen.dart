@@ -3,18 +3,17 @@ import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:ecommerce_app/features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../core/constants/app_strings.dart';
-import '../../../../core/providers/global_provider.dart';
-import '../../../order/presentation/screens/bag_screen.dart';
-import 'favorite_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/common/app_text_styles.dart';
+import '../../../../core/constants/app_strings.dart';
+import '../../../../core/providers/global_provider.dart';
+import '../../../order/presentation/screens/bag_screen.dart';
 import '../../../profile/presentation/screens/profile_screen.dart';
-
+import 'favorite_screen.dart';
 import 'home_screen.dart';
 import 'shop_screen.dart';
 
@@ -86,13 +85,12 @@ class _MainScreenState extends State<MainScreen> {
             },
             items: [
               BottomNavigationBarItem(
-                  icon: Icon(
-                      currentIndex == 0 ? Icons.home : Icons.home_outlined),
+                  icon: const Icon(Icons.home_outlined),
+                  activeIcon: const Icon(Icons.home),
                   label: AppStrings.home),
               BottomNavigationBarItem(
-                  icon: Icon(currentIndex == 1
-                      ? Icons.shopping_cart_rounded
-                      : Icons.shopping_cart_outlined),
+                  icon: const Icon(Icons.shopping_cart_outlined),
+                  activeIcon: const Icon(Icons.shopping_cart_rounded),
                   label: AppStrings.shop),
               BottomNavigationBarItem(
                   icon: BlocBuilder<CartCubit, CartState>(
@@ -100,7 +98,7 @@ class _MainScreenState extends State<MainScreen> {
                       if (state is CartLoadedState) {
                         return Badge(
                           label: Text(state.cart.products.length.toString()),
-                          textStyle: Theme.of(context).textTheme.labelMedium,
+                          textStyle: AppTextStyle.helperTextStyle1(context),
                           child: Icon(currentIndex == 2
                               ? Icons.shopping_bag_rounded
                               : Icons.shopping_bag_outlined),
@@ -114,13 +112,12 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   label: AppStrings.bag),
               BottomNavigationBarItem(
-                  icon: Icon(currentIndex == 3
-                      ? Icons.favorite_rounded
-                      : Icons.favorite_outline),
+                  icon: const Icon(Icons.favorite_outline),
+                  activeIcon: const Icon(Icons.favorite_rounded),
                   label: AppStrings.favorits),
               BottomNavigationBarItem(
-                  icon: Icon(
-                      currentIndex == 4 ? Icons.person : Icons.person_outline),
+                  icon: const Icon(Icons.person_outline),
+                  activeIcon: const Icon(Icons.person),
                   label: AppStrings.profile),
             ],
           ),

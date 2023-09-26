@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
+import '../../../../core/common/app_text_styles.dart';
 import '../../../../core/constants/app_strings.dart';
-import 'package:flutter/material.dart';
-
 import '../widgets/login_screen/login_form.dart';
 import '../widgets/signup_screen/sign_with_widget.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class LoginScreen extends StatelessWidget {
                         alignment: Alignment.topLeft,
                         child: Text(
                           AppStrings.login,
-                          style: Theme.of(context).textTheme.headlineLarge,
+                          style: AppTextStyle.headlineTextStyle1(context),
                         ),
                       ),
                       SizedBox(

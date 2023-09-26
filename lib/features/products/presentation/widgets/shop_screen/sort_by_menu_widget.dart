@@ -1,12 +1,13 @@
-import '../../../../../core/constants/app_constants.dart';
-import '../../../../../core/constants/app_strings.dart';
-import '../../../../../core/providers/global_provider.dart';
-import '../../../domain/entities/product.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../../core/common/app_text_styles.dart';
+import '../../../../../core/constants/app_constants.dart';
+import '../../../../../core/constants/app_strings.dart';
+import '../../../../../core/providers/global_provider.dart';
+import '../../../domain/entities/product.dart';
 
 class SortByMenuWidget extends StatelessWidget {
   const SortByMenuWidget({
@@ -47,7 +48,7 @@ class SortByMenuWidget extends StatelessWidget {
                   children: [
                     Text(
                       AppStrings.sortBy,
-                      style: Theme.of(context).textTheme.headlineMedium,
+                      style: AppTextStyle.headlineTextStyle2(context),
                     ),
                     SizedBox(height: 15.h),
                     ...List.generate(
@@ -56,7 +57,7 @@ class SortByMenuWidget extends StatelessWidget {
                         value: items[index].value,
                         title: Text(
                           items[index].name,
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: AppTextStyle.titleNormalTextStyle(context),
                         ),
                         groupValue: Provider.of<GlobalProvider>(context).sortBy,
                         onChanged: (value) {

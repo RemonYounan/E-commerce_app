@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/common/app_colors.dart';
+import 'package:ecommerce_app/core/common/app_text_styles.dart';
 import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
 import 'package:ecommerce_app/core/utils/toast.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +13,11 @@ import '../../../../core/common/app_routes.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/providers/global_provider.dart';
 import '../../../../core/utils/custom_button.dart';
+import '../../../../core/utils/loading_widget.dart';
 import '../../../order/domain/entities/cart_product.dart';
 import '../../../order/presentation/blocs/cart/cart_cubit.dart';
 import '../../domain/entities/product.dart';
 import '../blocs/products_cubit/products_cubit.dart';
-import '../../../../core/utils/loading_widget.dart';
 import '../widgets/product_details_screen/color_and_size_section.dart';
 import '../widgets/product_details_screen/images_slider_widget.dart';
 import '../widgets/product_details_screen/name_and_price_section.dart';
@@ -131,9 +132,7 @@ class ProductDetailsScreen extends StatelessWidget {
                           children: [
                             Text(
                               AppStrings.addedToCart,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleSmall!
+                              style: AppTextStyle.titleMediumTextStyle(context)
                                   .copyWith(color: AppColors.white),
                             ),
                             InkWell(
@@ -145,12 +144,11 @@ class ProductDetailsScreen extends StatelessWidget {
                               },
                               child: Text(
                                 'View cart',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall!
-                                    .copyWith(
-                                      color: AppColors.primaryColorDark,
-                                    ),
+                                style:
+                                    AppTextStyle.titleMediumTextStyle(context)
+                                        .copyWith(
+                                  color: AppColors.primaryColorDark,
+                                ),
                               ),
                             ),
                           ],

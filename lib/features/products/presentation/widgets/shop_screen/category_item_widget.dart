@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/common/app_colors.dart';
+import '../../../../../core/common/app_text_styles.dart';
 import '../../../domain/entities/category.dart';
 
 class CategoryItemWidget extends StatelessWidget {
@@ -52,7 +53,7 @@ class CategoryItemWidget extends StatelessWidget {
                     padding: EdgeInsets.only(left: 23.w),
                     child: Text(
                       category.name,
-                      style: Theme.of(context).textTheme.headlineSmall,
+                      style: AppTextStyle.headlineTextStyle3(context),
                     ),
                   ),
                 ),

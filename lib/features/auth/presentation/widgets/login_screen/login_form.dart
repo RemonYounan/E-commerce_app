@@ -2,16 +2,17 @@ import 'package:animations/animations.dart';
 import 'package:ecommerce_app/core/utils/loading_widget.dart';
 import 'package:ecommerce_app/core/utils/show_error_toast.dart';
 import 'package:ecommerce_app/features/auth/presentation/screens/forgot_password_screen.dart';
-
-import '../../../../../core/common/app_colors.dart';
-import '../../../../../core/common/app_routes.dart';
-import '../../../../../core/constants/app_strings.dart';
-import '../../blocs/auth/auth_cubit.dart';
-import '../../../../../core/utils/custom_text_field_widget.dart';
-import '../../../../../core/utils/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../core/common/app_colors.dart';
+import '../../../../../core/common/app_routes.dart';
+import '../../../../../core/common/app_text_styles.dart';
+import '../../../../../core/constants/app_strings.dart';
+import '../../../../../core/utils/custom_button.dart';
+import '../../../../../core/utils/custom_text_field_widget.dart';
+import '../../blocs/auth/auth_cubit.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -96,7 +97,7 @@ class _LoginFormState extends State<LoginForm> {
               child: TextButton(
                 onPressed: action,
                 style: TextButton.styleFrom(
-                  textStyle: Theme.of(context).textTheme.titleSmall,
+                  textStyle: AppTextStyle.titleMediumTextStyle(context),
                 ),
                 child: Text(AppStrings.forgotYourPassword),
               ),

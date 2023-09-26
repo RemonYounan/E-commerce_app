@@ -1,10 +1,11 @@
-import '../../blocs/auth/auth_cubit.dart';
+import 'package:ecommerce_app/core/common/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/common/app_assets.dart';
+import '../../blocs/auth/auth_cubit.dart';
 import 'sign_with_icon.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignWithWidget extends StatelessWidget {
   const SignWithWidget({
@@ -18,7 +19,7 @@ class SignWithWidget extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context).textTheme.titleSmall,
+          style: AppTextStyle.titleMediumTextStyle(context),
         ),
         SizedBox(height: 12.h),
         Row(

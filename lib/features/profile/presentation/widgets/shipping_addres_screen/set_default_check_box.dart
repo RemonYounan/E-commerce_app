@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/common/app_text_styles.dart';
 import '../../../../auth/presentation/blocs/auth/auth_cubit.dart';
 
 class SetDefaultCheckBox extends StatelessWidget {
@@ -43,7 +44,7 @@ class SetDefaultCheckBox extends StatelessWidget {
         SizedBox(width: 13.w),
         Text(
           AppStrings.useAsShippingAddress,
-          style: Theme.of(context).textTheme.titleSmall,
+          style: AppTextStyle.titleMediumTextStyle(context),
         ),
       ],
     );

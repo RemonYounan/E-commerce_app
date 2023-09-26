@@ -2,6 +2,8 @@ import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../common/app_text_styles.dart';
+
 class CustomDropDownButton extends StatelessWidget {
   const CustomDropDownButton({
     Key? key,
@@ -28,7 +30,7 @@ class CustomDropDownButton extends StatelessWidget {
           ],
         ),
         child: DropdownButtonFormField(
-          style: Theme.of(context).textTheme.labelLarge,
+          style: AppTextStyle.titleNormalTextStyle2(context),
           dropdownColor: Theme.of(context).brightness == Brightness.dark
               ? AppColors.dark
               : AppColors.white,

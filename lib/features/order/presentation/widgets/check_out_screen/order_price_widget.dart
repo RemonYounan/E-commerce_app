@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/common/app_text_styles.dart';
+
 class OrderPriceWidget extends StatelessWidget {
   const OrderPriceWidget({
     super.key,
@@ -22,13 +24,13 @@ class OrderPriceWidget extends StatelessWidget {
         Text(
           title,
           style: style ??
-              Theme.of(context).textTheme.titleSmall!.copyWith(
+              AppTextStyle.titleMediumTextStyle(context).copyWith(
                   fontWeight: FontWeight.w500,
                   color: isDark ? AppColors.greyDark : AppColors.grey),
         ),
         Text(
           '$value\$',
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: AppTextStyle.headlineTextStyle3(context),
         ),
       ],
     );

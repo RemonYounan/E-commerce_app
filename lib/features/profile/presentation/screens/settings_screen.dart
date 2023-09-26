@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/common/app_routes.dart';
+import '../../../../core/common/app_text_styles.dart';
 import '../../../../core/providers/global_provider.dart';
 import '../../../auth/presentation/blocs/auth/auth_cubit.dart';
 import '../../../order/presentation/blocs/cart/cart_cubit.dart';
@@ -29,7 +30,7 @@ class SettingsScreen extends StatelessWidget {
               children: [
                 Text(
                   AppStrings.darkMode,
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: AppTextStyle.titleMediumTextStyle(context),
                 ),
                 const Spacer(),
                 Switch(
@@ -55,7 +56,7 @@ class SettingsScreen extends StatelessWidget {
             },
             title: Text(
               AppStrings.logout,
-              style: Theme.of(context).textTheme.titleSmall,
+              style: AppTextStyle.titleMediumTextStyle(context),
             ),
             trailing: const Icon(Icons.logout),
           ),

@@ -15,6 +15,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/common/app_text_styles.dart';
+
 class AddPaymentWidget extends StatefulWidget {
   const AddPaymentWidget({Key? key}) : super(key: key);
 
@@ -108,7 +110,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
               children: [
                 Text(
                   AppStrings.addNewCard,
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: AppTextStyle.headlineTextStyle3(context),
                 ),
                 SizedBox(height: 20.h),
                 CustomTextFieldWidget(
@@ -162,7 +164,7 @@ class _AddPaymentWidgetState extends State<AddPaymentWidget> {
                     ),
                     Text(
                       AppStrings.useAsDefaultPayment,
-                      style: Theme.of(context).textTheme.titleSmall,
+                      style: AppTextStyle.titleMediumTextStyle(context),
                     ),
                   ],
                 ),

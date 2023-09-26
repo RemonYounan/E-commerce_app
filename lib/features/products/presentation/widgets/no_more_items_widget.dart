@@ -1,3 +1,4 @@
+import '../../../../core/common/app_text_styles.dart';
 import '../../../../core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class NoMoreItemsWidget extends StatelessWidget {
     return Center(
         child: Text(
       AppStrings.noMoreItems,
-      style: Theme.of(context).textTheme.titleSmall,
+      style: AppTextStyle.titleMediumTextStyle(context),
     ));
   }
 }

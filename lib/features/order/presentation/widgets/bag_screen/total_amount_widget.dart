@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/common/app_colors.dart';
+import '../../../../../core/common/app_text_styles.dart';
 import '../../../../../core/constants/app_strings.dart';
 import '../../blocs/cart/cart_cubit.dart';
 
@@ -16,12 +17,8 @@ class TotalAmountWidget extends StatelessWidget {
       children: [
         Text(
           AppStrings.totalAmount,
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium!
-              .copyWith(
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.greyDark),
+          style: AppTextStyle.titleNormalTextStyle(context)
+              .copyWith(fontWeight: FontWeight.w500, color: AppColors.greyDark),
         ),
         const Spacer(),
         BlocBuilder<CartCubit, CartState>(
@@ -30,7 +27,7 @@ class TotalAmountWidget extends StatelessWidget {
               final totalAmount = state.cart.totalAmount.toInt();
               return Text(
                 '$totalAmount\$',
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: AppTextStyle.headlineTextStyle3(context),
               );
             } else {
               return const SizedBox.shrink();

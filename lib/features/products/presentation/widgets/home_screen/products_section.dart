@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/common/app_text_styles.dart';
 
 class ProductsSection extends StatelessWidget {
   const ProductsSection({
@@ -20,7 +21,7 @@ class ProductsSection extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Text(
             title,
-            style: Theme.of(context).textTheme.headlineMedium,
+            style: AppTextStyle.headlineTextStyle2(context),
           ),
         ),
         SizedBox(height: 20.h),

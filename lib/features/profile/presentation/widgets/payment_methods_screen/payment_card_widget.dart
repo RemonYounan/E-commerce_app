@@ -9,6 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../../core/common/app_text_styles.dart';
+
 class PaymentCardWidget extends StatelessWidget {
   const PaymentCardWidget({
     Key? key,
@@ -84,9 +86,7 @@ class PaymentCardWidget extends StatelessWidget {
                       card.cardNumber
                           .toString()
                           .replaceRange(0, 12, '****  ****  ****  '),
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineMedium!
+                      style: AppTextStyle.headlineTextStyle2(context)
                           .copyWith(color: AppColors.white),
                     ),
                     SizedBox(height: 40.h),
@@ -96,9 +96,7 @@ class PaymentCardWidget extends StatelessWidget {
                           children: [
                             Text(
                               AppStrings.cardHolderName,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium!
+                              style: AppTextStyle.helperTextStyle1(context)
                                   .copyWith(
                                       color: AppColors.white,
                                       fontWeight: FontWeight.w500),
@@ -106,12 +104,10 @@ class PaymentCardWidget extends StatelessWidget {
                             SizedBox(height: 5.h),
                             Text(
                               card.name,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
+                              style: AppTextStyle.subheadTextStyle(context)
                                   .copyWith(
-                                    color: AppColors.white,
-                                  ),
+                                color: AppColors.white,
+                              ),
                             ),
                           ],
                         ),
@@ -120,9 +116,7 @@ class PaymentCardWidget extends StatelessWidget {
                           children: [
                             Text(
                               AppStrings.expiryDate,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium!
+                              style: AppTextStyle.helperTextStyle1(context)
                                   .copyWith(
                                       color: AppColors.white,
                                       fontWeight: FontWeight.w500),
@@ -130,12 +124,10 @@ class PaymentCardWidget extends StatelessWidget {
                             SizedBox(height: 5.h),
                             Text(
                               card.expiryDate,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
+                              style: AppTextStyle.subheadTextStyle(context)
                                   .copyWith(
-                                    color: AppColors.white,
-                                  ),
+                                color: AppColors.white,
+                              ),
                             ),
                           ],
                         ),
@@ -159,7 +151,7 @@ class PaymentCardWidget extends StatelessWidget {
             ),
             Text(
               AppStrings.useAsDefaultPayment,
-              style: Theme.of(context).textTheme.titleSmall,
+              style: AppTextStyle.titleMediumTextStyle(context),
             )
           ],
         ),

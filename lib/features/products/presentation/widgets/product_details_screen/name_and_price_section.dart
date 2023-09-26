@@ -1,7 +1,9 @@
-import '../../../domain/entities/product_details.dart';
-import '../rate_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../core/common/app_text_styles.dart';
+import '../../../domain/entities/product_details.dart';
+import '../rate_widget.dart';
 
 class NameAndPriceSection extends StatelessWidget {
   const NameAndPriceSection({
@@ -24,11 +26,11 @@ class NameAndPriceSection extends StatelessWidget {
             children: [
               Text(
                 product.name,
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: AppTextStyle.headlineTextStyle2(context),
               ),
               Text(
                 product.category,
-                style: Theme.of(context).textTheme.labelSmall,
+                style: AppTextStyle.helperTextStyle2(context),
               ),
               SizedBox(
                 height: 2.h,
@@ -42,7 +44,7 @@ class NameAndPriceSection extends StatelessWidget {
             flex: 2,
             child: Text(
               '\$${product.price}',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: AppTextStyle.headlineTextStyle2(context),
             )),
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/common/app_colors.dart';
+import 'package:ecommerce_app/core/common/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -19,9 +20,7 @@ showToast({
     child: child ??
         Text(
           title!,
-          style: Theme.of(context)
-              .textTheme
-              .titleSmall!
+          style: AppTextStyle.helperTextStyle2(context)
               .copyWith(color: AppColors.white),
           textAlign: TextAlign.center,
         ),

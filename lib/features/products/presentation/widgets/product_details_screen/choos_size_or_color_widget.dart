@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/common/app_colors.dart';
+import '../../../../../core/common/app_text_styles.dart';
 import '../../../../../core/constants/app_strings.dart';
 
 class ChooseSizeOrColorWidget extends StatelessWidget {
@@ -33,7 +34,7 @@ class ChooseSizeOrColorWidget extends StatelessWidget {
                 children: [
                   Text(
                     '${AppStrings.select} ${name.toLowerCase()}',
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    style: AppTextStyle.headlineTextStyle3(context),
                   ),
                   SizedBox(height: 20.h),
                   if (items.isEmpty) Text('No $name available'),
@@ -44,7 +45,7 @@ class ChooseSizeOrColorWidget extends StatelessWidget {
                         onTap: () {},
                         title: Text(
                           items[index],
-                          style: Theme.of(context).textTheme.headlineSmall,
+                          style: AppTextStyle.headlineTextStyle3(context),
                         ),
                       );
                     },
@@ -69,7 +70,7 @@ class ChooseSizeOrColorWidget extends StatelessWidget {
           children: [
             Text(
               name,
-              style: Theme.of(context).textTheme.labelLarge,
+              style: AppTextStyle.titleNormalTextStyle2(context),
             ),
             Icon(
               Icons.keyboard_arrow_down_rounded,

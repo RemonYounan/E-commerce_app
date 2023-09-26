@@ -11,6 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/common/app_text_styles.dart';
+
 class ProductListCard extends StatelessWidget {
   const ProductListCard({
     Key? key,
@@ -108,7 +110,7 @@ class ProductListCard extends StatelessWidget {
                                 padding: EdgeInsets.all(1.w),
                                 child: Text(
                                   product.name,
-                                  style: Theme.of(context).textTheme.titleLarge,
+                                  style: AppTextStyle.subheadTextStyle(context),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
@@ -116,7 +118,7 @@ class ProductListCard extends StatelessWidget {
                                 padding: EdgeInsets.symmetric(horizontal: 1.w),
                                 child: Text(
                                   product.category,
-                                  style: Theme.of(context).textTheme.labelSmall,
+                                  style: AppTextStyle.helperTextStyle2(context),
                                 ),
                               ),
                               SizedBox(height: 2.h),
@@ -151,13 +153,11 @@ class ProductListCard extends StatelessWidget {
                             child: Center(
                               child: Text(
                                 'NEW',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall!
+                                style: AppTextStyle.helperTextStyle2(context)
                                     .copyWith(
-                                      color: AppColors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                  color: AppColors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
@@ -173,13 +173,11 @@ class ProductListCard extends StatelessWidget {
                             child: Center(
                               child: Text(
                                 '-${product.saleDisc}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall!
+                                style: AppTextStyle.helperTextStyle2(context)
                                     .copyWith(
-                                      color: AppColors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                  color: AppColors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),

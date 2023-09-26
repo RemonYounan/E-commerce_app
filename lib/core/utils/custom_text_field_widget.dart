@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../common/app_colors.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../common/app_text_styles.dart';
 
 class CustomTextFieldWidget extends StatelessWidget {
   const CustomTextFieldWidget({
@@ -53,7 +54,7 @@ class CustomTextFieldWidget extends StatelessWidget {
           suffix: suffixIcon,
         ),
         maxLength: maxLength,
-        style: Theme.of(context).textTheme.labelLarge,
+        style: AppTextStyle.titleNormalTextStyle2(context),
         controller: controller,
         textInputAction: textInputAction,
         keyboardType: textInputType,

@@ -3,6 +3,8 @@ import 'package:ecommerce_app/core/utils/custom_search_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/common/app_text_styles.dart';
+
 class BagScreenAppbarWidget extends StatelessWidget {
   const BagScreenAppbarWidget({
     super.key,
@@ -18,15 +20,15 @@ class BagScreenAppbarWidget extends StatelessWidget {
         titlePadding: EdgeInsets.only(left: 14.w, bottom: 5.h),
         title: Text(
           AppStrings.myBag,
-          style: Theme.of(context).textTheme.headlineLarge,
+          style: AppTextStyle.headlineTextStyle1(context),
         ),
       ),
       actions: [
         IconButton(
           onPressed: () => showSearch(
-              context: context,
-              delegate: CustomSearchDelegate(),
-            ),
+            context: context,
+            delegate: CustomSearchDelegate(),
+          ),
           icon: const Icon(Icons.search),
         ),
       ],

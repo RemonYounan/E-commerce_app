@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/features/order/presentation/blocs/order/order_cubit.dart';
 import 'package:ecommerce_app/features/profile/presentation/blocs/profile_cubit/profile_cubit.dart';
-import 'features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,14 +8,13 @@ import 'package:provider/provider.dart';
 
 import 'app_router.dart';
 import 'core/common/app_themes.dart';
+import 'core/helpers/bloc_observer.dart';
 import 'core/helpers/cache_helper.dart';
 import 'core/providers/global_provider.dart';
 import 'features/auth/presentation/blocs/auth/auth_cubit.dart';
-
-import 'service_locator.dart' as di;
-
-import 'core/helpers/bloc_observer.dart';
+import 'features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'features/products/presentation/blocs/products_cubit/products_cubit.dart';
+import 'service_locator.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

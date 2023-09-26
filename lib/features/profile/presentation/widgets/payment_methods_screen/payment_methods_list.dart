@@ -10,6 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
+import '../../../../../core/common/app_text_styles.dart';
+
 class PaymentMethodsList extends StatelessWidget {
   const PaymentMethodsList({
     super.key,
@@ -33,7 +35,7 @@ class PaymentMethodsList extends StatelessWidget {
               children: [
                 Text(
                   AppStrings.yourPayments,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: AppTextStyle.subheadTextStyle(context),
                 ),
                 BlocBuilder<ProfileCubit, ProfileState>(
                   builder: (context, state) {

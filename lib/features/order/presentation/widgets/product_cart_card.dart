@@ -7,12 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/common/app_colors.dart';
+import '../../../../core/common/app_text_styles.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/utils/toast.dart';
+import '../../../products/presentation/blocs/products_cubit/products_cubit.dart';
 import '../../domain/entities/cart_product.dart';
 import '../blocs/cart/cart_cubit.dart';
-import '../../../products/presentation/blocs/products_cubit/products_cubit.dart';
-
 import 'bag_screen/add_or_remove_button.dart';
 
 class ProductCartCard extends StatelessWidget {
@@ -92,9 +92,8 @@ class ProductCartCard extends StatelessWidget {
                                   children: [
                                     Text(
                                       cartProduct.name,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge,
+                                      style: AppTextStyle.subheadTextStyle(
+                                          context),
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     SizedBox(height: 4.h),
@@ -103,9 +102,8 @@ class ProductCartCard extends StatelessWidget {
                                           EdgeInsets.symmetric(horizontal: 1.w),
                                       child: Text(
                                         cartProduct.category,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelSmall,
+                                        style: AppTextStyle.helperTextStyle2(
+                                            context),
                                       ),
                                     ),
                                     SizedBox(height: 10.h),
@@ -122,9 +120,8 @@ class ProductCartCard extends StatelessWidget {
                                         SizedBox(width: 16.w),
                                         Text(
                                           count.toString(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelLarge,
+                                          style: AppTextStyle
+                                              .titleNormalTextStyle2(context),
                                         ),
                                         SizedBox(width: 16.w),
                                         AddOrRemoveButton(
@@ -157,26 +154,16 @@ class ProductCartCard extends StatelessWidget {
                                       PopupMenuItem(
                                         child: Text(
                                           AppStrings.addToFavorites,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelSmall!
-                                              .copyWith(
-                                                  color: isDark
-                                                      ? AppColors.white
-                                                      : AppColors.black),
+                                          style: AppTextStyle.helperTextStyle1(
+                                              context),
                                         ),
                                         onTap: () {},
                                       ),
                                       PopupMenuItem(
                                         child: Text(
                                           AppStrings.deleteFromList,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelSmall!
-                                              .copyWith(
-                                                  color: isDark
-                                                      ? AppColors.white
-                                                      : AppColors.black),
+                                          style: AppTextStyle.helperTextStyle1(
+                                              context),
                                         ),
                                         onTap: () {
                                           BlocProvider.of<CartCubit>(context)
@@ -193,10 +180,8 @@ class ProductCartCard extends StatelessWidget {
                                   const Spacer(),
                                   Text(
                                     '${cartProduct.price.toInt()}\$',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(fontWeight: FontWeight.bold),
+                                    style:
+                                        AppTextStyle.subheadTextStyle(context),
                                   ),
                                   SizedBox(height: 10.h),
                                 ],
@@ -222,7 +207,7 @@ class ProductCartCard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(30)),
                           child: Center(
                             child: Text('NEW',
-                                style: Theme.of(context).textTheme.labelMedium),
+                                style: AppTextStyle.helperTextStyle1(context)),
                           ),
                         ),
                       if (cartProduct.isOnSale && cartProduct.isNew)
@@ -237,10 +222,7 @@ class ProductCartCard extends StatelessWidget {
                           child: Center(
                             child: Text(
                               '-${cartProduct.saleDisc}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium!
-                                  .copyWith(color: AppColors.white),
+                              style: AppTextStyle.helperTextStyle1(context),
                             ),
                           ),
                         ),

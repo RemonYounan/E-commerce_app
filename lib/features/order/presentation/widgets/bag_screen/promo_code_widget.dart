@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/common/app_colors.dart';
+import '../../../../../core/common/app_text_styles.dart';
 import '../../../../../core/constants/app_strings.dart';
 
 class PromoCodeWidget extends StatefulWidget {
@@ -44,16 +45,16 @@ class _PromoCodeWidgetState extends State<PromoCodeWidget> {
                   horizontal: 20.w,
                 ),
                 hintText: AppStrings.enterPromoCode,
-                hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
-                      color: isDark ? AppColors.greyDark : AppColors.grey,
-                    ),
+                hintStyle: AppTextStyle.titleMediumTextStyle(context).copyWith(
+                  color: isDark ? AppColors.greyDark : AppColors.grey,
+                ),
               ),
               validator: (value) {
                 return AppStrings.promoCodeError;
               },
-              style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: isDark ? AppColors.whiteDark : AppColors.black,
-                  ),
+              style: AppTextStyle.titleMediumTextStyle(context).copyWith(
+                color: isDark ? AppColors.whiteDark : AppColors.black,
+              ),
             ),
           ),
           Positioned(

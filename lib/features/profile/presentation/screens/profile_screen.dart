@@ -6,13 +6,12 @@ import 'package:ecommerce_app/features/profile/presentation/screens/promocodes_s
 import 'package:ecommerce_app/features/profile/presentation/screens/settings_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/shipping_address_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/widgets/profile_screen/profile_item_widget.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-
-import '../../../../core/constants/app_strings.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
+import '../../../../core/common/app_text_styles.dart';
+import '../../../../core/constants/app_strings.dart';
 import '../widgets/profile_screen/image_and_name_section.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -45,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                 titlePadding: EdgeInsets.only(left: 14.w),
                 title: Text(
                   AppStrings.myProfile,
-                  style: Theme.of(context).textTheme.headlineLarge,
+                  style: AppTextStyle.headlineTextStyle1(context),
                 ),
               ),
               actions: [

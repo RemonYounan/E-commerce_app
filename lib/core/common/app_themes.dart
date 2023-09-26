@@ -1,7 +1,7 @@
-import 'app_colors.dart';
-import 'app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'app_colors.dart';
 
 class AppThemes {
   static const lightTheme = ThemeMode.light;
@@ -14,14 +14,15 @@ class AppThemes {
         primaryColor: AppColors.primaryColor,
         indicatorColor: AppColors.primaryColor,
         scaffoldBackgroundColor: AppColors.backgroundColor,
-        textTheme: getTextTheme(isDark: false),
+        // TODO: Add font
+        fontFamily: '',
         appBarTheme: AppBarTheme(
           backgroundColor: AppColors.backgroundColor,
           centerTitle: true,
           scrolledUnderElevation: 0,
-          titleTextStyle: AppTextStyle.getAppTextStyle(
-            weight: FontWeight.bold,
-            size: 20.sp, // equal to 18px
+          titleTextStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20.sp, // equal to 18px
             color: AppColors.lightBlack,
           ),
           iconTheme: const IconThemeData(
@@ -30,7 +31,6 @@ class AppThemes {
         ),
         switchTheme: const SwitchThemeData(
           trackColor: MaterialStatePropertyAll(AppColors.primaryColor),
-          
         ),
         cardTheme: CardTheme(
           color: AppColors.white,
@@ -96,9 +96,9 @@ class AppThemes {
           overlayColor:
               MaterialStatePropertyAll(AppColors.primaryColor.withOpacity(0.1)),
           indicatorSize: TabBarIndicatorSize.tab,
-          labelStyle: AppTextStyle.getAppTextStyle(
-            weight: FontWeight.bold,
-            size: 15.sp, // equal to 14px
+          labelStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 15.sp, // equal to 14px
             color: AppColors.white,
           ),
           labelColor: AppColors.white,
@@ -140,12 +140,14 @@ class AppThemes {
         ),
       );
 
-  static ThemeData getDarkAppTheme() => ThemeData.dark().copyWith(
+  static ThemeData getDarkAppTheme() => ThemeData(
         useMaterial3: true,
+        brightness: Brightness.dark,
         scaffoldBackgroundColor: AppColors.backgroundColorDark,
         primaryColor: AppColors.primaryColorDark,
         indicatorColor: AppColors.primaryColorDark,
-        textTheme: getTextTheme(isDark: true),
+        // TODO: Add font
+        fontFamily: '',
         switchTheme: const SwitchThemeData(
           trackColor: MaterialStatePropertyAll(AppColors.primaryColor),
         ),
@@ -168,9 +170,9 @@ class AppThemes {
           foregroundColor: AppColors.backgroundColorDark,
           scrolledUnderElevation: 0,
           centerTitle: true,
-          titleTextStyle: AppTextStyle.getAppTextStyle(
-            weight: FontWeight.bold,
-            size: 20.sp, // equal to 18px
+          titleTextStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20.sp, // equal to 18px
             color: AppColors.whiteDark,
           ),
           iconTheme: const IconThemeData(
@@ -226,9 +228,9 @@ class AppThemes {
           indicatorColor: Colors.transparent,
           overlayColor: const MaterialStatePropertyAll(Colors.transparent),
           indicatorSize: TabBarIndicatorSize.tab,
-          labelStyle: AppTextStyle.getAppTextStyle(
-            weight: FontWeight.bold,
-            size: 15.sp, // equal to 14px
+          labelStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 15.sp, // equal to 14px
             color: AppColors.dark,
           ),
           labelColor: AppColors.dark,
@@ -275,47 +277,47 @@ class AppThemes {
         ),
       );
 
-  static TextTheme getTextTheme({required bool isDark}) => TextTheme(
-        headlineLarge: AppTextStyle.getAppTextStyle(
-          weight: FontWeight.bold,
-          size: 36.sp, // equal to 34px
-          color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
-        ),
-        headlineMedium: AppTextStyle.getAppTextStyle(
-          weight: FontWeight.bold,
-          size: 25.sp, // equal to 24px
-          color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
-        ),
-        headlineSmall: AppTextStyle.getAppTextStyle(
-          weight: FontWeight.bold,
-          size: 20.sp, // equal to 18px
-          color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
-        ),
-        titleLarge: AppTextStyle.getAppTextStyle(
-          weight: FontWeight.bold,
-          size: 17.sp, // equal to 16px
-          color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
-        ),
-        titleMedium: AppTextStyle.getAppTextStyle(
-          size: 17.sp, // equal to 16px
-          color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
-        ),
-        titleSmall: AppTextStyle.getAppTextStyle(
-          weight: FontWeight.w500,
-          size: 15.sp, // equal to 14px
-          color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
-        ),
-        labelLarge: AppTextStyle.getAppTextStyle(
-          size: 15.sp, // equal to 14px
-          color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
-        ),
-        labelMedium: AppTextStyle.getAppTextStyle(
-          size: 13.sp, // equal to 11px
-          color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
-        ),
-        labelSmall: AppTextStyle.getAppTextStyle(
-          size: 12.sp, // equal to 11px
-          color: isDark ? AppColors.greyDark : AppColors.grey,
-        ),
-      );
+  // static TextTheme getTextTheme({required bool isDark}) => TextTheme(
+  //       headlineLarge: AppTextStyle.getAppTextStyle(
+  //         weight: FontWeight.bold,
+  //         size: 36.sp, // equal to 34px
+  //         color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
+  //       ),
+  //       headlineMedium: AppTextStyle.getAppTextStyle(
+  //         weight: FontWeight.bold,
+  //         size: 25.sp, // equal to 24px
+  //         color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
+  //       ),
+  //       headlineSmall: AppTextStyle.getAppTextStyle(
+  //         weight: FontWeight.bold,
+  //         size: 20.sp, // equal to 18px
+  //         color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
+  //       ),
+  //       titleLarge: AppTextStyle.getAppTextStyle(
+  //         weight: FontWeight.bold,
+  //         size: 17.sp, // equal to 16px
+  //         color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
+  //       ),
+  //       titleMedium: AppTextStyle.getAppTextStyle(
+  //         size: 17.sp, // equal to 16px
+  //         color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
+  //       ),
+  //       titleSmall: AppTextStyle.getAppTextStyle(
+  //         weight: FontWeight.w500,
+  //         size: 15.sp, // equal to 14px
+  //         color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
+  //       ),
+  //       labelLarge: AppTextStyle.getAppTextStyle(
+  //         size: 15.sp, // equal to 14px
+  //         color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
+  //       ),
+  //       labelMedium: AppTextStyle.getAppTextStyle(
+  //         size: 13.sp, // equal to 11px
+  //         color: isDark ? AppColors.whiteDark : AppColors.lightBlack,
+  //       ),
+  //       labelSmall: AppTextStyle.getAppTextStyle(
+  //         size: 12.sp, // equal to 11px
+  //         color: isDark ? AppColors.greyDark : AppColors.grey,
+  //       ),
+  //     );
 }

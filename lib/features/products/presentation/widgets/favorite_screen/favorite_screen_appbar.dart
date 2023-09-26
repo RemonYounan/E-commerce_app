@@ -1,3 +1,6 @@
+import 'package:ecommerce_app/core/constants/app_strings.dart';
+import 'package:ecommerce_app/core/constants/enums.dart';
+import 'package:ecommerce_app/core/providers/global_provider.dart';
 import 'package:ecommerce_app/core/utils/custom_search_delegate.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
@@ -5,9 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import 'package:ecommerce_app/core/constants/app_strings.dart';
-import 'package:ecommerce_app/core/constants/enums.dart';
-import 'package:ecommerce_app/core/providers/global_provider.dart';
+import '../../../../../core/common/app_text_styles.dart';
 
 class FavoriteScreenAppBar extends StatelessWidget {
   const FavoriteScreenAppBar({
@@ -32,7 +33,7 @@ class FavoriteScreenAppBar extends StatelessWidget {
           children: [
             Text(
               AppStrings.favorites,
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: AppTextStyle.headlineTextStyle1(context),
             ),
             Row(
               children: [
@@ -43,7 +44,7 @@ class FavoriteScreenAppBar extends StatelessWidget {
                 SizedBox(width: 5.w),
                 Text(
                   AppStrings.filters,
-                  style: Theme.of(context).textTheme.labelLarge,
+                  style: AppTextStyle.titleNormalTextStyle2(context),
                 ),
                 const Spacer(),
                 IconButton(

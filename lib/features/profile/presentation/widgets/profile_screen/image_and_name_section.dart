@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/common/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +16,6 @@ class ImageAndNameSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         if (state is AuthSuccessState) {
@@ -31,12 +31,12 @@ class ImageAndNameSection extends StatelessWidget {
                 children: [
                   Text(
                     state.user.name,
-                    style: textTheme.headlineSmall,
+                    style: AppTextStyle.headlineTextStyle3(context),
                   ),
                   Text(
                     state.user.email,
                     style:
-                        textTheme.titleSmall!.copyWith(color: AppColors.grey),
+                        AppTextStyle.titleMediumTextStyle(context).copyWith(color: AppColors.grey),
                   ),
                 ],
               )
@@ -55,7 +55,7 @@ class ImageAndNameSection extends StatelessWidget {
                 onPressed: () => Navigator.pushNamed(context, AppRoutes.signUp),
                 child: Text(
                   AppStrings.signUp,
-                  style: textTheme.headlineSmall,
+                  style: AppTextStyle.headlineTextStyle3(context),
                 ),
               ),
             ],

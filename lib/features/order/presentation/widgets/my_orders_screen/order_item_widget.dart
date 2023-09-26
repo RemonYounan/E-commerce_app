@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/common/app_routes.dart';
+import 'package:ecommerce_app/core/constants/enums.dart';
+import 'package:ecommerce_app/core/utils/extensions.dart';
 import 'package:ecommerce_app/core/utils/placeholder_loading_widget.dart';
+import 'package:ecommerce_app/features/order/domain/entities/order.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:ecommerce_app/core/common/app_colors.dart';
-import 'package:ecommerce_app/core/constants/enums.dart';
-import 'package:ecommerce_app/core/utils/extensions.dart';
-import 'package:ecommerce_app/features/order/domain/entities/order.dart';
-
+import '../../../../../core/common/app_text_styles.dart';
 import '../../../../../core/constants/app_strings.dart';
 
 class OrderItemWidget extends StatelessWidget {
@@ -63,13 +63,15 @@ class OrderItemWidget extends StatelessWidget {
                     SizedBox(height: 10.h),
                     Text(
                       '${AppStrings.orderNo} ${order.id}',
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: AppTextStyle.subheadTextStyle(context),
                     ),
                     SizedBox(height: 3.h),
                     Text(
                       order.dateCreated,
-                      style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: isDark ? AppColors.greyDark : AppColors.grey),
+                      style: AppTextStyle.titleNormalTextStyle2(context)
+                          .copyWith(
+                              color:
+                                  isDark ? AppColors.greyDark : AppColors.grey),
                     ),
                     SizedBox(height: 25.h),
                     Row(
@@ -77,11 +79,11 @@ class OrderItemWidget extends StatelessWidget {
                       children: [
                         Text(
                           order.status.name.capitalize(),
-                          style:
-                              Theme.of(context).textTheme.titleSmall!.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: color,
-                                  ),
+                          style: AppTextStyle.titleMediumTextStyle(context)
+                              .copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: color,
+                          ),
                         ),
                         SizedBox(
                           height: 35.h,
@@ -103,9 +105,7 @@ class OrderItemWidget extends StatelessWidget {
                             ),
                             child: Text(
                               AppStrings.details,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleSmall!
+                              style: AppTextStyle.titleMediumTextStyle(context)
                                   .copyWith(fontWeight: FontWeight.bold),
                             ),
                           ),

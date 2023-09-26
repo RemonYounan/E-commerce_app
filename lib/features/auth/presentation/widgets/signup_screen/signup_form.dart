@@ -1,22 +1,23 @@
 import 'package:animations/animations.dart';
+// ignore: unused_import
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_app/core/utils/show_error_toast.dart';
 import 'package:ecommerce_app/features/auth/presentation/screens/login_screen.dart';
-
-import '../../../../../core/common/app_colors.dart';
-import '../../../../../core/common/app_routes.dart';
-import '../../../../../core/constants/app_strings.dart';
-import '../../../../../core/providers/global_provider.dart';
-import '../../../domain/entities/register.dart';
-import '../../blocs/auth/auth_cubit.dart';
-import '../../../../../core/utils/custom_text_field_widget.dart';
-import '../../../../../core/utils/custom_button.dart';
-import '../../../../../core/utils/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// ignore: unused_import
-import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../../core/common/app_colors.dart';
+import '../../../../../core/common/app_routes.dart';
+import '../../../../../core/common/app_text_styles.dart';
+import '../../../../../core/constants/app_strings.dart';
+import '../../../../../core/providers/global_provider.dart';
+import '../../../../../core/utils/custom_button.dart';
+import '../../../../../core/utils/custom_text_field_widget.dart';
+import '../../../../../core/utils/loading_widget.dart';
+import '../../../domain/entities/register.dart';
+import '../../blocs/auth/auth_cubit.dart';
 
 class SignupForm extends StatefulWidget {
   const SignupForm({Key? key}) : super(key: key);
@@ -123,7 +124,7 @@ class _SignupFormState extends State<SignupForm> {
               child: TextButton(
                 onPressed: action,
                 style: TextButton.styleFrom(
-                  textStyle: Theme.of(context).textTheme.titleSmall,
+                  textStyle: AppTextStyle.titleMediumTextStyle(context),
                 ),
                 child: Text(AppStrings.alreadyHaveAccount),
               ),

@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../core/common/app_text_styles.dart';
 import '../../../../../core/constants/app_strings.dart';
 import '../../../domain/entities/product_details.dart';
 import '../favorite_button.dart';
 import '../product_grid_card.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RelatedProductsSection extends StatelessWidget {
   const RelatedProductsSection({
@@ -22,11 +24,11 @@ class RelatedProductsSection extends StatelessWidget {
           children: [
             Text(
               AppStrings.youCanLike,
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: AppTextStyle.headlineTextStyle3(context),
             ),
             Text(
               '${product.related.length} ${AppStrings.items}',
-              style: Theme.of(context).textTheme.labelSmall,
+              style: AppTextStyle.helperTextStyle2(context),
             ),
           ],
         ),

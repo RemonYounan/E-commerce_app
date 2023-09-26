@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
+import '../common/app_text_styles.dart';
+
 class ErrorMessageWiget extends StatelessWidget {
   const ErrorMessageWiget({Key? key}) : super(key: key);
 
@@ -9,7 +11,7 @@ class ErrorMessageWiget extends StatelessWidget {
     return Center(
       child: Text(
         AppStrings.errorOccured,
-        style: Theme.of(context).textTheme.titleLarge,
+        style: AppTextStyle.subheadTextStyle(context),
       ),
     );
   }

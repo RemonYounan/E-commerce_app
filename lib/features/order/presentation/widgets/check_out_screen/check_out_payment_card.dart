@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../../core/common/app_text_styles.dart';
+
 class CheckOutPaymentCard extends StatelessWidget {
   const CheckOutPaymentCard({Key? key}) : super(key: key);
 
@@ -40,7 +42,7 @@ class CheckOutPaymentCard extends StatelessWidget {
               state.defaultCard
                   .toString()
                   .replaceRange(0, 12, '****  ****  ****  '),
-              style: Theme.of(context).textTheme.titleSmall,
+              style: AppTextStyle.titleMediumTextStyle(context),
             ),
           ],
         );

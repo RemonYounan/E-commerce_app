@@ -1,7 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import 'package:ecommerce_app/core/common/app_colors.dart';
+import '../common/app_text_styles.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
@@ -20,9 +21,9 @@ class CustomTextButton extends StatelessWidget {
       style: TextButton.styleFrom(
         foregroundColor: AppColors.primaryColor,
         alignment: Alignment.center,
-        textStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
+        textStyle: AppTextStyle.titleMediumTextStyle(context).copyWith(
+          fontWeight: FontWeight.bold,
+        ),
       ),
       child: Text(title),
     );

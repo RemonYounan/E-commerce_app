@@ -1,14 +1,14 @@
+import 'package:ecommerce_app/core/common/app_text_styles.dart';
 import 'package:ecommerce_app/core/utils/error_message_wiget.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-
-import '../../../../../core/common/app_colors.dart';
-
-import '../../blocs/products_cubit/products_cubit.dart';
-import '../../../../../core/utils/loading_widget.dart';
-import 'category_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+
+import '../../../../../core/common/app_colors.dart';
+import '../../../../../core/utils/loading_widget.dart';
+import '../../blocs/products_cubit/products_cubit.dart';
+import 'category_item_widget.dart';
 
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({
@@ -58,21 +58,17 @@ class CategoriesWidget extends StatelessWidget {
                           children: [
                             Text(
                               'SUMMER SALES',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headlineMedium!
+                              style: AppTextStyle.headlineTextStyle2(context)
                                   .copyWith(
-                                    color: AppColors.white,
-                                  ),
+                                color: AppColors.white,
+                              ),
                             ),
                             Text(
                               'Up to 50% off',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleSmall!
+                              style: AppTextStyle.titleMediumTextStyle(context)
                                   .copyWith(
-                                    color: AppColors.white,
-                                  ),
+                                color: AppColors.white,
+                              ),
                             ),
                           ],
                         ),

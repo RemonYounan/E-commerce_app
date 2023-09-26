@@ -1,14 +1,14 @@
-import 'package:ecommerce_app/features/profile/presentation/blocs/profile_cubit/profile_cubit.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:ecommerce_app/core/common/app_routes.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/utils/custom_text_button.dart';
 import 'package:ecommerce_app/features/order/presentation/widgets/check_out_screen/check_out_payment_card.dart';
 import 'package:ecommerce_app/features/order/presentation/widgets/check_out_screen/default_address_widget.dart';
+import 'package:ecommerce_app/features/profile/presentation/blocs/profile_cubit/profile_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/common/app_text_styles.dart';
 import '../widgets/check_out_screen/check_out_summary_widget.dart';
 
 class CheckOutScreen extends StatelessWidget {
@@ -28,7 +28,7 @@ class CheckOutScreen extends StatelessWidget {
             children: [
               Text(
                 AppStrings.shippingAddresses,
-                style: Theme.of(context).textTheme.titleLarge,
+                style: AppTextStyle.subheadTextStyle(context),
               ),
               SizedBox(height: 20.h),
               const DefaultAddressWidget(),
@@ -37,7 +37,7 @@ class CheckOutScreen extends StatelessWidget {
                 children: [
                   Text(
                     AppStrings.payment,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: AppTextStyle.subheadTextStyle(context),
                   ),
                   const Spacer(),
                   CustomTextButton(

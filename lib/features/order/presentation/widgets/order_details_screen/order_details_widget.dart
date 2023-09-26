@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/common/app_colors.dart';
+import '../../../../../core/common/app_text_styles.dart';
 import '../../../../../core/constants/app_strings.dart';
 import '../../../../../core/constants/enums.dart';
 import '../../../domain/entities/order_details.dart';
@@ -42,11 +43,11 @@ class OrderDetailsWidget extends StatelessWidget {
           children: [
             Text(
               '${AppStrings.orderNo} ${order.id}',
-              style: Theme.of(context).textTheme.titleLarge,
+              style: AppTextStyle.subheadTextStyle(context),
             ),
             Text(
               DateFormat.yMd().format(order.dateCreated),
-              style: Theme.of(context).textTheme.labelLarge!.copyWith(
+              style: AppTextStyle.titleNormalTextStyle2(context).copyWith(
                   color: isDark ? AppColors.greyDark : AppColors.grey),
             ),
           ],
@@ -57,14 +58,14 @@ class OrderDetailsWidget extends StatelessWidget {
           children: [
             Text(
               '${order.products.length} ${AppStrings.items}',
-              style: Theme.of(context).textTheme.titleSmall,
+              style: AppTextStyle.titleMediumTextStyle(context),
             ),
             Text(
               order.status.name.capitalize(),
-              style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: color,
-                  ),
+              style: AppTextStyle.titleMediumTextStyle(context).copyWith(
+                fontWeight: FontWeight.bold,
+                color: color,
+              ),
             ),
           ],
         ),
@@ -105,19 +106,20 @@ class OrderDetailsWidget extends StatelessWidget {
                             SizedBox(height: 10.h),
                             Text(
                               product.name,
-                              style: Theme.of(context).textTheme.titleLarge,
+                              style: AppTextStyle.subheadTextStyle(context),
                             ),
                             SizedBox(height: 25.h),
                             Row(
                               children: [
                                 Text(
                                   '${AppStrings.units} ${product.count}',
-                                  style: Theme.of(context).textTheme.titleSmall,
+                                  style: AppTextStyle.titleMediumTextStyle(
+                                      context),
                                 ),
                                 const Spacer(),
                                 Text(
                                   '${product.total.toInt()}\$',
-                                  style: Theme.of(context).textTheme.titleLarge,
+                                  style: AppTextStyle.subheadTextStyle(context),
                                 ),
                                 SizedBox(width: 10.w),
                               ],
@@ -134,7 +136,7 @@ class OrderDetailsWidget extends StatelessWidget {
         ),
         Text(
           'Order information',
-          style: Theme.of(context).textTheme.titleSmall,
+          style: AppTextStyle.titleMediumTextStyle(context),
         ),
         SizedBox(height: 10.h),
         OrderInfoItemWidget(

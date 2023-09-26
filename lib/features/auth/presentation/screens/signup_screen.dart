@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
+import '../../../../core/common/app_text_styles.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../widgets/signup_screen/sign_with_widget.dart';
 import '../widgets/signup_screen/signup_form.dart';
@@ -36,7 +37,7 @@ class SignUpScreen extends StatelessWidget {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             AppStrings.signUp,
-                            style: Theme.of(context).textTheme.headlineLarge,
+                            style: AppTextStyle.headlineTextStyle1(context),
                           ),
                         ),
                         SizedBox(

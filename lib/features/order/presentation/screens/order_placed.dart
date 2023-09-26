@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../core/common/app_text_styles.dart';
+
 class OrderPlacedScreen extends StatelessWidget {
   const OrderPlacedScreen({Key? key}) : super(key: key);
 
@@ -21,15 +23,15 @@ class OrderPlacedScreen extends StatelessWidget {
             SizedBox(height: 50.h),
             Text(
               AppStrings.success,
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: AppTextStyle.headlineTextStyle1(context),
             ),
             Text(
               AppStrings.orderSuccess,
-              style: Theme.of(context).textTheme.labelLarge,
+              style: AppTextStyle.titleNormalTextStyle2(context),
             ),
             Text(
               AppStrings.thankYou,
-              style: Theme.of(context).textTheme.labelLarge,
+              style: AppTextStyle.titleNormalTextStyle2(context),
             ),
             SizedBox(height: 50.h),
           ],

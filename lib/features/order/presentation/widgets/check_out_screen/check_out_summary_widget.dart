@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/common/app_text_styles.dart';
 import 'package:ecommerce_app/features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:ecommerce_app/features/order/presentation/blocs/order/order_cubit.dart';
 import 'package:ecommerce_app/features/order/presentation/widgets/check_out_screen/order_price_widget.dart';
@@ -45,9 +46,7 @@ class CheckOutSummaryWidget extends StatelessWidget {
                         OrderPriceWidget(
                           title: AppStrings.summary,
                           value: totalAmount + cost,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
+                          style: AppTextStyle.titleNormalTextStyle(context)
                               .copyWith(
                                   fontWeight: FontWeight.w500,
                                   color: isDark

@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:ecommerce_app/core/common/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,7 +19,6 @@ class ProfileItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return OpenContainer(
       closedColor: Colors.transparent,
       closedElevation: 0,
@@ -38,11 +38,11 @@ class ProfileItemWidget extends StatelessWidget {
         contentPadding: EdgeInsets.symmetric(horizontal: 15.w),
         title: Text(
           title,
-          style: textTheme.titleLarge,
+          style: AppTextStyle.subheadTextStyle(context),
         ),
         subtitle: Text(
           subTitle,
-          style: textTheme.labelSmall,
+          style: AppTextStyle.helperTextStyle2(context),
         ),
         trailing: Icon(Icons.arrow_forward_ios,
             size: 18,
