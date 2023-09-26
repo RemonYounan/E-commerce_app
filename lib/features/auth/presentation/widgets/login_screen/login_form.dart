@@ -6,7 +6,6 @@ import 'package:ecommerce_app/features/auth/presentation/screens/forgot_password
 import '../../../../../core/common/app_colors.dart';
 import '../../../../../core/common/app_routes.dart';
 import '../../../../../core/constants/app_strings.dart';
-import '../../../../../core/utils/toast.dart';
 import '../../blocs/auth/auth_cubit.dart';
 import '../../../../../core/utils/custom_text_field_widget.dart';
 import '../../../../../core/utils/custom_button.dart';

@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/core/utils/loading_widget.dart';
 import 'package:ecommerce_app/features/order/presentation/blocs/cart/cart_cubit.dart';
 import 'package:ecommerce_app/features/order/presentation/blocs/order/order_cubit.dart';
 import 'package:ecommerce_app/features/order/presentation/widgets/check_out_screen/order_price_widget.dart';

@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class CartProduct extends Equatable {
   final int id;
   final String name;

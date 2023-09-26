@@ -6,7 +6,6 @@ import '../../../../../core/common/app_colors.dart';
 import '../../../../../core/common/app_routes.dart';
 import '../../../../../core/constants/app_strings.dart';
 import '../../../../../core/providers/global_provider.dart';
-import '../../../../../core/utils/toast.dart';
 import '../../../domain/entities/register.dart';
 import '../../blocs/auth/auth_cubit.dart';
 import '../../../../../core/utils/custom_text_field_widget.dart';

@@ -2,7 +2,6 @@ import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:ecommerce_app/features/auth/presentation/blocs/auth/auth_cubit.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/favorite_screen/favorite_screen_appbar.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/favorite_screen/favorite_screen_list.dart';
 

@@ -1,6 +1,7 @@
 import 'cart_product.dart';
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class Cart extends Equatable {
   List<CartProduct> products;
   double totalAmount;

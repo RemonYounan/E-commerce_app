@@ -108,6 +108,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final LoginResult result = await FacebookAuth.instance.login();
     if (result.status == LoginStatus.success) {
       // you are logged
+      // ignore: unused_local_variable
       final AccessToken accessToken = result.accessToken!;
       final userData = await FacebookAuth.instance.getUserData();
       final response = await dio.post(

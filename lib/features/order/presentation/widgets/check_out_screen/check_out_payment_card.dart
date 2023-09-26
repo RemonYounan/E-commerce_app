@@ -1,9 +1,6 @@
 import 'package:ecommerce_app/core/common/app_assets.dart';
 import 'package:ecommerce_app/core/common/app_colors.dart';
-import 'package:ecommerce_app/core/common/app_routes.dart';
-import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/constants/enums.dart';
-import 'package:ecommerce_app/core/utils/custom_text_button.dart';
 import 'package:ecommerce_app/features/profile/presentation/blocs/profile_cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

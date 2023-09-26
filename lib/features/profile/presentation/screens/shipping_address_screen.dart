@@ -1,5 +1,4 @@
 import 'package:animations/animations.dart';
-import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/features/profile/presentation/screens/add_shipping_address_screen.dart';
 import 'package:ecommerce_app/features/profile/presentation/widgets/shipping_addres_screen/addresses_list_widget.dart';
 import 'package:flutter/material.dart';

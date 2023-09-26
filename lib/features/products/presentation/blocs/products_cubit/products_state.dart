@@ -2,6 +2,7 @@ part of 'products_cubit.dart';
 
 enum ProductsStatus { loading, productLoading, loaded, error }
 
+// ignore: must_be_immutable
 class ProductsState extends Equatable {
   ProductsStatus status;
   final List<Product> featuresProducts;

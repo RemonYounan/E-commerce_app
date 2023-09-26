@@ -1,5 +1,4 @@
 import 'package:ecommerce_app/core/common/app_assets.dart';
-import 'package:ecommerce_app/core/common/app_colors.dart';
 import 'package:ecommerce_app/core/constants/app_strings.dart';
 import 'package:ecommerce_app/core/constants/enums.dart';
 import 'package:ecommerce_app/core/providers/global_provider.dart';
@@ -9,7 +8,7 @@ import 'package:ecommerce_app/core/utils/loading_widget.dart';
 import 'package:ecommerce_app/features/products/domain/entities/product.dart';
 import 'package:ecommerce_app/features/products/presentation/blocs/products_cubit/products_cubit.dart';
 import 'package:ecommerce_app/features/products/presentation/widgets/favorite_screen/favorite_grid_view.dart';
-import 'package:ecommerce_app/features/products/presentation/widgets/favorite_screen/favorite_list_view..dart';
+import 'package:ecommerce_app/features/products/presentation/widgets/favorite_screen/favorite_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
